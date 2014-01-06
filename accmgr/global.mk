@@ -14,5 +14,6 @@ CC_INCLDIR=-I. \
 		   -I$(DB_INCLUDE) \
 		   -I/usr/include
 
-ORALIBS=$(ORACLE_HOME)/lib -locci -lsqlplus
+#ORALIBS=$(ORACLE_HOME)/lib -locci -lsqlplus
+ORALIBS=$(ORACLE_HOME)/lib -locci -lclntsh
 BOSSLIBS=$(BOSS_LIB_PATH)/ -ldb

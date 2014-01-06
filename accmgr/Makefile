@@ -4,5 +4,4 @@ include ${BOSS_HOME}/global.mk
 
 all:test
 test:test.cc
-	$(CC) $(CC_FLAGS) $(CC_INCLDIR) -L$(ORALIBS) -L$(BOSSLIBS) -o test test.cc
-
+	$(CC) $(CC_FLAGS) -o test test.cc $(CC_INCLDIR) -L$(BOSSLIBS) -L$(ORALIBS)
