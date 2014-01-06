@@ -2,8 +2,9 @@
 
 int main()
 {
-   DBInterface *db = new OracleDB();
+   OracleDB *db = new OracleDB();
    db->connectToDB();
+   db->getSysDate();
    db->disConnectFromDB();
    return 0;
 }

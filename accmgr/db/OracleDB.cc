@@ -10,13 +10,53 @@ OracleDB::OracleDB():DBInterface(), env(NULL), conn(NULL)
 
 void OracleDB::initializeEnv()
 {
-    env=Environment::createEnvironment(Environment::DEFAULT);
+    try
+    {
+        env=Environment::createEnvironment(Environment::DEFAULT);
+    }
+    catch(SQLException& sqlExcp)
+    {
+        cerr << "*Db Exception*,"
+            << "ErrorCode=" << sqlExcp.getErrorCode()
+            <<",ErrorStr=" << sqlExcp.getMessage() << endl;
+        throw(sqlExcp);
+    }
+    catch(exception& excp)
+    {
+        cerr <<"*Exception*," <<excp.what() << endl;
+        throw(excp);
+    }
+    catch(...)
+    {
+        cerr <<"Unknown Exception!" << endl;
+        throw;
+    }
 }
 
 void OracleDB::destroyEnv()
 {
-    Environment::terminateEnvironment(env);
-    env = NULL;
+    try
+    {
+        Environment::terminateEnvironment(env);
+        env = NULL;
+    }
+    catch(SQLException& sqlExcp)
+    {
+        cerr << "*Db Exception*,"
+            << "ErrorCode=" << sqlExcp.getErrorCode()
+            <<",ErrorStr=" << sqlExcp.getMessage() << endl;
+        throw(sqlExcp);
+    }
+    catch(exception& excp)
+    {
+        cerr <<"*Exception*," <<excp.what() << endl;
+        throw(excp);
+    }
+    catch(...)
+    {
+        cerr <<"Unknown Exception!" << endl;
+        throw;
+    }
 }
 
 
@@ -25,12 +65,23 @@ void OracleDB::createConnection()
     try
     {
         conn = env->createConnection(_user, _passwd, _db);
-        conn = NULL;
     }
-    catch(SQLException e)
+    catch(SQLException& sqlExcp)
     {
-        cout<<e.what()<<endl;
-        throw(e);
+        cerr << "*Db Exception*,"
+            << "ErrorCode=" << sqlExcp.getErrorCode()
+            <<",ErrorStr=" << sqlExcp.getMessage() << endl;
+        throw(sqlExcp);
+    }
+    catch(exception& excp)
+    {
+        cerr <<"*Exception*," <<excp.what() << endl;
+        throw(excp);
+    }
+    catch(...)
+    {
+        cerr <<"Unknown Exception!" << endl;
+        throw;
     }
 
 }
@@ -40,11 +91,24 @@ void OracleDB::terminateConnection()
     try
     {
         env->terminateConnection(conn);
+        conn = NULL;
     }
-    catch(SQLException e)
+    catch(SQLException& sqlExcp)
     {
-        cout<<e.what()<<endl;
-        throw(e);
+        cerr << "*Db Exception*,"
+            << "ErrorCode=" << sqlExcp.getErrorCode()
+            <<",ErrorStr=" << sqlExcp.getMessage() << endl;
+        throw(sqlExcp);
+    }
+    catch(exception& excp)
+    {
+        cerr <<"*Exception*," <<excp.what() << endl;
+        throw(excp);
+    }
+    catch(...)
+    {
+        cerr <<"Unknown Exception!" << endl;
+        throw;
     }
 
 }
@@ -73,4 +137,32 @@ bool OracleDB::reConnectToDB()
     connectToDB();
     
     return true;
+}
+void OracleDB::getSysDate()
+{
+    string sqlStmt = "SELECT to_char(sysdate,'yyyymmdd') from dual";
+
+    try
+    {
+        Statement *stmt=conn->createStatement(sqlStmt);
+        ResultSet* rset = stmt->executeQuery();
+        while(rset->next())
+        {
+            cout <<"Date:" << rset->getString(1) << endl;
+        }
+    }
+    catch(SQLException& sqlExcp)
+    {
+        cout << "*Db Exception*,"
+            << "ErrorCode=" << sqlExcp.getErrorCode()
+            <<",ErrorStr=" << sqlExcp.getMessage() << endl;
+    }
+    catch(exception& excp)
+    {
+        cout <<"*Exception*," <<excp.what() << endl;
+    }
+    catch(...)
+    {
+        cout <<"Unknown Exception!" << endl;
+    }
 }

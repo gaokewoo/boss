@@ -1,4 +1,5 @@
 #include "DBInterface.hh"
+#include <exception>
 
 #ifndef __ORACLEDB__
 #define __ORACLEDB__
@@ -11,6 +12,7 @@ public:
     virtual bool connectToDB();
     virtual bool disConnectFromDB();
     virtual bool reConnectToDB();
+    void getSysDate();
 
 private:   
     void initializeEnv();

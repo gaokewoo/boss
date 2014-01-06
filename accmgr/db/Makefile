@@ -9,7 +9,7 @@ OBJS=DBInterface.o \
 
 libdb.a:$(OBJS)
 	$(AR_CMD) $@ $(OBJS)
-	[ ! -f ../libs/ ] && mkdir ../libs/
+	if [ ! -d ../libs/ ];then mkdir ../libs/;fi
 	mv -f $@ $(BOSS_LIB_PATH)
 	@echo "### $@ loaded ###\n"
 
