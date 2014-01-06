@@ -1,0 +1,18 @@
+#	预存赠送信息历史	BALANCE_PRESENT_INFO_HIS
+	BALANCE_PRESENT_Id       	NUMBER(14),   
+	SERV_ID                     NUMBER(14),  
+	Billing_Cycle_Id            NUMBER(9),   
+	Present_Rule_Id	            NUMBER(14),   
+	Present_TYPE                CHAR(1),     
+	Priority 			        NUMBER(3),   
+	OP_CODE                     CHAR(4 BYTE),
+	PRESENT_Id		            NUMBER(14),   
+	Balance_Type_Id             NUMBER(9),   
+	Balance_FEE    	            NUMBER(12),  
+	CONTINUE_FEE                NUMBER(12),  
+	EFF_DATE    	            DATE,        
+	EXP_DATE      	            DATE,        
+	STATE        	            VARCHAR2(3), 
+	STATE_DATE   	            DATE,
+	update_state_date 			DATE,
+	constraint PK_BALANCE_PRESENT_INFO_HIS primary key (BALANCE_PRESENT_Id)       

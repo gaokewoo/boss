@@ -1,0 +1,11 @@
+#  BALANCE_RELATION_HIS  余额对象账本关系
+   BALANCE_RELATION_ID  NUMBER(9)                       not null,
+   ACCT_BALANCE_ID      NUMBER(14)                       not null,
+   OBJECT_TYPE          VARCHAR2(3)                     not null,
+   OBJECT_ID            NUMBER(14)                       not null,
+   PRIORITY				NUMBER(3)						not null,
+   ATTACHED             VARCHAR2(3)                     not null,
+   HIS_DATE				DATE,
+   STATE				VARCHAR2(3),
+   STATE_DATE			DATE,
+   constraint PK_BALANCE_RELATION_HIS primary key (BALANCE_RELATION_ID)

@@ -1,0 +1,4 @@
+#  ACCT_GROUP ’Àªß»∫
+   ACCT_GROUP_ID        NUMBER(9)                       not null,
+   ACCT_GROUP_DESC      VARCHAR(250)                    not null,
+   constraint PK_ACCT_GROUP primary key (ACCT_GROUP_ID)

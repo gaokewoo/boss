@@ -1,0 +1,11 @@
+#  DISCOUNT_EXPRESS  ”≈ª›º∆À„
+   DISCOUNT_EXPRESS_ID  	NUMBER(9)                       not null,
+   DISCOUNT_METHOD_ID   	NUMBER(9)                       not null,
+   RATABLE_RESOURCE_ID  	NUMBER(9),
+   START_REF_VALUE_ID   	NUMBER(9),
+   END_REF_VALUE_ID     	NUMBER(9),
+   PRICING_SECTION_ID   	NUMBER(9)                       not null,
+   DISCOUNT_RATE_VALUE_ID 	NUMBER(12,5)                    not null,
+   FIXED_VALUE_ID       	NUMBER(12,5)                    not null,
+   CALC_PRIORITY        	NUMBER(3)                       not null,
+   constraint PK_DISCOUNT_EXPRESS primary key (DISCOUNT_EXPRESS_ID)

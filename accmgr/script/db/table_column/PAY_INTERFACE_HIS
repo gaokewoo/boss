@@ -1,0 +1,15 @@
+#	缴费接口表(PAY_INTERFACE_HIS)
+	LOGIN_ACCEPT  		NUMBER(14),   
+    ACCT_ID             NUMBER(14),   
+    serv_id             NUMBER(14),   
+    ACC_NBR             VARCHAR2(30), 
+    PAYMENT_METHOD      NUMBER(9),    
+    PAY_MONEY           NUMBER(12),   
+    PAY_NOTE            VARCHAR2(250),
+    STAFF_id            NUMBER(9),    
+    INSERT_date         DATE,
+    STATE        		VARCHAR2(3),
+    STATE_DATE          DATE,       
+    PAYMENT_ID          NUMBER(14), 
+    PAYMENT_DATE        DATE,       
+    constraint PK_PAY_INTERFACE_HIS primary key (LOGIN_ACCEPT)         

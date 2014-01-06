@@ -1,0 +1,15 @@
+#  BALANCE_PAYOUT  Óà¶îÖ§³ö
+   OPER_PAYOUT_ID       NUMBER(14)                      not null,
+   ACCT_BALANCE_ID      NUMBER(14)                       not null,
+   BILLING_CYCLE_ID     NUMBER(9)                       not null,
+   BILL_ID              NUMBER(14),
+   OPER_TYPE            VARCHAR(3)                      not null,
+   OPER_DATE            DATE                            not null,
+   AMOUNT               NUMBER(12)                      not null,
+   BALANCE              NUMBER(12)                      not null,
+   PRN_COUNT            NUMBER(8),
+   BALANCE_RELATION_ID  NUMBER(9),
+   STAFF_ID             NUMBER(9)                       not null,
+   STATE                VARCHAR (3)                     not null,
+   STATE_DATE           DATE                            not null,
+   constraint PK_BALANCE_PAYOUT primary key (OPER_PAYOUT_ID)

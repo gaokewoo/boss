@@ -1,0 +1,18 @@
+#	CUST_POST_CHG                           
+  	SEQ_NO       	NUMBER(14) 	   NOT NULL,
+  	CONTRACT_NO  	NUMBER(14)     NOT NULL,
+  	POST_FLAG    	CHAR(1)        NOT NULL,
+  	POST_TYPE    	CHAR(1)        NOT NULL,
+  	POST_ADDRESS 	VARCHAR2(100)  NOT NULL,
+  	POST_ZIP     	CHAR(10)       NOT NULL,
+  	FAX_NO       	VARCHAR2(30)   NOT NULL,
+  	MAIL_ADDRESS 	VARCHAR2(30)   NOT NULL,
+  	ID_NO        	NUMBER(14)     NOT NULL,
+  	POST_NAME    	VARCHAR2(60)   NOT NULL,
+  	POSTNO_FLAG  	NUMBER(1)      NOT NULL,
+  	CONTENT_TYPE 	CHAR(1),
+  	POST_CYC     	NUMBER(2),
+  	OP_TYPE	  		CHAR(1) 	   NOT NULL,
+  	DEAL_FLAG	  	CHAR(1)        NOT NULL,   
+  	DEAL_TIME     	DATE,
+  	constraint PK_CUST_POST_CHG primary key (SEQ_NO)

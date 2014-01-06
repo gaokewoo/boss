@@ -1,0 +1,29 @@
+#	”≈ª›‘˘ÀÕ–≈œ¢	FAVOUR_PRESENT_INFO_ADD
+	FAVOUR_PRESENT_Id   		NUMBER(14),     
+	SERV_ID                     NUMBER(14),    
+	Present_Rule_Id	            NUMBER(14),      
+	Present_TYPE		        CHAR(1),        
+	Priority 			        NUMBER(3),      
+	OP_CODE                     CHAR(4),        
+	PRESENT_Id		            NUMBER(14),      
+	Acct_Item_Group_Id          NUMBER(9),      
+	FAVOUR_FEE                  NUMBER(12),     
+	Present_RATE                NUMBER(12,5),   
+	EFF_DATE    	            DATE,           
+	EXP_DATE      	            DATE,           
+	STATE        	            VARCHAR2(3),    
+	STATE_DATE   	            DATE,
+	OP_SN						NUMBER(14),
+	OP_TYPE						CHAR(1),
+	OP_TIME						DATE         
+
+
+
+
+
+
+
+
+
+
+

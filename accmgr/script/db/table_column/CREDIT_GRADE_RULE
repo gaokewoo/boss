@@ -1,0 +1,9 @@
+#  CREDIT_GRADE_RULE  信用等级规则
+   CREDIT_GRADE_RULE_ID 	NUMBER(9)                       not null,
+   CREDIT_GRADE_ID      	NUMBER(9)                       not null,
+   CREDIT_CEIL          	NUMBER(5)                       not null,
+   CREDIT_FLOOR         	NUMBER(5)                       not null,
+   CREDIT_GRADE_NAME    	VARCHAR(30)                     not null,
+   EFF_DATE             	DATE                            not null,
+   EXP_DATE               	DATE                            not null,
+   constraint PK_CREDIT_GRADE_RULE primary key (CREDIT_GRADE_RULE_ID)

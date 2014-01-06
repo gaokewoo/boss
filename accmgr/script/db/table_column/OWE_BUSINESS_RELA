@@ -1,0 +1,6 @@
+#	欠费处理业务关系	 OWE_BUSINESS_RELA
+	REGION_CODE     	CHAR(2),     
+	PLAN_CODE   	    CHAR(4),     
+	CRECTRL_RULE        CHAR(4),     
+	CRECTRL_TYPE        CHAR(4),     
+	CRECTRL_ORDER       NUMBER(4)

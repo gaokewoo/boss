@@ -1,0 +1,5 @@
+#  BILL_FORMAT  ’Àµ•∏Ò Ω
+   BILL_FORMAT_ID       NUMBER(9)                       not null,
+   BILL_REMARK_ID       NUMBER(9)                       not null,
+   FORMAT_NAME          VARCHAR(50)                     not null,
+   constraint PK_BILL_FORMAT primary key (BILL_FORMAT_ID)

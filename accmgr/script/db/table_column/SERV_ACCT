@@ -1,0 +1,16 @@
+#  serv_acct  账务订制关系
+   SERV_ACCT_id       		NUMBER(12)                      not null,
+   ACCT_ID              	NUMBER(14)                      not null,
+   SERV_ID              	NUMBER(14)                      not null,
+   BILLING_CYCLE_TYPE_ID 	NUMBER(9)                       not null,
+   ACCT_ITEM_GROUP_ID   	NUMBER(9)                       not null,
+   PRIORITY             	NUMBER(3)                       not null,
+   PAYMENT_RULE_ID      	NUMBER(9)                       not null,
+   PAYMENT_LIMIT_TYPE   	VARCHAR2(3)                     not null,
+   PAYMENT_LIMIT        	NUMBER(12),
+   STATE                	VARCHAR (3),
+   STATE_DATE           	DATE                            not null,
+   PAY_PRIORITY      		NUMBER(5)                       not null,
+   eff_date           		DATE,
+   exp_date           		DATE,
+   constraint PK_SERV_ACCT primary key (SERV_ACCT_id)

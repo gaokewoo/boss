@@ -1,0 +1,8 @@
+#  PAYMENT_PLAN_TYPE  支付方案类型
+   REGION_ID            	NUMBER(10)                       not null,
+   PAYMENT_PLAN_TYPE    	VARCHAR(3)                      not null,
+   PAYMENT_PLAN_TYPE_NAME 	VARCHAR2(50)                    not null,
+   HIGHFEE_FLAG         	VARCHAR2(1)                     not null,
+   PREDEL_MONTH         	NUMBER(5)                       not null,
+   DEL_MONTH            	NUMBER(5)                       not null,
+   constraint PK_PAYMENT_PLAN_TYPE primary key (PAYMENT_PLAN_TYPE, REGION_ID)

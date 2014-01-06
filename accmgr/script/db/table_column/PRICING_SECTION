@@ -1,0 +1,16 @@
+#  PRICING_SECTION  ¶¨¼Û¶ÎÂä
+   PRICING_SECTION_ID   	NUMBER(9)                        not null,
+   SECTION_TYPE_ID      	NUMBER(9)                       not null,
+   SECTION_CALC_TYPE    	VARCHAR2(3)                     not null,
+   PRICING_SECTION_NAME 	VARCHAR2(50),
+   PARENT_SECTION_ID    	NUMBER(9),
+   PRICING_REF_OBJECT_ID 	NUMBER(9),
+   ZONE_ITEM_ID         	NUMBER(9),
+   CYCLE_SECTION_BEGIN  	NUMBER(5),
+   CYCLE_SECTION_DURATION 	NUMBER(5),
+   START_REF_VALUE_ID   	NUMBER(9),
+   END_REF_VALUE_ID     	NUMBER(9),
+   JUDGE_RESULT         	VARCHAR2(1)                     not null,
+   EVENT_PRICING_STRATEGY_ID NUMBER(9),
+   CALC_PRIORITY        	NUMBER(3)                       not null,
+   constraint PK_PRICING_SECTION primary key (PRICING_SECTION_ID)

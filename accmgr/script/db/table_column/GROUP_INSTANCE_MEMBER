@@ -1,0 +1,18 @@
+#	群组实例成员	GROUP_INSTANCE_MEMBER
+	MEMBER_ID         NUMBER(14)                  NOT NULL,  
+	GROUP_ID          NUMBER(14)                  NOT NULL,
+	ACC_NBR           VARCHAR2(30 BYTE),
+	SHORT_NUM         VARCHAR2(20 BYTE),                   
+	SERV_ID           NUMBER(14),                          
+	MEMBER_DESC       VARCHAR2(250 BYTE)		  NOT NULL,                  
+	MEMBER_TYPE_ID    NUMBER(9)                   NOT NULL,
+	MEMBER_ROLE_ID    NUMBER(9)					  NOT NULL,                           
+	LIFE_CYCLE_ID     NUMBER(9)					  NOT NULL,                           
+	MEMBER_OBJECT_ID  NUMBER(14),
+	STATE             VARCHAR2(3 BYTE),
+	STATE_DATE        DATE,
+	EXP_DATE          DATE,
+	EFF_DATE          DATE,
+	GRP_MEB_ATTR      VARCHAR2(30 BYTE),                   
+	UP_GROUP_ID       NUMBER(14),                           
+	constraint PK_GROUP_INSTANCE_MEMBER primary key (MEMBER_ID)

@@ -1,0 +1,9 @@
+#  BALANCE_TYPE  ’À±æ¿‡–Õ
+   BALANCE_TYPE_ID      NUMBER(9)                       not null,
+   PRIORITY             NUMBER(5)                       not null,
+   SPE_PAYMENT_ID       NUMBER(9),
+   MEASURE_METHOD_ID    NUMBER(9),
+   BALANCE_TYPE_NAME    VARCHAR(50)                     not null,
+   action_mark          VARCHAR(3),
+   PAY_TYPE				varchar2(1),
+   constraint PK_BALANCE_TYPE primary key (BALANCE_TYPE_ID)

@@ -1,0 +1,9 @@
+#	固网后付费停机用户表（STOP_SERV_OWE_BC）
+	SERV_ID           	NUMBER(14),  
+    ACTION_TYPE_ID      NUMBER(9),   
+    NEW_STATUS          CHAR(1),     
+    STAFF_CODE          CHAR(6),     
+    OLD_STATUS          CHAR(1),     
+    ACC_NBR             VARCHAR2(30),
+    BILLING_MODE        VARCHAR2(3), 
+    PRODUCT_ID          NUMBER(9)   

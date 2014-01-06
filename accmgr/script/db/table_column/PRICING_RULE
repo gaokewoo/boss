@@ -1,0 +1,8 @@
+#  PRICING_RULE  定价判断条件
+   PRICING_RULE_ID      	NUMBER(9)                       not null,
+   PRICING_SECTION_ID   	NUMBER(9)                       not null,
+   PRICING_REF_OBJECT_ID 	NUMBER(9)                       not null,
+   OPERATOR_ID          	NUMBER(9)                       not null,
+   RESULT_REF_VALUE_ID  	NUMBER(9)                       not null,
+   GROUP_ID             	NUMBER(9)                       not null,
+   constraint PK_PRICING_RULE primary key (PRICING_RULE_ID)

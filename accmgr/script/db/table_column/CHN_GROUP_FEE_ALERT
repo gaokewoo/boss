@@ -1,0 +1,7 @@
+#　CHN_GROUP_FEE_ALERT  代理商警告阀值
+   ORG_ID               NUMBER(12)                      not null,
+   ALERT_VALUE          NUMBER(12)                      not null,
+   UPDATE_TIME          DATE                            not null,
+   STAFF_ID             NUMBER(9)                       not null,
+   NOTE              	VARCHAR(200),
+   constraint PK_CHN_GROUP_FEE_ALERT primary key (ORG_ID)

@@ -1,0 +1,11 @@
+#	¹ÌÍøÓÃ»§×´Ì¬±í£¨STOP_SERV_STATE£©
+	SERV_ID     	NUMBER(14),  
+    CUST_ID         NUMBER(14),  
+    PRODUCT_ID      NUMBER(9),   
+    STATE           VARCHAR2(3), 
+    STATE_DATE      DATE ,       
+    ACC_NBR         VARCHAR2(30),
+    GROUP_ID        VARCHAR2(10),
+    EFF_DATE        DATE,        
+    EXP_DATE        DATE,        
+    BILLING_MODE    VARCHAR2(3) 

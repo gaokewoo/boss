@@ -1,0 +1,11 @@
+#  ACCT_BALANCE_LOG	”‡∂Ó’À±æ»’÷æ   
+   BALANCE_LOG_ID       NUMBER(12)                      not null,
+   ACCT_BALANCE_ID      NUMBER(14)                       not null,
+   OPER_INCOME_ID       NUMBER(12),
+   SRC_AMOUNT           NUMBER(12)                      not null,
+   OPER_PAYOUT_ID       NUMBER(12)                      not null,
+   PAYOUT_AMOUNT        NUMBER(12)                      not null,
+   BILLING_CYCLE_ID     NUMBER(9),
+   STATE                VARCHAR (3)                     not null,
+   STATE_DATE           DATE                            not null,
+   constraint PK_ACCT_BALANCE_LOG primary key (BALANCE_LOG_ID)

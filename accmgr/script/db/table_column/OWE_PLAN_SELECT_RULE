@@ -1,0 +1,7 @@
+#	欠费处理方案选择规则	 OWE_PLAN_SELECT_RULE
+	OP_TYPE              CHAR(4),  
+	OP_CODE              CHAR(4),  
+	OPERATE_TYPE         CHAR(4),  
+	OPERATE_ORDER        NUMBER(4),
+	TYPE_FLAG            NUMBER(4),
+	TYPE_NAME            VARCHAR2(50)

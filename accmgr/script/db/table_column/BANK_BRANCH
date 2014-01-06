@@ -1,0 +1,11 @@
+#  BANK_BRANCH  银行支行
+   BANK_BRANCH_ID       NUMBER(9)                       not null,
+   BANK_ID              NUMBER(9)                       not null,
+   BANK_BRANCH_NAME     VARCHAR(50)                     not null,
+   BANK_ACCT            VARCHAR(30)                     not null,
+   BANK_ACCT_NAME       VARCHAR(50)                     not null,
+   BANK_BRANCH_PHONE    VARCHAR(15),
+   BANK_BRANCH_ADDR     VARCHAR(60),
+   REGION_ID			NUMBER(10),
+   BANK_CODE			VARCHAR2(3),
+   constraint PK_BANK_BRANCH primary key (BANK_BRANCH_ID)

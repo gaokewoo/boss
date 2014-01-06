@@ -1,0 +1,11 @@
+#  PRICING_REF_OBJECT  定价参考对象
+   PRICING_REF_OBJECT_ID 	NUMBER(9)                       not null,
+   OWNER_ID             	NUMBER(9)                       not null,
+   PROPERTY_TYPE        	VARCHAR2(3)                     not null,
+   PROPERTY_DEFINE_ID   	NUMBER(9),
+   EXTERN_PROPERTY_STRING 	VARCHAR2(50),
+   MEASURE_METHOD_ID    	NUMBER(9),
+   HISTORY_TIME_TYPE    	VARCHAR2(3)                     not null,
+   HISTORY_TIME_DURATION 	NUMBER(5)                       not null,
+   HISTORY_TIME_QUANTITY 	NUMBER(5)                       not null,
+   constraint PK_PRICING_REF_OBJECT primary key (PRICING_REF_OBJECT_ID)

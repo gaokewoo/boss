@@ -1,0 +1,10 @@
+#  EVAL_RULE  信用评估规则
+   EVAL_RULE_ID         NUMBER(9)                       not null,
+   EVAL_RULE_NAME       VARCHAR(50)                     not null,
+   TARGET_ID            NUMBER(9)                       not null,
+   EVAL_PLAN_ID         NUMBER(9)                       not null,
+   FACTOR_CATG_ID       NUMBER(12),
+   DEFAULT_VALUE        number(8)                   	not null,
+   PERCENTAGE           NUMBER(12,5)                    not null,
+   COMMENTS             VARCHAR(250)                    not null,
+   constraint PK_EVAL_RULE primary key (EVAL_RULE_ID)

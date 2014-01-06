@@ -1,0 +1,17 @@
+#	销售品实例	PRODUCT_OFFER_INSTANCE		
+	PRODUCT_OFFER_INSTANCE_ID		NUMBER(14)		NOT NULL,
+	CUST_ID                         NUMBER(14)  	NOT NULL,
+	CUST_AGREEMENT_ID               NUMBER(14)  	NOT NULL,
+	OFFER_ID                        NUMBER(9)   	NOT NULL,
+	STATE                           VARCHAR(3)  	NOT NULL,
+	STATE_DATE                      DATE        	NOT NULL,
+	EFF_DATE                        DATE        	NOT NULL,
+	EXP_DATE                        DATE,       
+	PRIORITY                        NUMBER(3),  
+	HANDLE_STAFF_ID                 NUMBER(9),  
+	DEVELOP_STAFF_ID                NUMBER(9),  
+	CHANNEL_ID                      VARCHAR(10),
+	REL_OFFER_INST_ID               NUMBER(14),
+	GROUP_ID                        NUMBER(14),
+	SERV_ID                         NUMBER(14),
+	constraint PK_PRODUCT_OFFER_INSTANCE primary key (PRODUCT_OFFER_INSTANCE_ID)

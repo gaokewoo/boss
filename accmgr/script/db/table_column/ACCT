@@ -1,0 +1,13 @@
+# 	ACCT ’ ªß
+   ACCT_ID            	NUMBER(14)                      not null,
+   CUST_ID              NUMBER(14)						not null,
+   ACCT_NAME			VARCHAR(50),
+   ADDRESS_ID           NUMBER(9)                       not null,
+   STATE                VARCHAR (3),
+   STATE_DATE           DATE                            not null,
+   ACCT_PWD           	VARCHAR(16),
+   REGION_ID          	NUMBER(10),
+   ACCT_TYPE          	VARCHAR(3),
+   OWE_MIN_YM         	NUMBER(6),
+   OWE_FEE            	NUMBER(12),
+   constraint PK_ACCT primary key (ACCT_ID)

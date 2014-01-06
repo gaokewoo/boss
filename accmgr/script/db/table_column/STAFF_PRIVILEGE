@@ -1,0 +1,4 @@
+#  STAFF_PRIVILEGE  员工权限
+   STAFF_ID             NUMBER(9)                       not null,
+   PRIVILEGE_ID         NUMBER(9)                       not null,
+   constraint PK_STAFF_PRIVILEGE primary key (STAFF_ID, PRIVILEGE_ID)

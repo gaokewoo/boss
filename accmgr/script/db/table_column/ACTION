@@ -1,0 +1,5 @@
+#  ACTION  ¶¯×÷
+   ACTION_ID            NUMBER(9)                       not null,
+   ACTION_TYPE_ID       NUMBER(9)                       not null,
+   ACTION_NAME          VARCHAR2(50)                    not null,
+   constraint PK_ACTION primary key (ACTION_ID)

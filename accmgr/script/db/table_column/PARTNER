@@ -1,0 +1,6 @@
+#  PARTNER  ºÏ×÷»ï°é
+   PARTY_ID             NUMBER(9)                       not null,
+   PARD_CODE            VARCHAR2(21)                    not null,
+   PARD_TYPE            VARCHAR2(3)                     not null,
+   PARD_DESC            VARCHAR2(1024)                   not null,
+   constraint PK_PARTNER primary key (PARTY_ID)

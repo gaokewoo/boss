@@ -1,0 +1,14 @@
+#	计费无主信息表（ BILL_UNOWNER_INFO ）
+	BILL_UNOWNER_ID				NUMBER(14),
+	ACC_NBR           			VARCHAR2(30),
+    UNOWNER_TYPE                VARCHAR2(8) ,
+    REGION_CODE                 VARCHAR2(10),
+    IMSI_NO                     VARCHAR2(32),
+    UNOWNER_FEE                 NUMBER(12)  ,
+    UNOWNER_COUNT               NUMBER(4)   ,
+    UNOWNER_BEGIN_TIME          DATE ,       
+    UNOWNER_LAST_TIME           DATE  ,      
+    INSERT_TIME                 DATE   ,     
+    STATE                       VARCHAR2(3), 
+    STATE_DATE                  DATE ,
+    constraint PK_BILL_UNOWNER_INFO primary key (BILL_UNOWNER_ID)       

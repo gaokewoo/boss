@@ -1,0 +1,9 @@
+#	TRANSFER_ACCOUNT
+	transfer_account_id  NUMBER(14)   not null,
+	login_no			VARCHAR2(6)   not null, 
+	op_code				VARCHAR2(4)   not null, 
+	id_no				NUMBER(14)    not null, 
+	OUT_CRONTACT_NO   	NUMBER(14)    not null, 
+	IN_CRONTACT_NO    	NUMBER(14)    not null, 
+	pay_type          	VARCHAR2(4)   not null, 
+	MONEY		      	NUMBER(14,2)   not null

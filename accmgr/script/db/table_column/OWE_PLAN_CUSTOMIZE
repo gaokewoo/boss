@@ -1,0 +1,10 @@
+#	欠费处理方案定制	OWE_PLAN_CUSTOMIZE
+	SERV_ID        NUMBER(14),   
+	ACC_NBR        VARCHAR2(30), 
+	PLAN_CODE      CHAR(4),      
+	BEGIN_TIME     DATE,         
+	END_TIME       DATE,         
+	STAFF_ID       NUMBER(9),    
+	OP_TYPE        CHAR(1),      
+	OP_TIME        DATE,        
+	OP_NOTE        VARCHAR2(250)    

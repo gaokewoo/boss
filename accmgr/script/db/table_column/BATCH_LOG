@@ -1,0 +1,11 @@
+#  BATCH_LOG  批量操作日志
+   LOGIN_ACCEPT         NUMBER(14)                      not null,
+   OP_CODE              VARCHAR2(4)                     not null,
+   STAFF_ID             NUMBER(9)                       not null,
+   BEGIN_TIME           DATE                            not null,
+   END_TIME             DATE,
+   DEAL_NUM             NUMBER(10),
+   SUCC_NUM             NUMBER(10),
+   ERR_NO               VARCHAR(6),
+   ERR_MSG              VARCHAR(250),
+   constraint PK_BATCH_LOG primary key (LOGIN_ACCEPT)

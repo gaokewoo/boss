@@ -1,0 +1,9 @@
+#  BILL_PARSE  ÕËÎñ½âÎö
+   bill_parse_id      	NUMBER(9)                       not null,
+   parse_sn           	NUMBER(4)                       not null,
+   attr_grp_id        	NUMBER(9),
+   parse_method       	VARCHAR(4),
+   fee_method        	VARCHAR(4),
+   ACCT_ITEM_TYPE_ID    NUMBER(9),
+   sp_item_id			NUMBER(9),
+   constraint PK_BILL_PARSE primary key (bill_parse_id, parse_sn)

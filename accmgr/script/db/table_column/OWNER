@@ -1,0 +1,5 @@
+#  OWNER  属主定义表
+   OWNER_ID             NUMBER(9)                       not null,
+   OWNER_OBJECT_TYPE    VARCHAR2(3)                     not null,
+   CHARGE_PARTY_ID      CHAR(3)                        not null,
+   constraint PK_OWNER primary key (OWNER_ID)

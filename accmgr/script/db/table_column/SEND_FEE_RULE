@@ -1,0 +1,9 @@
+#	Ω…∑—‘˘ÀÕπÊ‘Ú£®SEND_FEE_RULE£©
+	BALANCE_TYPE_ID			NUMBER (9)   	NOT NULL,
+	EFF_DATE                DATE         	NOT NULL,
+	EXP_DATE                DATE         	NOT NULL,
+	SEND_FLAG               VARCHAR2(1)  	NOT NULL,
+	MIN_PAY                 NUMBER(12)   	NOT NULL,
+	MAX_PAY                 NUMBER(12)   	NOT NULL,
+	SEND_VALUE              NUMBER(12,2) 	NOT NULL,
+	OP_NOTE                 VARCHAR2(128)

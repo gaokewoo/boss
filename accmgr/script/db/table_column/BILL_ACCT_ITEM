@@ -1,0 +1,4 @@
+#	’ µ•œÓ_’ ƒø		BILL_ACCT_ITEM
+	BILL_ITEM_TYPE_ID		NUMBER(9)		not null,
+	ITEM_SOURCE_ID          NUMBER(9)		not null,
+	ACCT_ITEM_TYPE_ID       NUMBER(9)		not null

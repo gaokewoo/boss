@@ -1,0 +1,7 @@
+#  SERV_GRADE_CODE  用户等级信息
+   region_id          	NUMBER(10)                       not null,
+   OWNER_CODE           VARCHAR (2 Byte)                not null,
+   TYPE_NAME            VARCHAR2 (50 Byte)              not null,
+   VIP_FLAG             CHAR (1 Byte)                   not null,
+   STOP_FLAG            CHAR (1 Byte)                   not null,
+   constraint PK_SERV_GRADE_CODE primary key (region_id, OWNER_CODE)

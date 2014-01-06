@@ -1,0 +1,18 @@
+#	ÏúÕÊ½Ó¿Ú	BILL_INTERFACE_HIS
+	PAYMENT_ID				NUMBER(14) 			not null,  
+	ACCT_ID                 NUMBER(14)   		not null,	
+	SERV_ID                 NUMBER(14)   		not null,
+	OP_CODE                 VARCHAR2(4)  		not null,
+	STAFF_ID                NUMBER(9)    		not null,
+	PAYMENT_METHOD          NUMBER(9)    		not null,
+	PAYMENT_DATE            DATE         		not null,
+	ONLINE_FLAG             NUMBER(3)    		not null,
+	STATE                   VARCHAR2(3)  		not null,
+	STATE_DATE              DATE         		not null,
+	OP_NOTE                 VARCHAR2(250),
+	BILL_BEG_YM 			NUMBER(6),
+	BILL_END_YM 			NUMBER(6),
+	HIS_DATE				DATE,
+	BILL_MONTH_FLAG 		VARCHAR2(3),
+	SERV_PAY_FLAG  			NUMBER(3),
+	constraint PK_BILL_INTERFACE_HIS primary key (PAYMENT_ID)

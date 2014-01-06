@@ -1,0 +1,10 @@
+#  LIFE_CYCLE  ÉúÃüÖÜÆÚ
+   LIFE_CYCLE_ID        NUMBER(9)                       NOT NULL,
+   STATE                VARCHAR (3)                     NOT NULL,
+   EFF_TYPE             VARCHAR2(3)                     NOT NULL,
+   EFF_DATE             DATE,
+   EXP_DATE             DATE,
+   EFF_VALUE          	VARCHAR2(14),
+   EXP_VALUE          	VARCHAR2(14),
+   GROUP_ID				VARCHAR2(3),
+   CONSTRAINT PK_LIFE_CYCLE PRIMARY KEY (LIFE_CYCLE_ID)

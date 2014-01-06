@@ -1,0 +1,13 @@
+#	月结备份配置表(BILL_REPORT_ATTR)
+	FUNCTION_NAME   		VARCHAR2(40), 
+    DEST_TABLE              VARCHAR2(40), 
+    SRC_TABLE               VARCHAR2(40), 
+    ID_FLAG                 VARCHAR2(3),  
+    BILLING_CYCLE_ID        VARCHAR2(10), 
+    OP_FLAG                 VARCHAR2(2),  
+    CTR_FLAG                number(2),  
+    SRC_TABLE_SPACE         VARCHAR2(20),
+    DEST_TABLE_SPACE        VARCHAR2(20),
+    INDEX_SPACE             VARCHAR2(20), 
+    TABLE_OWNER             VARCHAR2(20), 
+    NOTE                    VARCHAR2(100)

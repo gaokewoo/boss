@@ -1,0 +1,14 @@
+#	帐单记录数据表(BILL_RECORD_DATA)
+	SERV_ID         		NUMBER(14),  
+    ACC_NBR                 VARCHAR2(30),
+    ACCT_ID                 NUMBER(14),  
+    CUST_ID                 NUMBER(14),  
+    BILLING_CYCLE_ID        NUMBER(9),   
+    BILL_RECORD_ID          NUMBER(9),   
+    BILL_RECORD_NAME        VARCHAR2(50),
+    SHOULD_PAY              NUMBER(12),  
+    FAVOUR_FEE              NUMBER(12),  
+    BILL_POST_METHOD        VARCHAR(3),  
+    REGION_ID               NUMBER(10),  
+    STAFF_ID                NUMBER(9),   
+    INSERT_TIME             DATE        

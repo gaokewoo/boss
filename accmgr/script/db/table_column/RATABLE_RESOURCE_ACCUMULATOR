@@ -1,0 +1,9 @@
+#  Ratable_Resource_Accumulator  计费累计值
+   RATABLE_RESOURCE_ID  NUMBER(9)                       not null,
+   OWNER_TYPE           VARCHAR(3)                      not null,
+   OWNER_ID             NUMBER(14),
+   RATABLE_CYCLE_ID     NUMBER(9),
+   BALANCE              NUMBER(8),
+   Origin_Balance		NUMBER(8),
+   Ratable_Object_Id	NUMBER(9),
+   constraint PK_RATABLE_RESOURCE_ACCUMULATO primary key (OWNER_TYPE,OWNER_ID,RATABLE_CYCLE_ID,Ratable_Object_Id)

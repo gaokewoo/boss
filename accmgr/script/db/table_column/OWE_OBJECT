@@ -1,0 +1,5 @@
+#  OWE_OBJECT  欠费处理对象
+   OWE_OBJECT_ID        NUMBER(9)                       not null,
+   OWE_OBJECT_TYPE      VARCHAR(3)                       not null,
+   OWE_OBJECT_DESC      VARCHAR(250)                     not null,
+   constraint PK_OWE_OBJECT primary key (OWE_OBJECT_ID)

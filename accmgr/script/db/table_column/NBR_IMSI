@@ -1,0 +1,5 @@
+#	∫≈¬ÎIMSI±Ì£® NBR_IMSI £©#
+	ACC_NBR 		VARCHAR2(30),
+    IMSI_NO         VARCHAR2(15),
+    EFF_DATE        DATE,        
+    EXP_DATE        DATE

@@ -1,0 +1,10 @@
+#	DEPOSIT_OPR	Ñº½ð²Ù×÷¼ÇÂ¼
+	DEPOSIT_OPR_SN	NUMBER(14)	not null,
+	ACCT_ID 		NUMBER(14)	not null,
+    SERV_ID			NUMBER(14)	not null,
+    DEPOSIT_TYPE	VARCHAR2(4)	not null,
+    DEPOSIT_FEE		NUMBER(12)	not null,
+    OP_CODE			VARCHAR(4)	not null,
+    STAFF_ID		NUMBER(9)	not null,
+    OP_TIME			DATE		not null,
+    NOTE			VARCHAR2(200)

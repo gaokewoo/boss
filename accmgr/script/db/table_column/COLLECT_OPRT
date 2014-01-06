@@ -1,0 +1,13 @@
+#  COLLECT_OPRT  托收单操作记录
+   COLLECT_OPER_SN    	NUMBER(12)                      not null,
+   COLLECT_NBR    		VARCHAR(25)                     not null,
+   ACCT_ID              NUMBER(14)                      not null,
+   PAYMENT_PLAN_ID      NUMBER(12),
+   BANK_BRANCH_ID       NUMBER(9),
+   COLLECT_YM       	NUMBER(6),
+   COLLECT_OPER_TYPE  	CHAR(1),
+   REFUSE_TYPE       	CHAR(1),
+   STAFF_ID             NUMBER(9),
+   OP_TIME          	DATE,
+   COMMENTS             VARCHAR(250),
+   constraint PK_COLLECT_OPRT primary key (collect_oper_sn)

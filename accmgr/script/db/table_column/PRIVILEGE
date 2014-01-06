@@ -1,0 +1,8 @@
+#  PRIVILEGE  х╗оч
+   PRIVILEGE_ID         NUMBER(9)                       not null,
+   PARENT_PRIVILEGEID   NUMBER(9),
+   PRIVILEGE_NAME       VARCHAR(50)                     not null,
+   PRIVILEGE_TYPE       VARCHAR2(3)                     not null,
+   APP_CODE             VARCHAR2(8)                     not null,
+   PRIVILEGE_DESC       VARCHAR2(250)                   not null,
+   constraint PK_PRIVILEGE primary key (PRIVILEGE_ID)

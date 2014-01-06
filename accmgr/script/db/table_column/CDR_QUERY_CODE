@@ -1,0 +1,3 @@
+#	CDR_QUERY_CODE  Ïêµ¥²éÑ¯´úÂë
+   QUERY_CODE         NUMBER(9),
+   QUERY_TYPE         VARCHAR2(4)

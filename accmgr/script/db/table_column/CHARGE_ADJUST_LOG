@@ -1,0 +1,7 @@
+#  CHARGE_ADJUST_LOG  µ˜’À»’÷æ
+   CHARGE_ADJUST_LOG_ID NUMBER(9)                       not null,
+   ADJUST_RECORD_ID     NUMBER(9)                       not null,
+   CAUSE                VARCHAR2(250)                   not null,
+   "DATE"               DATE                            not null,
+   STAFF_ID             NUMBER(9)                       not null,
+   constraint PK_CHARGE_ADJUST_LOG primary key (CHARGE_ADJUST_LOG_ID)

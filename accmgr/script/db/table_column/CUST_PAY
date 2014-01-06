@@ -1,0 +1,16 @@
+#	客户缴费记录(CUST_PAY)
+	LOGIN_ACCEPT    		NUMBER(14),   
+    CUST_ID                 NUMBER(14),   
+    Cust_location           NUMBER(10),   
+    CUST_NAME               VARCHAR2(250),
+    STATE                   VARCHAR2(3),  
+    EFF_DATE                DATE,         
+    CUST_TYPE               VARCHAR2(3),  
+    CERTIFICATE_TYPE        VARCHAR2(3),  
+    CERTIFICATE_NO          VARCHAR2(30), 
+    CONTACT_ADDR            VARCHAR(250), 
+    CUST_value              NUMBER(12),   
+    PAY_MONEY               NUMBER(12),   
+    OP_TIME                 DATE,         
+    PRINT_NUM               NUMBER(2),    
+    ACC_NBR                 VARCHAR2(30) 

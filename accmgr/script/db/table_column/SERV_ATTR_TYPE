@@ -1,0 +1,4 @@
+#	主产品实例属性	SERV_ATTR_TYPE
+	ATTR_ID          NUMBER(9)		 	not null,  
+	ATTR_DESC        VARCHAR2(50)		not null,
+	constraint PK_SERV_ATTR_TYPE primary key (ATTR_ID)

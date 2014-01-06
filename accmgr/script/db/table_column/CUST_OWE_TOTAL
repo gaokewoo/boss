@@ -1,0 +1,17 @@
+#	客户帐单汇总(CUST_OWE_TOTAL)
+	PAY_ID				NUMBER(14),
+	LOGIN_ACCEPT		NUMBER(14),  
+    CUST_ID             NUMBER(14),  
+    acct_id             NUMBER(14),  
+    serv_id             NUMBER(14),  
+    amount              NUMBER(12),  
+    DELAY_FEE           NUMBER(12),  
+    PREPAY_FEE          NUMBER(12),  
+    OTHER_FEE           NUMBER(12),  
+    should_fee          NUMBER(12), 
+    BALANCE_FEE         NUMBER(12),  
+    PAY_MONEY           NUMBER(12),  
+    ACC_NBR             VARCHAR2(30),
+    DEAL_FLAG           CHAR(1),     
+    STAFF_ID            NUMBER(9),   
+    OP_TIME             date        

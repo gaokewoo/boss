@@ -1,0 +1,6 @@
+#  ACCT_RELATIONSHIP ’Àªßπÿœµ
+   ACCT_ID              NUMBER(14)                      not null,
+   REL_ACCT_ID          NUMBER(14)                      not null,
+   ACCT_REL_TYPE        VARCHAR(3)                      not null,
+   VALID_AMOUNT      	NUMBER(12),
+   constraint PK_ACCT_RELATIONSHIP primary key (ACCT_ID)

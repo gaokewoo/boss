@@ -1,0 +1,15 @@
+#  ACCT_LOGOUT  ºËÏú¼ÇÂ¼±í
+   LOGOUT_OP_SN       	NUMBER(12)                      not null,
+   ACCT_ITEM_ID         NUMBER(12),
+   ACCT_ID              NUMBER(14),
+   CUST_ID              NUMBER(14),
+   AGREEMENT_ID         NUMBER(14),
+   OWE_STATUS        	Char(1),
+   OWE_BEGIN_TIME    	DATE,
+   POST_TYPE         	Char(1),
+   POST_ADDR         	NUMBER(12),
+   STAFF_ID        	 	NUMBER(9),
+   OPER_TIME         	DATE,
+   LOGOUT_REASON     	VARCHAR(50),
+   LOGOUT_AMOUNT      	NUMBER(12),
+   constraint PK_ACCT_LOGOUT primary key (LOGOUT_OP_SN)

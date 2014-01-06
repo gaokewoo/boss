@@ -1,0 +1,13 @@
+#  BALANCE_SHARE_RULE  账本共享规则
+   SHARE_RULE_ID        NUMBER(12)                      not null,
+   ACCT_BALANCE_ID      NUMBER(14)                       not null,
+   SHARE_RULE_TYPE_ID   NUMBER(9)                       not null,
+   SHARE_RULE_TYPE_PRI  NUMBER(5)                       not null,
+   OBJECT_TYPE          VARCHAR2(3)                     not null,
+   OBJECT_ID            NUMBER(9)                       not null,
+   UPPER_AMOUNT         NUMBER(12)                      not null,
+   LOWER_AMOUNT         NUMBER(12)                      not null,
+   EFF_DATE             DATE                            not null,
+   EXP_DATE             DATE                            not null,
+   CALC_METHOD          VARCHAR(1)                      not null,
+   constraint PK_BALANCE_SHARE_RULE primary key (SHARE_RULE_ID)

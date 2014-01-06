@@ -1,0 +1,8 @@
+#	群组实例关系	GROUP_INSTANCE_RELATION
+	GROUP_ID         NUMBER(14)                   NOT NULL,  
+	Z_GROUP_ID       NUMBER(14)                   NOT NULL,
+	AGREEMENT_ID     NUMBER(14)                   NOT NULL,
+	RELATION_TYPE    VARCHAR2(3 BYTE)             NOT NULL,
+	PRICING_PLAN_ID  NUMBER(9)					  NOT NULL,                            
+	EFF_DATE         DATE                         NOT NULL,
+	EXP_DATE         DATE						  NOT NULL                                  

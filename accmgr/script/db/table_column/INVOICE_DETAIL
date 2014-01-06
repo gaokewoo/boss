@@ -1,0 +1,6 @@
+#  INVOICE_DETAIL  ·¢Æ±Ã÷Ï¸
+   INVOICE_ID           NUMBER(12)                      not null,
+   INVOICE_ITEM_ID      NUMBER(9)                       not null,
+   ITEM_NAME            VARCHAR(50)                     not null,
+   ITEM_VALUE           VARCHAR(250)                    not null,
+   constraint PK_INVOICE_DETAIL primary key (INVOICE_ID,INVOICE_ITEM_ID)

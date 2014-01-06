@@ -1,0 +1,8 @@
+#  ACCT_ITEM_GROUP ÕËÄ¿×é
+   ACCT_ITEM_GROUP_ID     NUMBER(9)                       not null,
+   ACCT_ITEM_GROUP_NAME   VARCHAR(50)                     not null,
+   PRIORITY               NUMBER(3)                       not null,
+   STATE				  VARCHAR(3)          			  not null,
+   STATE_DATE             DATE                    		  not null,
+   ACCT_ITEM_GROUP_TYPE   VARCHAR(3) ,
+   constraint PK_ACCT_ITEM_GROUP primary key (ACCT_ITEM_GROUP_ID)

@@ -1,0 +1,6 @@
+#	ÔÚÍ¾×´Ì¬(SZ_STATUS)
+	STATUS         	VARCHAR2(3 BYTE) , 
+	STATUS_NAME     VARCHAR2(50 BYTE) ,
+	BILL_FLAG       CHAR(1 BYTE)   ,   
+	FLAG            CHAR(1 BYTE)  ,    
+	STATUS_DESC     VARCHAR2(250 BYTE)

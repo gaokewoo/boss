@@ -1,0 +1,9 @@
+#  SERV_ADD_ACC_NBR  主产品附加号码信息
+   SERV_ADD_ACC_NBR_ID  NUMBER(14)                      not null,
+   SERV_ID              NUMBER(14)                      not null,
+   AGREEMENT_ID         NUMBER(14)                       not null,
+   ADD_ACC_NBR          VARCHAR2(100)                    not null,
+   STATE                VARCHAR2(3),                    
+   STATE_DATE           DATE                            not null,
+   ADD_ACC_NBR_TYPE		VARCHAR2(3),
+   constraint PK_SERV_ADD_ACC_NBR primary key (SERV_ADD_ACC_NBR_ID)

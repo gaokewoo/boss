@@ -1,0 +1,5 @@
+#  BALANCE_STATE  ÕË±¾×´Ì¬
+   STATE_type                VARCHAR (3)                     not null,
+   note                      VARCHAR(50),
+   trig_type          		 CHAR(4),
+   constraint PK_BALANCE_STATE primary key (STATE_type)

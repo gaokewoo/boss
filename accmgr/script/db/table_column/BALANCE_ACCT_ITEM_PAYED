@@ -1,0 +1,10 @@
+#  BALANCE_ACCT_ITEM_PAYED  ”‡∂Ó÷ß≥ˆ’Àƒø
+   OPER_PAYOUT_ID       NUMBER(14)                      not null,
+   ACCT_ITEM_ID         NUMBER(12)                      not null,
+   BALANCE              NUMBER(12)                      not null,
+   SERV_ID				NUMBER(14),
+   ACCT_ITEM_TYPE_ID	NUMBER(9),
+   ITEM_SOURCE_ID		NUMBER(9),
+   STATE                VARCHAR(3)                      not null,
+   STATE_DATE           DATE                            not null,
+   constraint PK_BALANCE_ACCT_ITEM_PAYED primary key (OPER_PAYOUT_ID, ACCT_ITEM_ID)

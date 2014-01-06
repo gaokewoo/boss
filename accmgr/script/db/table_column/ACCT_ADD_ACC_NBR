@@ -1,0 +1,7 @@
+#	’ ªß∏Ωº”∫≈¬Î£®ACCT_ADD_ACC_NBR£©
+	ACCT_ID                     NUMBER(14)      		NOT NULL,
+	ADD_ACC_NBR_TYPE            VARCHAR2(3 Byte)		NOT NULL,
+	ADD_ACC_NBR                 VARCHAR2(30)    		NOT NULL,
+	STATE                       VARCHAR2(3)     		NOT NULL,
+	STATE_DATE                  DATE            		NOT NULL,
+	constraint PK_ACCT_ADD_ACC_NBR primary key (ACCT_ID,ADD_ACC_NBR_TYPE)

@@ -1,0 +1,13 @@
+#	调帐审批错误日志（ADJUST_APPROVAL_ERR）
+	ACC_NBR            VARCHAR2(30 BYTE)          NOT NULL,
+	ACCT_ID            NUMBER(14)                 NOT NULL,
+	BILL_MONTH         NUMBER(6)                  NOT NULL,
+	ACCT_ITEM_TYPE_ID  NUMBER(9),
+	ADJ_FEE            NUMBER(12)                 NOT NULL,
+	STAFF_ID           NUMBER(9)                  NOT NULL,
+	SERV_ID            NUMBER(14)                 NOT NULL,
+	RETURN_CODE        NUMBER(6),
+	OP_NOTE            VARCHAR2(50 BYTE)          NOT NULL,
+	OP_TIME            DATE                       NOT NULL,
+	SIGN_TIME          DATE,
+	PAYMENT_METHOD     NUMBER(9)                  NOT NULL

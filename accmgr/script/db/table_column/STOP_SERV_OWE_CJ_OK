@@ -1,0 +1,3 @@
+#	固网催缴成功用户表（STOP_SERV_OWE_CJ_OK）
+	ACC_NBR			VARCHAR2(30),
+    SERV_ID         NUMBER(14)  

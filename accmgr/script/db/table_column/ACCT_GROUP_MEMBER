@@ -1,0 +1,5 @@
+#  ACCT_GROUP_MEMBER 账户群账户关系
+   ACCT_GROUP_ID        NUMBER(9)                       not null,
+   ACCT_ID              NUMBER(14)                      not null,
+   ROLE                 VARCHAR(3)                      not null,
+   constraint PK_ACCT_GROUP_MEMBER primary key (ACCT_GROUP_ID, ACCT_ID)

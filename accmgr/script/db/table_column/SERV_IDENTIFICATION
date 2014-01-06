@@ -1,0 +1,7 @@
+#  SERV_IDENTIFICATION  主产品标识
+   SERV_ID              NUMBER(14)                      not null,
+   AGREEMENT_ID         NUMBER(14)                       not null,
+   ACC_NBR              VARCHAR2(30)                    not null,
+   EFF_DATE             DATE                            not null,
+   EXP_DATE             DATE,
+   constraint PK_SERV_IDENTIFICATION primary key (SERV_ID, AGREEMENT_ID)

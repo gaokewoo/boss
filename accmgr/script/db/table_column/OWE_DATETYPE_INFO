@@ -1,0 +1,7 @@
+#  OWE_DATETYPE_INFO  处理时间标识信息
+   OWE_TIME_INFO_ID     	NUMBER(9)                       not null,
+   DATE_TYPE_ID         	NUMBER(9)                       not null,
+   BILLING_CYCLE_ID     	NUMBER(9)                       not null,
+   REGION_ID            	NUMBER(10)                       not null,
+   "DATE"               	DATE                            not null,
+   constraint PK_OWE_DATETYPE_INFO primary key (OWE_TIME_INFO_ID)

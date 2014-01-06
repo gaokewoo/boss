@@ -1,0 +1,6 @@
+#	SYS_DOMAIN
+	TABLE_NAME  varchar(50),
+	FIELD_NAME  varchar(50),
+	DOMAIN      varchar(50),
+	NAME        varchar(50),
+	constraint PK_SYS_DOMAIN primary key (TABLE_NAME,FIELD_NAME,DOMAIN)

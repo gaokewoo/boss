@@ -1,0 +1,9 @@
+#	主产品实例付费模式	SERV_BILLING_MODE_DEAD
+	SERV_ID     		NUMBER(14)		NOT NULL, 			
+	AGREEMENT_ID        NUMBER(14)		NOT NULL, 
+	EFF_DATE            DATE       		NOT NULL,
+	EXP_DATE            DATE,       
+	BILLING_MODE        VARCHAR2(3)      NOT NULL,
+	dead_time			DATE,
+	dead_staff_id		NUMBER(9),
+	dead_optsn			NUMBER(14)

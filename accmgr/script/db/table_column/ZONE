@@ -1,0 +1,5 @@
+#  ZONE  Çø±í
+   ZONE_ID              NUMBER(12)                       not null,
+   PRICING_REF_OBJECT_ID NUMBER(12)                       not null,
+   ZONE_NAME            VARCHAR2(50)                    not null,
+   constraint PK_ZONE primary key (ZONE_ID)

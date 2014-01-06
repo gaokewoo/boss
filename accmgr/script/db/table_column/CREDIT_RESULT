@@ -1,0 +1,9 @@
+#  CREDIT_RESULT  信用评估记录结果
+   CREDIT_RESULT_ID     NUMBER(12)                      not null,
+   CREDIT_GRADE_ID      NUMBER(9),
+   OBJECT_TYPE          VARCHAR2(3)                     not null,
+   OBJECT_ID            NUMBER(14),
+   CREDIT_AMOUNT        NUMBER(5)                       not null,
+   EXCEPTION_AMOUNT     NUMBER(5)                       not null,
+   EFF_DATE             DATE                            not null,
+   constraint PK_CREDIT_RESULT primary key (CREDIT_RESULT_ID)

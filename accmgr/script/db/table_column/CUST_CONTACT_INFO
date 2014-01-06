@@ -1,0 +1,17 @@
+#  CUST_CONTACT_INFO  客户联系信息
+   CUST_ID           	NUMBER(14)                      not null,
+   AGREEMENT_ID         NUMBER(14)                      not null,
+   CONTACT_NAME         VARCHAR(128)                     not null,
+   CONTACT_GENDER       VARCHAR(1)                      not null,
+   CONTACT_ADDR         VARCHAR(250)                    not null,
+   CONTACT_COMPANY      VARCHAR(250)                    not null,
+   DUTY_DESC            VARCHAR(250)                    not null,
+   TELEPHONE            VARCHAR(30)                     not null,
+   MOBILE               VARCHAR(20)                     not null,
+   POST_CODE            VARCHAR(6)                      not null,
+   EMAIL_ADDRESS        VARCHAR(50)                     not null,
+   FAX                  VARCHAR(30)                     not null,
+   COMMENTS             VARCHAR(250)                    not null,
+   EFF_DATE             DATE                            not null,
+   EXP_DATE             DATE,
+   constraint PK_CUST_CONTACT_INFO primary key (cust_id, AGREEMENT_ID)

@@ -1,0 +1,3 @@
+#	日用户余额临时表(OWE_BALANCE_TMP)#
+  	ACCT_ID NUMBER(14) not null,
+  	SERV_ID NUMBER(14) not null

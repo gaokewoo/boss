@@ -1,0 +1,12 @@
+#	销售品实例附加属性	PRODUCT_OFFER_INSTANCE_ATTR
+	SERV_ID      					NUMBER(14),  
+	ATTR_ID                        NUMBER(9),   
+	AGREEMENT_ID                   NUMBER(14),  
+	OFFER_ID                       NUMBER(9),   
+	ATTR_VAL                       VARCHAR2(30)		NOT NULL,
+	EFF_DATE                       DATE,
+	EXP_DATE                       DATE,        
+	CREATE_DATE                    DATE,        
+	STATE_CD                       VARCHAR2(3), 
+	STATE_DATE                     DATE,
+	constraint PK_PRODUCT_OFFER_INST_ATTR primary key (SERV_ID,ATTR_ID,EFF_DATE)        

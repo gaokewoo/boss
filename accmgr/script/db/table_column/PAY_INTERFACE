@@ -1,0 +1,11 @@
+#	缴费接口表(PAY_INTERFACE)
+	LOGIN_ACCEPT  		NUMBER(14),   
+    ACCT_ID             NUMBER(14),   
+    serv_id             NUMBER(14),   
+    ACC_NBR             VARCHAR2(30), 
+    PAYMENT_METHOD      NUMBER(9),    
+    PAY_MONEY           NUMBER(12),   
+    PAY_NOTE            VARCHAR2(250),
+    STAFF_id            NUMBER(9),    
+    INSERT_date         DATE, 
+    constraint PK_PAY_INTERFACE primary key (LOGIN_ACCEPT)         

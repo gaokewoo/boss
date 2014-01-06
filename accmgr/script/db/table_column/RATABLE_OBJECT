@@ -1,0 +1,4 @@
+#	计费累计对象	RATABLE_OBJECT  
+	Element_Id            NUMBER(9),
+	Ratable_Object_Id     NUMBER(9),
+	constraint PK_Element_Id primary key (Element_Id)

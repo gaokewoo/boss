@@ -1,0 +1,4 @@
+#  SPECIAL_PAYMENT_DESC  专款专用详情描述
+   SPE_PAYMENT_ID       NUMBER(9)                       not null,
+   SPE_PAYMENT_DESC     VARCHAR(250)                    not null,
+   constraint PK_SPECIAL_PAYMENT_DESC primary key (SPE_PAYMENT_ID)

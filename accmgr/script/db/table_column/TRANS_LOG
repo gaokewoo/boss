@@ -1,0 +1,17 @@
+#  TRANS_LOG  ∂‘’À»’÷æ
+   AGT_ACCEPT         Varchar2(30)                      not null,
+   PAY_ID               NUMBER(14)                     not null,
+   AGT_CODE             VARCHAR (7)                     not null,
+   AGT_DATE             DATE                            not null,
+   ACC_NBR              Varchar2(30)                    not null,
+   STAFF_ID             NUMBER(9)                       not null,
+   OP_CODE              VARCHAR2 (4)                    not null,
+   OP_TIME          	DATE                            not null,
+   OP_MONEY             NUMBER(12)                      not null,
+   UNPAY_FLAG           char(1),
+   REPAY_FLAG           char(1),
+   COLLATE_FLAG         char(1),
+   COLLATE_TIME         DATE,
+   BAND_ID              NUMBER(9),
+   PAYMENT_METHOD		NUMBER(9),
+   ACNT_CODE			VARCHAR2(20)

@@ -1,0 +1,8 @@
+#  SERV_STATE_ATTR  主产品实例状态
+   SERV_ID              	NUMBER(14)                      not null,
+   BILLING_CYCLE_TYPE_ID 	NUMBER(9)                       not null,
+   AGREEMENT_ID         	NUMBER(14)                      not null,
+   OWE_BUSINESS_TYPE_ID 	NUMBER(9),
+   STATE                	VARCHAR (3)                     not null,
+   EFF_DATE             	DATE                            not null,
+   EXP_DATE             	DATE

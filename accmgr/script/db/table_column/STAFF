@@ -1,0 +1,10 @@
+#  STAFF  Ô±¹¤
+   STAFF_ID             NUMBER(9)                       not null,
+   OPERATE_ORG_ID       NUMBER(12)                      not null,
+   STAFF_CODE           VARCHAR(15),
+   PASSWD               VARCHAR(32)                     not null,
+   SCOPE_LEVEL          VARCHAR(3)                      not null,
+   STAFF_DESC           VARCHAR(250)                    not null,
+   PARENT_PARTYROLEID   NUMBER(9),
+   STAFF_TYPE			VARCHAR2(3),
+   constraint PK_STAFF primary key (STAFF_ID)

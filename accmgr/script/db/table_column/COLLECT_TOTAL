@@ -1,0 +1,9 @@
+#  COLLECT_TOTAL  ÍÐÊÕµ¥¼ÇÂ¼
+   COLLECT_NBR       VARCHAR(25)                     not null,
+   BILL_YM           NUMBER(6),
+   COLLECT_OP_MARK    CHAR(1),
+   COLLECT_MONEY      NUMBER(12),
+   REFUSE_COUNT      NUMBER(8),
+   COLLECT_COUNT     NUMBER(8),
+   REFUSE_MONEY      NUMBER(12),
+   constraint PK_COLLECT_TOTAL primary key (collect_nbr)

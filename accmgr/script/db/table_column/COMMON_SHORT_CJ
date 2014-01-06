@@ -1,0 +1,11 @@
+##CÍø¶ÌÐÅ´ß½É±í(COMMON_SHORT_CJ)	
+	COMMAND_ID             NUMBER(14),       
+	LOGIN_ACCEPT           NUMBER(14),       
+	MSG_LEVEL              NUMBER(10),   
+	ACC_NBR                VARCHAR2(30),     
+	MSG                    VARCHAR2(255),
+	ORDER_CODE             NUMBER(10),   
+	BACK_CODE              NUMBER(10),   
+	DX_OP_CODE             CHAR(4),      
+	STAFF_CODE             CHAR(6),      
+	OP_TIME                DATE

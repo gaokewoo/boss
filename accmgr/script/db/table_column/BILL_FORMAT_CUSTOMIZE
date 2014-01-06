@@ -1,0 +1,13 @@
+#  BILL_FORMAT_CUSTOMIZE  账单订制关系
+   BILL_FORMAT_CUSTOMIZE_ID   NUMBER(12)                      not null,
+   ACCT_ID              	  NUMBER(14)                      not null,
+   BILL_FORMAT_ID             NUMBER(9)                       not null,
+   BILL_POST_CYCLE      	  VARCHAR(3)                      not null,
+   ADDRESS_ID           	  NUMBER(9)                       not null,
+   BILL_POST_METHOD     	  VARCHAR(3)                      not null,
+   STATE                	  VARCHAR (3)                     not null,
+   STATE_DATE           	  DATE                            not null,
+   FORMAT_TYPE					VARCHAR(3),
+	SERV_ID                     NUMBER(14),
+	CUST_ID                     NUMBER(14),
+   constraint PK_BILL_FORMAT_CUSTOMIZE primary key (BILL_FORMAT_CUSTOMIZE_ID)

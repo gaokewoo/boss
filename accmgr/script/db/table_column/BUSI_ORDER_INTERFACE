@@ -1,0 +1,10 @@
+#	BUSI_ORDER_INTERFACE                                  
+	ORDER_ACCEPT   	NUMBER(14) 				NOT NULL, 
+	SERV_ORDER_ID  	VARCHAR2 (20 BYTE),  
+	LOGIN_NO	 	VARCHAR2(6) 			NOT NULL,  
+	OP_CODE        	VARCHAR2(4) 			NOT NULL,
+	INSERT_TIME    	DATE		   			NOT NULL,
+	ID_NO		 	NUMBER(14) 				NOT NULL,   
+	CONTRACT_NO     NUMBER(14),          
+	DEAL_FLAG	 	CHAR(1)    				NOT NULL,   
+	DEAL_TIME	 	DATE                   

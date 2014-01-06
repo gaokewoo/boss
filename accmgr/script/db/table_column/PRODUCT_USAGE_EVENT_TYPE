@@ -1,0 +1,6 @@
+#	产品计费事件类型	PRODUCT_USAGE_EVENT_TYPE
+	Product_Id           NUMBER(9),
+	Event_Type_Id        NUMBER(9),
+	Eff_Date             DATE,     
+	Exp_Date             DATE,     
+	constraint PK_PRODUCT_USAGE_EVENT_TYPE primary key (Event_Type_Id,Product_Id)

@@ -1,0 +1,8 @@
+#	欠费处理方案选择	OWE_PLAN_SELECT
+	REGION_CODE       CHAR(2),    
+	SM_CODE           CHAR(2),    
+	OPERATE_TYPE      CHAR(4),    
+	OPERATE_CODE      CHAR(8),    
+	PLAN_CODE  	      CHAR(4),    
+	STATE             VARCHAR2(3),
+	STATE_DATE        DATE      

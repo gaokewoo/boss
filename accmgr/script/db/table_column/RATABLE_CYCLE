@@ -1,0 +1,8 @@
+#  RATABLE_CYCLE  ÀÛ¼ÆÖÜÆÚ
+   RATABLE_CYCLE_ID     	NUMBER(9)                       not null,
+   RATABLE_CYCLE_TYPE_ID 	NUMBER(9),
+   CYCLE_BEGIN_DATE     	DATE							not null,
+   CYCLE_END_DATE       	DATE							not null,
+   STATE                	VARCHAR(3)						not null,
+   STATE_DATE           	DATE							not null,
+   constraint PK_RATABLE_CYCLE primary key (RATABLE_CYCLE_ID)

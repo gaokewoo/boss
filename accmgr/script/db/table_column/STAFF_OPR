@@ -1,0 +1,16 @@
+#  STAFF_OPR  员工操作记录
+   LOGIN_ACCEPT         NUMBER(14)                      not null,
+   TOTAL_DATE           NUMBER(8)                       not null,
+   OP_CODE              VARCHAR2 (4)                    not null,
+   PAYMENT_METHOD       NUMBER(9)                       not null,
+   PAY_MONEY            NUMBER(12)                      not null,
+   BAND_ID              NUMBER(9)                       not null,
+   SERV_ID              NUMBER(14)                      not null,
+   ACC_NBR              Varchar2(30)                    not null,
+   OP_TIME              DATE                            not null,
+   OP_NOTE              VARCHAR2 (250),
+   IP_ADDR              VARCHAR(15),
+   STAFF_ORG_ID         NUMBER(12),
+   NBR_ORG_ID           NUMBER(12),
+   STAFF_ID             NUMBER(9)                       not null,
+   constraint PK_STAFF_OPR primary key (LOGIN_ACCEPT)

@@ -1,0 +1,16 @@
+#	¹ÌÍøÍ£»úÕÊÄ¿×ÛºÏ£¨STOP_ACCT_SERV_OWE£©
+	AI_TOTAL_ID     		NUMBER(14), 
+    ACCT_ID                 NUMBER(14), 
+    SERV_ID                 NUMBER(14), 
+    ACC_NBR                 VARCHAR(30),
+    BILLING_CYCLE_ID        NUMBER(9),  
+    AMOUNT                  NUMBER(12), 
+    SHOULD_PAY              NUMBER(12), 
+    FAVOUR_FEE              NUMBER(12), 
+    TIMES                   NUMBER(10), 
+    DURATION                NUMBER(10), 
+    CREATED_DATE            DATE,       
+    STATE                   VARCHAR(3), 
+    STATE_DATE              DATE ,      
+    MONTH_WRTOFF_FEE        NUMBER(12), 
+    PAY_WRTOFF_FEE          NUMBER(12) 

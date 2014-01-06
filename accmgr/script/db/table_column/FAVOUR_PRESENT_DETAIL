@@ -1,0 +1,7 @@
+#	ÓÅ»İÔùËÍÃ÷Ï¸	FAVOUR_PRESENT_DETAIL
+	Favour_Present_Id       	Number(14), 
+	Ratable_Cycle_Id	        Number(9), 
+	Old_Favour_Fee              Number(12),
+	Curr_Favour_Fee             Number(12),
+	Deal_Date	                DATE,      
+	 constraint PK_FAVOUR_PRESENT_DETAIL primary key (Favour_Present_Id)

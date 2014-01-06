@@ -1,0 +1,10 @@
+#  ADJUST_APPROVAL_TOTAL µ÷ÕËÉóÅú×ÛºÏ
+   LOGIN_ACCEPT         NUMBER(14)                      not null,
+   STAFF_ID             NUMBER(9)                       not null,
+   OP_TIME              DATE                            not null,
+   ADJ_FEE              NUMBER(12)                      not null,
+   STATE                VARCHAR(3)                      not null,
+   OP_REASON            VARCHAR2(50),
+   OP_NOTE              VARCHAR2(250),
+   OP_CODE              VARCHAR2(4)                    not null,
+   constraint PK_ADJUST_APPROVAL_TOTAL primary key (LOGIN_ACCEPT)

@@ -1,0 +1,6 @@
+#  ZONE_ITEM  区表节点
+   ZONE_ITEM_ID         NUMBER(12)                       not null,
+   ZONE_ID              NUMBER(12),
+   PARENT_ZONE_ITEM_ID  NUMBER(9),
+   ZONE_ITEM_NAME       VARCHAR2(50)                    not null,
+   constraint PK_ZONE_ITEM primary key (ZONE_ITEM_ID)

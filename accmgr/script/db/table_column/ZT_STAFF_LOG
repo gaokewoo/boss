@@ -1,0 +1,9 @@
+#	在途员工操作日志(ZT_STAFF_LOG)
+	STAFF_ID                 NUMBER(9),         
+	STAFF_ORG_ID             NUMBER(12),        
+	LOGIN_ACCEPT             NUMBER(14),        
+	OPERATE_TYPE             VARCHAR2 (3 BYTE), 
+	OPERATE_CODE             VARCHAR2 (8 BYTE), 
+	OPERATE_TIME             DATE,              
+	ztperson_Name            VARCHAR2(50 BYTE), 
+	NOTE                     VARCHAR2(256 BYTE)

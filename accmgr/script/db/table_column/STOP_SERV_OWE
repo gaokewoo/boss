@@ -1,0 +1,13 @@
+#	πÃÕ¯«∑∑—’ µ•£®STOP_SERV_OWE£©
+	SERV_ID     		NUMBER(14),   
+    MIN_OWE_YM          NUMBER(14),   
+    MAX_OWE_YM          NUMBER(14),   
+    OWE_FEE             NUMBER(12),   
+    ACCT_ID             NUMBER(14),   
+    ACC_NBR             VARCHAR2(30), 
+    BELONG_CODE         CHAR(7),      
+    PRODUCT_ID          NUMBER(9),    
+    MONTH_DETAIL        VARCHAR2(255),
+    OFFER_ID            NUMBER(9),    
+    USER_FLAG           CHAR(1),      
+    ACTION_TIME         VARCHAR2(255)

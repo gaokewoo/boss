@@ -1,0 +1,6 @@
+#　CDR_ATTR_GROUP  详单属性集合
+   attr_grp_id        NUMBER(9)                       not null,
+   attr_type          VARCHAR(2),
+   sub_sn             NUMBER(4),
+   group_value       VARCHAR(128),
+   constraint PK_CDR_ATTR_GROUP primary key (attr_grp_id)

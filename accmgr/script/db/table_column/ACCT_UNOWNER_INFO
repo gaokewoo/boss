@@ -1,0 +1,10 @@
+#	帐务无主信息表(ACCT_UNOWNER_INFO)
+	ACC_NBR           		VARCHAR2(30),
+    ITEM_SOURCE_ID          NUMBER(9),
+    ACCT_ITEM_TYPE_ID       NUMBER(9) ,  
+    REGION_CODE             VARCHAR2(10),
+    UNOWNER_FEE             NUMBER(12),  
+    INSERT_TIME             DATE ,       
+    STATE                   VARCHAR2(3), 
+    STATE_DATE              DATE,
+    constraint PK_ACCT_UNOWNER_INFO primary key (ACC_NBR,ITEM_SOURCE_ID,ACCT_ITEM_TYPE_ID,STATE)        

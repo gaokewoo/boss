@@ -1,0 +1,9 @@
+#°°DELAY_DERATE_RULE  ÷Õƒ…Ωºı√‚πÊ‘Ú
+   derate_rule_id     	NUMBER(9)                       not null,
+   rule_desc          	VARCHAR(60),
+   REGION_ID			number(10),
+   derate_object_type 	CHAR(2),
+   derate_object_value 	VARCHAR(255),
+   derate_type        	CHAR(1),
+   derate_fee         	NUMBER(12),
+   constraint PK_DELAY_DERATE_RULE primary key (derate_rule_id)

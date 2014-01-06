@@ -1,0 +1,15 @@
+#  INVOICE  ·¢Æ±
+   INVOICE_ID          		NUMBER(12)                      not null,
+   PAYMENT_ID          		NUMBER(12)                      not null,
+   BILLING_CYCLE_ID    		NUMBER(9)                       not null,
+   NAME                		VARCHAR(50)                     not null,
+   Party_Role_Id      		NUMBER(9)                       not null,
+   BILL_FORMAT_CUSTOMIZE_ID NUMBER(12),
+   ACC_NBR              	Varchar2(30)                    not null,
+   AMOUNT               	NUMBER(12)                      not null,
+   COUNT                	NUMBER(8)                       not null,
+   PRINT_COUNT          	NUMBER(8)                       not null,
+   PRINT_FLAG           	VARCHAR(3)                      not null,
+   INVOICE_TYPE         	VARCHAR(3)                      not null,
+   oper_time          		DATE,
+   constraint PK_INVOICE primary key (INVOICE_ID)

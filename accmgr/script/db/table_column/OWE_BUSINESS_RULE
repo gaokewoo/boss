@@ -1,0 +1,16 @@
+#	欠费处理业务规则	OWE_BUSINESS_RULE
+	REGION_CODE  		CHAR(2),      
+	CRECTRL_RULE        CHAR(4),      
+	MIN_OWE_FEE         NUMBER(12),   
+	MAX_OWE_FEE         NUMBER(12),   
+	MIN_OWE_DAYS        NUMBER(4),    
+	MAX_OWE_DAYS        NUMBER(4),    
+	RUN_HOUR            NUMBER(4)		DEFAULT 0,    
+	PREPAY_FLAG         NUMBER(4,2),  
+	OWE_FLAG            NUMBER(4,2),  
+	UNBILL_FLAG         NUMBER(4,2),  
+	LIMIT_FLAG          NUMBER(4,2),  
+	BIND_FLAG           NUMBER(2),    
+	OPERATE_TIMES       NUMBER(4)		DEFAULT 0,    
+	INTERVALFLAG        NUMBER(4)		DEFAULT 0,
+	INTERVALTIME		NUMBER(4)		DEFAULT 0    

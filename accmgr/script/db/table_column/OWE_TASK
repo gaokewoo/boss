@@ -1,0 +1,9 @@
+#  OWE_TASK  欠费处理任务
+   OWE_TASK_ID          NUMBER(9)                       not null,
+   TIME_INFO_ID         NUMBER(9)                       not null,
+   OWE_BUSINESS_TYPE_ID NUMBER(9)                       not null,
+   OWE_TASK_NAME        VARCHAR2(50)                     not null,
+   UNIT                 VARCHAR2(3)                      not null,
+   OFFSET               NUMBER(5)                       not null,
+   TIME                 DATE                            not null,
+   constraint PK_OWE_TASK primary key (OWE_TASK_ID)

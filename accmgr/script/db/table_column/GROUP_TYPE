@@ -1,0 +1,6 @@
+#	群组类型	GROUP_TYPE
+	GROUP_TYPE_ID	  		NUMBER(9),  	
+	GROUP_TYPE_NAME         VARCHAR(50) 	NOT NULL,
+	GROUP_TYPE_DESC         VARCHAR(250)	NOT NULL,
+	GROUP_MEB_FLAG	        CHAR(1),     
+	constraint PK_GROUP_TYPE primary key (GROUP_TYPE_ID)

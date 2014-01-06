@@ -1,0 +1,10 @@
+#  BILL_REMARK  账单可变文本
+   BILL_REMARK_ID       NUMBER(9)                       not null,
+   BILL_VARIABLE_ID     NUMBER(9)                       not null,
+   PRINT_CONDITION      VARCHAR(3)                      not null,
+   PRINT_FORMAT         VARCHAR(3)                      not null,
+   CONTENT              VARCHAR(250)                    not null,
+   Print_line			NUMBER(3),
+   Print_position       NUMBER(3),
+   Print_length         NUMBER(3),
+   constraint PK_BILL_REMARK primary key (BILL_REMARK_ID)

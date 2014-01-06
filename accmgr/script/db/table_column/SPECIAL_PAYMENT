@@ -1,0 +1,6 @@
+#  SPECIAL_PAYMENT  专款专用详情
+   SPE_PAYMENT_ID       NUMBER(9)                       not null,
+   PARTNER_ID           NUMBER(9)                       not null,
+   PRODUCT_ID           NUMBER(9)                       not null,
+   ACCT_ITEM_GROUP_ID   NUMBER(9)                       not null,
+   constraint PK_SPECIAL_PAYMENT primary key (SPE_PAYMENT_ID)

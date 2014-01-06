@@ -1,0 +1,16 @@
+#  PAYMENT_PLAN_DEAD  Ö§¸¶·½°¸
+   PAYMENT_PLAN_ID      	NUMBER(12)                      not null,
+   ACCT_ID              	NUMBER(14),
+   PAYMENT_METHOD       	NUMBER(9),
+   PRIORITY             	NUMBER(3)                       not null,
+   PAYMENT_PLAN_TYPE    	VARCHAR(3)                      not null,
+   PAYMENT_SUPPLIE_ID   	NUMBER(9),
+   PAYMENT_ACCT_NO      	VARCHAR(30),
+   PAYMENT_ACCT_CUST_NAME 	VARCHAR(50),
+   PAYMENT_ACCT_TYPE    	VARCHAR(3),
+   STATE               	VARCHAR2(3 BYTE)                not null,
+   STATE_DATE         	DATE                            not null,
+   dead_time			DATE,
+	dead_staff_id		NUMBER(9),
+	dead_optsn			NUMBER(14),
+   constraint PK_PAYMENT_PLAN_DEAD primary key (PAYMENT_PLAN_ID)

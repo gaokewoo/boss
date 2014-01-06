@@ -1,0 +1,9 @@
+#  BILLING_REGION  ÐÐÕþÇøÓò
+   REGION_ID            NUMBER(10)                       not null,
+   PARENT_REGION_ID     NUMBER(10),
+   PARENT_REGION_LEVEL	VARCHAR2(3)						not null,
+   REGION_LEVEL         VARCHAR2(3)                     not null,
+   REGION_CODE          VARCHAR2(30)                    not null,
+   DISTRICT_NUM			VARCHAR2(4),
+   INTER_REGION_CODE	VARCHAR2(3),
+   constraint PK_BILLING_REGION primary key (REGION_ID,PARENT_REGION_LEVEL)

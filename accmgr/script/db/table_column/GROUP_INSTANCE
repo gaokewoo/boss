@@ -1,0 +1,13 @@
+#	Èº×éÊµÀý	GROUP_INSTANCE
+	GROUP_ID           NUMBER(14),
+	GROUP_TYPE_ID      NUMBER(9)                  NOT NULL,
+	GROUP_DESC         VARCHAR2(250 BYTE),                 
+	CUST_ID            NUMBER(14),
+	CUST_AGREEMENT_ID  NUMBER(14),                         
+	OFFER_ID           NUMBER(9),
+	STATE              VARCHAR2(3 BYTE),
+	STATE_DATE         DATE,
+	EFF_DATE           DATE,
+	EXP_DATE           DATE,
+	GRP_ATTR           VARCHAR2(30 BYTE),
+	constraint PK_GROUP_INSTANCE primary key (GROUP_ID,EFF_DATE)                   

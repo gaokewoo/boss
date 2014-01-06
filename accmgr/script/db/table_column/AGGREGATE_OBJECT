@@ -1,0 +1,5 @@
+#  AGGREGATE_OBJECT 	累加对象定义
+   BELONG_CALC_OBJECT_ID 	NUMBER(9)                       not null,
+   SUB_CALC_OBJECT_ID   	NUMBER(9)                       not null,
+   CALC_DIRECTION       	VARCHAR2(3)						not null,
+   constraint PK_AGGREGATE_OBJECT primary key (BELONG_CALC_OBJECT_ID, SUB_CALC_OBJECT_ID)

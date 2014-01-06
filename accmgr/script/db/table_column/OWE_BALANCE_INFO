@@ -1,0 +1,9 @@
+#	日用户余额接口表(OWE_BALANCE_INFO)#
+  	ACCT_ID			NUMBER(14),
+  	SERV_ID     	NUMBER(14),
+  	ACC_NBR			VARCHAR(30)
+  	PREPAY_FEE  	NUMBER(12),
+  	LIMIT_OWE   	NUMBER(12),
+  	OWE_FEE     	NUMBER(12),
+  	UNBILL_FEE  	NUMBER(12),
+  	OP_TIME     	DATE        

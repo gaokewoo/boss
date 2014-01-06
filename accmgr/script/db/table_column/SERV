@@ -1,0 +1,17 @@
+#  SERV  主产品实例
+   SERV_ID              	NUMBER(14)                      not null,
+   AGREEMENT_ID         	NUMBER(14)                      not null,
+   CUST_ID              	NUMBER(14)                      not null,
+   PRODUCT_ID               NUMBER(9)                       not null,
+   BILLING_CYCLE_TYPE_ID 	NUMBER(9),
+   Product_Family_Id        NUMBER(9),
+   CREATE_DATE              DATE                            not null,
+   Rent_date                DATE,
+   Completed_Date           DATE,
+   STATE                	VARCHAR(3)                      not null,
+   STATE_DATE           	DATE                            not null,
+   REGION_ID				NUMBER(10)                       not null,
+   BAND_ID					NUMBER(9)                       not null,
+   OPEN_TIME               DATE                   NOT NULL,
+   BILL_START_TIME         DATE                   NOT NULL,
+   constraint PK_SERV primary key (SERV_ID)

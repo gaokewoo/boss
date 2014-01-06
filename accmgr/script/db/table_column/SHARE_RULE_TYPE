@@ -1,0 +1,4 @@
+#  SHARE_RULE_TYPE  共享规则类型
+   SHARE_RULE_TYPE_ID   NUMBER(5)                       not null,
+   SHARE_RULE_TYPE_NAME VARCHAR(50)                     not null,
+   constraint PK_SHARE_RULE_TYPE primary key (SHARE_RULE_TYPE_ID)

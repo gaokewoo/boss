@@ -1,0 +1,12 @@
+#	ÔÚÍ¾·¢Æ±±í(ZT_INVOICE_DETAIL)
+	LOGIN_ACCEPT    		NUMBER(14),  
+	acct_id                 NUMBER(14),  
+	serv_id                 NUMBER(14),  
+	BILLING_CYCLE_ID        NUMBER(9),   
+	INVOICE_ITEM_ID         NUMBER(9),   
+	ITEM_NAME               VARCHAR2(50),
+	SHOULD_PAY              NUMBER(12),  
+	FAVOUR_FEE              NUMBER(12),  
+	ITEM_VALUE              VARCHAR(250),
+	INSERT_TIME             DATE ,       
+	RESV                    VARCHAR2(64)

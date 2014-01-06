@@ -1,0 +1,13 @@
+#　 DELAY_CACL_RULE  滞纳金计算规则
+    delay_rule_id       NUMBER(9)                       not null,
+    rule_desc           VARCHAR(60),
+    owe_due_months      NUMBER(2),
+    owe_due_days        NUMBER(4),
+    owe_upper_days      NUMBER(4),
+    owe_step_fee        NUMBER(12),
+    calc_rate           NUMBER(12,4),
+    max_delay_fee       NUMBER(12),
+    object_type         VARCHAR(4),
+    object_value        VARCHAR(20),
+    Region_id           NUMBER(10),
+   constraint PK_DELAY_CACL_RULE primary key (delay_rule_id)

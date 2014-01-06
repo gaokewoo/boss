@@ -1,0 +1,6 @@
+#  ACCT_ITEM_ADJUSTED ╣Вукукд©
+   ADJUST_RECORD_ID     NUMBER(9)                       not null,
+   ACCT_ITEM_ID         NUMBER(12)                      not null,
+   ADJUST_ACCT_ITEM_ID  NUMBER(12)                      not null,
+   CHARGE_ADJUST        NUMBER(12)                      not null,
+   constraint PK_ACCT_ITEM_ADJUSTED primary key (ADJUST_RECORD_ID)

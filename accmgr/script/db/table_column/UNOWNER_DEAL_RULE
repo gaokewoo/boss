@@ -1,0 +1,9 @@
+#	无主处理规则表（UNOWNER_DEAL_RULE）
+	REGION_CODE        VARCHAR2(10),  
+	UNOWNER_TYPE       VARCHAR2(8),   
+	UNOWNER_DAY        NUMBER(4),     
+	UNOWNER_COUNT      NUMBER(4),     
+	UNOWNER_MONEY      NUMBER(12),    
+	STATE              VARCHAR2(3),   
+	STATE_DATE         DATE,          
+	RULE_DESC          VARCHAR2(250) 

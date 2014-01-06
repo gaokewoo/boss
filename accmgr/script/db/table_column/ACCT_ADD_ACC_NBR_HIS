@@ -1,0 +1,9 @@
+#	帐户附加号码历史（ACCT_ADD_ACC_NBR_HIS）
+	ACCT_ID         			NUMBER(14)       		NOT NULL,
+    ADD_ACC_NBR_TYPE            VARCHAR2 (3 Byte)		NOT NULL,
+    ADD_ACC_NBR                 VARCHAR2(30)     		NOT NULL,
+    STATE                       VARCHAR2(3)      		NOT NULL,
+    STATE_DATE                  DATE             		NOT NULL,
+    his_DATE                    DATE ,            
+    his_staff_id                NUMBER(9),        
+    his_optsn                   NUMBER(14)       

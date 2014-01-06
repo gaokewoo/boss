@@ -1,0 +1,5 @@
+#  BILL_FORMAT_ITEM  账单格式——账单项
+   BILL_FORMAT_ID       NUMBER(9)                       not null,
+   BILL_ITEM_TYPE_ID    NUMBER(9)                       not null,
+   PRINT_ORDER          NUMBER(5)                       not null,
+   constraint PK_BILL_FORMAT_ITEM primary key (BILL_FORMAT_ID, BILL_ITEM_TYPE_ID)

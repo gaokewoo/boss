@@ -1,0 +1,7 @@
+#  ACCT_ITEM_SOURCE  ÕËÄ¿À´Ô´
+   ITEM_SOURCE_ID       NUMBER(9)                       not null,
+   ACCT_ITEM_TYPE_ID    NUMBER(9)                       not null,
+   ITEM_SOURCE_TYPE     VARCHAR(3)                      not null,
+   "NAME"               VARCHAR(50)                     not null,
+   COMMENTS             VARCHAR(250)                    not null,
+   constraint PK_ACCT_ITEM_SOURCE primary key (ITEM_SOURCE_ID)

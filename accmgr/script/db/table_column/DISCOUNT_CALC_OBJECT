@@ -1,0 +1,4 @@
+#  DISCOUNT_CALC_OBJECT  优惠计算对象
+   DISCONT_EXPRESS_ID   	NUMBER(9)                       not null,
+   PRICING_REF_OBJECT_ID 	NUMBER(9)                       not null,
+   constraint PK_DISCOUNT_CALC_OBJECT primary key (DISCONT_EXPRESS_ID, PRICING_REF_OBJECT_ID)

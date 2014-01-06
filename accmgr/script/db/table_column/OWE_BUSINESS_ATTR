@@ -1,0 +1,5 @@
+#	欠费处理属性	 OWE_BUSINESS_ATTR
+	OP_CODE     CHAR(4),     
+	ATTR_ID     NUMBER(3),   
+	ATTR_VAL    NUMBER(3),   
+	NOTE        VARCHAR2(60)

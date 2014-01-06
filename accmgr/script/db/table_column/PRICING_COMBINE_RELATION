@@ -1,0 +1,5 @@
+#  PRICING_COMBINE_RELATION  定价组合关系
+   A_PRICING_COMBINE_ID NUMBER(9)                       not null,
+   Z_PRICING_COMBINE_ID NUMBER(9)                       not null,
+   RELATION_TYPE        VARCHAR2(3)                     not null,
+   constraint PK_PRICING_COMBINE_RELATION primary key (A_PRICING_COMBINE_ID, Z_PRICING_COMBINE_ID)

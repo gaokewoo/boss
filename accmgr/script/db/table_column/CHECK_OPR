@@ -1,0 +1,13 @@
+#¡¡CHECK_OPR  Ö§Æ±²Ù×÷¼ÇÂ¼
+   CHECK_OPER_SN     	NUMBER(12)                      not null,
+   PAYMENT_ID           NUMBER(12),
+   BANK_BRANCH_ID       NUMBER(9),
+   BANK_ACCT_NBR     	VARCHAR(30),
+   BANK_ACCT_NAME     	VARCHAR2(50),
+   CHECK_NBR            VARCHAR2(30 Byte),
+   CHECK_MONEY       	NUMBER(12),
+   CHECK_STATE      	VARCHAR2(3),
+   ASSURE_STATE       	VARCHAR2(3),
+   ASSURE_TIME      	DATE,
+   CUST_ID           	NUMBER(14),
+   constraint PK_CHECK_OPR primary key (check_oper_sn)

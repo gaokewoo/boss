@@ -1,0 +1,5 @@
+#  OWE_DATE_TYPE  欠费时间类型标识
+   DATE_TYPE_ID         NUMBER(9)                       not null,
+   DATE_TYPE_CODE       VARCHAR(15)                     not null,
+   DATE_TYPE_NAME       VARCHAR(50)                     not null,
+   constraint PK_OWE_DATE_TYPE primary key (DATE_TYPE_ID)

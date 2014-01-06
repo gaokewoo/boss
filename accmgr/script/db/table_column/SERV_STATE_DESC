@@ -1,0 +1,5 @@
+#  SERV_STATE_DESC  主产品实例状态描述
+   STATE                VARCHAR (3)                     not null,
+   region_id          	NUMBER(10)                       not null,
+   STATE_NAME        	VARCHAR (12 Byte)               not null,
+   constraint PK_SERV_STATE_DESC primary key (STATE, region_id)

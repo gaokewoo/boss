@@ -1,0 +1,6 @@
+#	主产品实例付费模式	SERV_BILLING_MODE
+	SERV_ID     		NUMBER(14)		NOT NULL, 			
+	AGREEMENT_ID        NUMBER(14)		NOT NULL, 
+	EFF_DATE            DATE       		NOT NULL,
+	EXP_DATE            DATE,       
+	BILLING_MODE        VARCHAR2(3)      NOT NULL

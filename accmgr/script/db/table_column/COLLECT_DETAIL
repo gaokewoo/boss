@@ -1,0 +1,11 @@
+#  COLLECT_DETAIL  ÍÐÊÕµ¥Ã÷Ï¸
+   COLLECT_NBR        	VARCHAR(25)                     not null,
+   BILL_YM           	NUMBER(6),
+   ACCT_ID              NUMBER(14),
+   SERV_ID              NUMBER(14),
+   ACC_NBR              Varchar2(30),
+   ACCT_ITEM_TYPE_ID    NUMBER(9),
+   OWE_FEE           	NUMBER(12),
+   OWE_BEGIN_TIME    	DATE,
+   OWE_END_TIME      	DATE,
+   constraint PK_COLLECT_DETAIL primary key (collect_nbr)

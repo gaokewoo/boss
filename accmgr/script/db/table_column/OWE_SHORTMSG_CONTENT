@@ -1,0 +1,6 @@
+#	欠费处理短信内容	OWE_SHORTMSG_CONTENT
+	REGION_CODE     	CHAR(2),          
+	SHORTMSG_CODE       CHAR(4),          
+	SERIAL_NO           NUMBER(4),        
+	PARAMETER_NO        NUMBER(4),        
+	SHORTMSG_CONTENT    VARCHAR2(160)    

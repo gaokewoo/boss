@@ -1,0 +1,11 @@
+#	Æ·ÅÆ	BAND
+	BAND_ID           NUMBER(9),        
+	BAN_BAND_ID       NUMBER(9),  
+	BAND_TYPE         VARCHAR2(3 BYTE)          NOT NULL,
+	BAND_NAME         VARCHAR2(50 BYTE)         NOT NULL, 
+	BAND_DESC         VARCHAR2(250 BYTE)        NOT NULL, 
+	IDEA              VARCHAR2(250 BYTE)        NOT NULL, 
+	SLOGAN            VARCHAR2(250 BYTE)        NOT NULL, 
+	CREATED_DAT       DATE                      NOT NULL, 
+	SM_CODE           CHAR(2 BYTE)              NOT NULL, 
+	constraint PK_BAND primary key (BAND_ID)

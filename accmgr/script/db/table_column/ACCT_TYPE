@@ -1,0 +1,5 @@
+#  ACCT_TYPE  ’Àªß¿‡–Õ
+   ACCT_TYPE            VARCHAR(3)                      not null,
+   FLAG                 NUMBER(1)                       not null,
+   TYPE_NAME			VARCHAR2(50)					not null,
+   constraint PK_ACCT_TYPE primary key (ACCT_TYPE)

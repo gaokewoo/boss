@@ -1,0 +1,8 @@
+#  BILL_ITEM  ’Àµ•œÓ
+   BILL_ITEM_TYPE_ID    NUMBER(9)                       not null,
+   CLASSIFY             VARCHAR(3)                      not null,
+   BILL_PARENT_ID       NUMBER(9),
+   BILL_REMARK_ID       NUMBER(9)                       not null,
+   PRODUCT_OFFER_ID     NUMBER(9),
+   PRINT_ORDER          NUMBER(5)                       not null,
+   constraint PK_BILL_ITEM primary key (BILL_ITEM_TYPE_ID)

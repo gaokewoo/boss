@@ -1,0 +1,8 @@
+#	欠费处理公告信息	OWE_NOTIFICATION_INFO
+	SERV_ID                   NUMBER(14),  
+	NOTIFICATION_TYPE         CHAR(4),     
+	FIRST_DATE	              DATE,        
+	LAST_DATE	              DATE,        
+	TIMES                     NUMBER(4),   
+	MONTH_TIMES  	          NUMBER(4),   
+	DURATIONS  		          NUMBER(4)   

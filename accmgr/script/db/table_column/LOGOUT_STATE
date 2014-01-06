@@ -1,0 +1,4 @@
+#  LOGOUT_STATE  ºËÏú×´Ì¬
+   owe_status         Char(1)                         not null,
+   name               VARCHAR(50),
+   constraint PK_OWE_STATE primary key (owe_status)

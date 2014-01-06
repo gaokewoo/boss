@@ -1,0 +1,11 @@
+#  DEST_EVENT_TYPE  目标事件类型
+   EVENT_TYPE_ID        NUMBER(9)                       not null,
+   NAME                 VARCHAR(50)                     not null,
+   SUM_EVENT_TYPE       VARCHAR2(3)                     not null,
+   EVENT_TYPE_CODE      VARCHAR2(15)                    not null,
+   STATE                VARCHAR (3)                     not null,
+   EFF_DATE             DATE                            not null,
+   EXP_DATE             DATE,
+   EVENT_TYPE_DESC      VARCHAR2(500),
+   SUM_EVENT_FLAG		VARCHAR2(50),
+   constraint PK_DEST_EVENT_TYPE primary key (EVENT_TYPE_ID)

@@ -1,0 +1,11 @@
+#	客户帐单明晰(CUST_OWE)
+	LOGIN_ACCEPT    		NUMBER(14),  
+    CUST_ID                 NUMBER(14),  
+    acct_id                 NUMBER(14),  
+    serv_id                 NUMBER(14),  
+    BILLING_CYCLE_ID        NUMBER(9),   
+    amount                  NUMBER(12),  
+    DELAY_FEE               NUMBER(12),  
+    ACC_NBR                 VARCHAR2(30),
+    STAFF_ID                NUMBER(9),   
+    OP_TIME                 DATE        

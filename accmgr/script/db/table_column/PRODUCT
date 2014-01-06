@@ -1,0 +1,14 @@
+#  PRODUCT  ²úÆ·
+   PRODUCT_ID           NUMBER(9)                       not null,
+   PRODUCT_PROVIDER_ID  NUMBER(9)                       not null,
+   PRICING_PLAN_ID      NUMBER(9)                       not null,
+   PRODUCT_FAMILY_ID    NUMBER(9),
+   PRODUCT_NAME         VARCHAR2(50)                    not null,
+   PRODUCT_COMMENTS     VARCHAR2(250)                   not null,
+   PRODUCT_TYPE         VARCHAR2(3)                     not null,
+   PRODUCT_CLASSIFICATION VARCHAR2(3)                     not null,
+   PRODUCT_CODE         VARCHAR2(15)                    not null,
+   STATE                VARCHAR (3)                     not null,
+   EFF_DATE             DATE                            not null,
+   EXP_DATE             DATE                            not null,
+   constraint PK_PRODUCT primary key (PRODUCT_ID)

@@ -1,0 +1,10 @@
+#  AGREEMENT  客户协议
+   AGREEMENT_ID         NUMBER(14)                      not null,
+   CUST_ID          	NUMBER(14)                      not null,
+   AGREEMENT_TYPE       VARCHAR(3)                      not null,
+   SIGN_DATE            DATE                            not null,
+   COMPLETED_DATE       DATE                            not null,
+   ACCEPT_STAFF_ID      NUMBER(9)                       not null,
+   STATE                VARCHAR (3)                     not null,
+   COMMENTS             VARCHAR(250)                    not null,
+   constraint PK_AGREEMENT primary key (AGREEMENT_ID)

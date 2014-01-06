@@ -1,0 +1,9 @@
+#  PRODUCT_OFFER_OBJECT  销售品包含对象
+   OFFER_OBJECT_ID      NUMBER(9)                       not null,
+   OFFER_ID             NUMBER(9)                       not null,
+   OBJECT_TYPE          VARCHAR2(3)                     not null,
+   OBJECT_ID            NUMBER(9)                       not null,
+   OBJECT_AMOUNT_START  NUMBER(8)                       not null,
+   OBJECT_AMOUNT_END    NUMBER(8)                       not null,
+   PRIORITY             NUMBER(3)                       not null,
+   constraint PK_PRODUCT_OFFER_OBJECT primary key (OFFER_OBJECT_ID)

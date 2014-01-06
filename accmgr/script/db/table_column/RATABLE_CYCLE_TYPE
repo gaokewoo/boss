@@ -1,0 +1,9 @@
+#  RATABLE_CYCLE_TYPE  累计周期类型
+   RATABLE_CYCLE_TYPE_ID  	NUMBER(9)                       not null,
+   RATABLE_CYCLE_TYPE_NAME 	VARCHAR(50)						not null,
+   CYCLE_UNIT           	VARCHAR(3)						not null,
+   UNIT_COUNT           	NUMBER(5)						not null,
+   CYCLE_DURATION       	NUMBER(5)						not null,
+   CYCLE_DURATION_DAYS  	NUMBER(5)						not null,
+   OFFSET_TIME          	NUMBER(12)						not null,
+   constraint PK_RATABLE_CYCLE_TYPE primary key (RATABLE_CYCLE_TYPE_ID)

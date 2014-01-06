@@ -1,0 +1,10 @@
+#	OPEN_INTERFACE
+  	PAYMENT_ID       NUMBER(14)            NOT NULL,   
+  	ACCT_ID          NUMBER(14)            NOT NULL,   
+  	SERV_ID          NUMBER(14)            NOT NULL,   
+  	OP_CODE          VARCHAR2(4 BYTE)      NOT NULL,   
+  	STAFF_ID         NUMBER(9)             NOT NULL,   
+  	OPEN_TYPE        CHAR(1)               DEFAULT '0',
+  	STATE            VARCHAR2(3 BYTE)      NOT NULL,   
+  	STATE_DATE       DATE                  NOT NULL,   
+  	OP_NOTE          VARCHAR2(250 BYTE)                

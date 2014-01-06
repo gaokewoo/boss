@@ -1,0 +1,4 @@
+#  BALANCE_SOURCE_TYPE  余额来源类型
+   BALANCE_SOURCE_ID    NUMBER(9)                       not null,
+   BALANCE_SOURCE_DESC  VARCHAR(250)                    not null,
+   constraint PK_BALANCE_SOURCE_TYPE primary key (BALANCE_SOURCE_ID)

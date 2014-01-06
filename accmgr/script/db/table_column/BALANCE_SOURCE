@@ -1,0 +1,18 @@
+#  BALANCE_SOURCE  ”‡∂Ó¿¥‘¥
+   OPER_INCOME_ID       NUMBER(14)                      not null,
+   PAYMENT_ID			NUMBER(14)                      not null,
+   ACCT_BALANCE_ID      NUMBER(14)                       not null,
+   OPER_TYPE            VARCHAR(3)                      not null,
+   STAFF_ID             NUMBER(9)                       not null,
+   OPER_DATE            DATE                            not null,
+   AMOUNT               NUMBER(12)                      not null,
+   CUR_AMOUNT           NUMBER(12)                      not null,
+   BALANCE_RELATION_ID  NUMBER(9),
+   BALANCE_SOURCE_ID    NUMBER(9),
+   ALLOW_DRAW           VARCHAR(3)                      not null,
+   INV_OFFER            VARCHAR(3)                      not null,
+   CUR_STATUS           VARCHAR(3)                      not null,
+   CUR_STATUS_DATE      DATE                            not null,
+   STATE_DATE           DATE                            not null,
+   STATE                VARCHAR (3)                     not null,
+   constraint PK_BALANCE_SOURCE primary key (OPER_INCOME_ID)

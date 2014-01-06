@@ -1,0 +1,22 @@
+# BATCH_LOG_DET 批量操作明细
+  TOTAL_DATE    NUMBER(8),										--帐务日期
+  LOGIN_ACCEPT  NUMBER(14)				not null,				--批量操作日志流水号
+  OP_CODE       VARCHAR2(4 BYTE)		not null,				--操作代码
+  ACC_NBR       VARCHAR2(30 BYTE),								--业务号码
+  SERV_ID       NUMBER(14),										--主产品实例标识
+  BAND_ID       NUMBER(9),										--品牌标识
+  STAFF_ID      NUMBER(9)				not null,				--员工标识
+  REGION_ID     NUMBER(10),										--区域标识
+  OP_TIME       DATE,											--操作时间
+  OP_FLAG       VARCHAR2(1 BYTE),								--操作是否成功标识
+  OP_NOTE       VARCHAR2(250),								--操作是否成功信息
+  DATA1         NUMBER(12),										--数据1
+  NAME1         VARCHAR2(50 BYTE),								--名称1
+  DATA2         NUMBER(12),
+  NAME2         VARCHAR2(50 BYTE),
+  DATA3         NUMBER(12),
+  NAME3         VARCHAR2(50 BYTE),
+  DATA4         NUMBER(12),
+  NAME4         VARCHAR2(50 BYTE),
+  DATA5         NUMBER(12),
+  NAME5         VARCHAR2(50 BYTE)

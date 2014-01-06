@@ -1,0 +1,15 @@
+# PAY_INFO_HIS
+  SERV_ORDER_ID VARCHAR2(20),
+  PAYINFO_ID     NUMBER(14),
+  LOGIN_NO       VARCHAR2(6), 
+  OP_CODE        VARCHAR2(4),
+  CONTRACT_NO    NUMBER(14),                    
+  PHONE_NO       CHAR(15 BYTE),
+  PAY_TYPE       VARCHAR2(4 BYTE),     
+  FEE_TYPE       VARCHAR2(15 BYTE),              
+  FEE_CODE       VARCHAR2(6 BYTE),             
+  ACC_FEE_CODE   CHAR(5 BYTE),                  
+  OUT_FEE_CODE   VARCHAR2(6 BYTE),              
+  PAY_MONEY      NUMBER(14,2),
+  DEAL_TIME      DATE,
+  DEAL_RESULT    VARCHAR2(6)

@@ -1,0 +1,16 @@
+#  CUST_DEAD  ¿Í»§
+   CUST_ID              NUMBER(14)                      not null,
+   Party_role_id		Number(9),
+   CUST_NAME            VARCHAR(250)                    not null,
+   CUST_TYPE            VARCHAR(3)                      not null,
+   CUST_LOCATION       	Number(9)                      	not null,
+   IS_VIP              	Varchar2(1)                     not null,
+   PARENT_ID            NUMBER(14),
+   CUST_CODE          	VARCHAR2(20)                    not null,
+   STATE                VARCHAR (3)                     not null,
+   EFF_DATE             DATE                            not null,
+   EXP_DATE             DATE                            not null,
+   dead_time			DATE,
+	dead_staff_id		NUMBER(9),
+	dead_optsn			NUMBER(14),
+   constraint PK_CUST_DEAD primary key (CUST_ID)

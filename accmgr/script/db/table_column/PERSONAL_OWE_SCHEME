@@ -1,0 +1,17 @@
+#  PERSONAL_OWE_SCHEME  个性化信控方案订制
+   SERV_ID              NUMBER(14)                      not null,
+   OB_scheme_id       	NUMBER(9)                       not null,
+   ACC_NBR              VARCHAR(30),
+   awake_step         	NUMBER(12),
+   awake_times        	NUMBER(4),
+   begin_hm           	Char(4),
+   end_hm             	Char(4),
+   effect_mark        	Char(1),
+   limit_call_step    	NUMBER(12),
+   staff_id           	NUMBER(9),
+   oper_time          	DATE,
+   state              	Char(3),
+   eff_date           	DATE,
+   exp_date           	DATE,
+   comments           	VARCHAR(60),
+   constraint PK_PERSONAL_OWE_SCHEME primary key (SERV_ID, OB_scheme_id)

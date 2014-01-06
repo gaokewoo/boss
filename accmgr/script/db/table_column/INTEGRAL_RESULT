@@ -1,0 +1,9 @@
+#  INTEGRAL_RESULT  积分评估结果
+   INTEGRAL_REAULT_ID   	NUMBER(12)                      not null,
+   OBJECT_TYPE          	VARCHAR2(3)                     not null,
+   OBJECT_ID            	NUMBER(14)                       not null,
+   CURRENT_INTEGRAL_VALUE 	NUMBER(5),
+   ACC_AMOUNT           	NUMBER(5),
+   PRESENT_VALUE        	NUMBER(5),
+   EXCEPTION_AMOUNT     	NUMBER(5),
+   constraint PK_INTEGRAL_RESULT primary key (INTEGRAL_REAULT_ID)

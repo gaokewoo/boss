@@ -1,0 +1,34 @@
+#	”≈ª›‘˘ÀÕπÊ‘Ú	FAVOUR_PRESENT_RULE
+	Present_Rule_Id     	NUMBER(14),      
+	REGION_ID               NUMBER(10),      
+	BAND_ID                 NUMBER(9),      
+	Pay_Balance_Type_Id     NUMBER(9),      
+	Amount			        NUMBER(12),     
+	Present_CODE            VARCHAR2(10),   
+	Present_NAME            VARCHAR2(64),   
+	Present_TYPE            CHAR(1),        
+	Present_MONEY           NUMBER(12),     
+	Present_MONTH           NUMBER(4),      
+	CONTINUE_FLAG           CHAR(1),        
+	CONTINUE_MONTH          NUMBER(4),      
+	Acct_Item_Group_Id      NUMBER(9),      
+	Present_RATE		    NUMBER(12,5),   
+	DELAY_MONTH             NUMBER(4),      
+	Present_COUNT           NUMBER(4),      
+	EFF_DATE    	        DATE,           
+	EXP_DATE      	        DATE,           
+	STATE        	        VARCHAR2(3),    
+	STATE_DATE   	        DATE,           
+	PRESENT_RULE_DESC       VARCHAR2(250),  
+	constraint PK_FAVOUR_PRESENT_RULE primary key (Present_Rule_Id)
+
+
+
+
+
+
+
+
+
+
+

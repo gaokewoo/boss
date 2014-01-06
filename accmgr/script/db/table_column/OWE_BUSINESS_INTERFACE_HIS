@@ -1,0 +1,12 @@
+#	欠费处理业务接口	 OWE_BUSINESS_INTERFACE_HIS
+	SERV_ID      	NUMBER(14),     
+	ACC_NBR         VARCHAR2(30),   
+	ACCT_ID         NUMBER(14),     
+	Delay_time      DATE,           
+	STAFF_ID        NUMBER(9),      
+	OP_CODE         CHAR(4 BYTE),   
+	OP_TIME         DATE,           
+	REASON_DESC     VARCHAR2(60),
+	STATE			VARCHAR2(3),	
+	STATE_DATE		DATE	
+   

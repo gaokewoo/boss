@@ -1,0 +1,5 @@
+#  INTEREST_RATE  ‘§¥Ê¿˚¬ 
+   INTEREST_RATE_ID     NUMBER(9)                       not null,
+   LATN_ID              NUMBER(9)                       not null,
+   RATE                 NUMBER(12,5)                    not null,
+   constraint PK_INTEREST_RATE primary key (INTEREST_RATE_ID)

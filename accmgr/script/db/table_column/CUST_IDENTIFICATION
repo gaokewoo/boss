@@ -1,0 +1,11 @@
+#  CUST_IDENTIFICATION  客户识别信息
+   CUST_ID           	NUMBER(14)                      not null,
+   AGREEMENT_ID         NUMBER(12)                      not null,
+   CERTIFICATE_TYPE     VARCHAR(3)						not null,
+   CERTIFICATE_NO		VARCHAR(30)						not null,
+   EFF_DATE             DATE,
+   EXP_DATE       		DATE,
+   ATTEST_TYPE      	VARCHAR (2),
+   ATTEST_PASSWD      	VARCHAR (20),
+   SECRECY_LEVEL        VARCHAR (4),
+   constraint PK_CUST_IDENTIFICATION primary key (cust_id, AGREEMENT_ID)

@@ -1,0 +1,11 @@
+#　CHN_ACC_CREDIT_DET  代理商信誉度信息
+   ORG_ID               NUMBER(12)                      not null,
+   CREDIT_CODE          VARCHAR2(2)                     not null,
+   CREDIT_VALUE         NUMBER(12)                    not null,
+   USED_CREDIT          NUMBER(12)                    not null,
+   OP_ACCEPT            NUMBER(14)                      not null,
+   STAFF_ID             NUMBER(9)                       not null,
+   OP_TIME              DATE                            not null,
+   OP_CODE              VARCHAR2 (4)                    not null,
+   NOTE            		VARCHAR2(200),
+   constraint PK_CHN_ACC_CREDIT_DET primary key (ORG_ID)

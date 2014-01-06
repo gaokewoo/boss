@@ -1,0 +1,7 @@
+#  ACCT_CREDIT  ÕË»§ÐÅÓþ¶È
+   ACCT_ID              NUMBER(14)                      not null,
+   CREDIT_GRADE         NUMBER(8),
+   CREDIT_AMOUNT        NUMBER(5)                       not null,
+   EXCEPTION_AMOUNT     NUMBER(5)                       not null,
+   EFF_DATE             DATE                            not null,
+   constraint PK_ACCT_CREDIT primary key (ACCT_ID)

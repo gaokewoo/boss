@@ -1,0 +1,12 @@
+#  BILL_RECORD  ÕËµ¥¼ÇÂ¼
+   BILL_RECORD_ID       	NUMBER(9)                       not null,
+   BILL_FORMAT_CUSTOMIZE_ID NUMBER(12),
+   BILL_AMOUNT          	NUMBER(9)                       not null,
+   ACC_NBR              	Varchar2(30)                    not null,
+   BILL_TYPE            	VARCHAR(3)                      not null,
+   NAME                 	VARCHAR(50)                     not null,
+   ADDRESS_ID           	NUMBER(9)                       not null,
+   POST_DATE            	DATE                            not null,
+   Party_Role_Id   			NUMBER(9)						not null,
+   BILLING_CYCLE_ID         NUMBER(9)						not null,
+   constraint PK_BILL_RECORD primary key (BILL_RECORD_ID)

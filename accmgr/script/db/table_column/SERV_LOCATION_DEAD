@@ -1,0 +1,12 @@
+#  SERV_LOCATION_DEAD 用户地域属性
+   SERV_ID              NUMBER(14)                      not null,
+   AGREEMENT_ID         NUMBER(14)                      not null,
+   ADDRESS_ID           NUMBER(12)                      not null,
+   BUREAU_ID            NUMBER(9)                       not null,
+   EXCHANGE_ID          NUMBER(9)                       not null,
+   STAT_REGION_ID       NUMBER(10)                       not null,
+   EFF_DATE             DATE                            not null,
+   EXP_DATE             DATE,
+   DEAD_TIME			DATE,
+	dead_staff_id		NUMBER(9),
+	dead_optsn			NUMBER(14)

@@ -1,0 +1,12 @@
+#  INTEREST_BALANCE  当期积数
+   ACCT_BALANCE_ID      	NUMBER(14)                       not null,
+   INTEREST_BALANCE_TOTAL 	NUMBER(12)                      not null,
+   INTEREST_BALANCE_AMOUNT 	NUMBER(12)                      not null,
+   interest_change_value 	NUMBER(12),
+   calc_begin_ymd     		NUMBER(8),
+   calc_end_ymd       		NUMBER(8),
+   curr_balance       		NUMBER(12),
+   INTEREST_RATE_ID     	NUMBER(9),
+   STAFF_ID             	NUMBER(9),
+   oper_time          		DATE,
+   constraint PK_INTEREST_BALANCE primary key (ACCT_BALANCE_ID)

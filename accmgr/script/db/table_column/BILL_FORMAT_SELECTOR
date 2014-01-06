@@ -1,0 +1,5 @@
+#  BILL_FORMAT_SELECTOR  ’Àµ•—°‘Ò
+   BILL_FORMAT_SELECTOR_ID 		NUMBER(12)                      not null, 
+   BILL_FORMAT_CUSTOMIZE_ID 	NUMBER(12),
+   BILL_FORMAT_ID       		NUMBER(9)                       not null,
+   constraint PK_BILL_FORMAT_SELECTOR primary key (BILL_FORMAT_SELECTOR_ID)

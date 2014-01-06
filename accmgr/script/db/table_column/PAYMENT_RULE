@@ -1,0 +1,6 @@
+#  PAYMENT_RULE  ÷ß∏∂πÊ‘Ú
+   PAYMENT_RULE_ID      NUMBER(9)                       not null,
+   CUST_AGREEMENT_ID    NUMBER(14)                      not null,
+   NAME                 VARCHAR(50)                     not null,
+   COMMENTS             VARCHAR(250)                    not null,
+   constraint PK_PAYMENT_RULE primary key (PAYMENT_RULE_ID)

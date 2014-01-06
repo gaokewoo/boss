@@ -1,0 +1,12 @@
+#  BILLING_CYCLE  ÕËÎñÖÜÆÚ
+   BILLING_CYCLE_ID     	NUMBER(9)                       not null,
+   BILLING_CYCLE_TYPE_ID 	NUMBER(9)                      not null,
+   CYCLE_BEGIN_DATE     	DATE                            not null,
+   CYCLE_END_DATE       	DATE                            not null,
+   DUE_DATE             	DATE                            not null,
+   BLOCK_DATE           	DATE                            not null,
+   LAST_BILLING_CYCLE_ID 	NUMBER(9),
+   STATE                	VARCHAR(3)                      not null,
+   STATE_DATE           	DATE                            not null,
+   BILL_MONTH_FLAG			VARCHAR(3)						default '0',
+   constraint PK_BILLING_CYCLE primary key (BILLING_CYCLE_ID)

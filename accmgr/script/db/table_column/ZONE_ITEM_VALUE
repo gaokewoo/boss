@@ -1,0 +1,5 @@
+#  ZONE_ITEM_VALUE  区表节点对象参考取值
+   ITEM_REF_ID          NUMBER(9)                       not null,
+   ZONE_ITEM_ID         NUMBER(12)                       not null,
+   ITEM_REF_VALUE       VARCHAR2(30)                    not null,
+   constraint PK_ZONE_ITEM_VALUE primary key (ITEM_REF_ID)

@@ -1,0 +1,12 @@
+#	 欠费处理业务类型	OWE_BUSINESS_TYPE
+	OWE_BUSINESS_TYPE_ID      	NUMBER(9),  
+	OWE_BUSINESS_TYPE_NAME      VARCHAR(50)		not null,
+	STANDARD_CODE               VARCHAR(15)		not null,
+	"LEVEL"                      VARCHAR(3)		not null, 
+	OLD_RUN                     CHAR(1),    
+	NEW_RUN                     CHAR(1),    
+	AWAKE_TYPE                  CHAR(4),    
+	OP_TIMES                    NUMBER(4),  
+	INTERVAL_TIME               NUMBER(4),   
+	OP_CODE                     CHAR(4),
+	constraint PK_OWE_BUSINESS_TYPE primary key (OWE_BUSINESS_TYPE_ID)

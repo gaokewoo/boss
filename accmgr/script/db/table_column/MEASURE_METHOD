@@ -1,0 +1,4 @@
+#  MEASURE_METHOD  度量方法
+   MEASURE_METHOD_ID    NUMBER(9)                       not null,
+   MEASURE_METHOD_NAME  VARCHAR2(50)                    not null,
+   constraint PK_MEASURE_METHOD primary key (MEASURE_METHOD_ID)

@@ -1,0 +1,9 @@
+#  BILLING_CYCLE_TYPE  账务周期类型
+   BILLING_CYCLE_TYPE_ID  		NUMBER(9)                       not null,
+   BILLING_CYCLE_TYPE_NAME 		VARCHAR(50)                   	not null,
+   APP_type           			VARCHAR(4),
+   CYCLE_UNIT           		VARCHAR(3)                      not null,
+   UNIT_COUNT           		NUMBER(5)                       not null,
+   CYCLE_DURATION       		NUMBER(5)                       not null,
+   CYCLE_DURATION_DAYS  		NUMBER(5)                       not null,
+   constraint PK_BILLING_CYCLE_TYPE primary key (BILLING_CYCLE_TYPE_ID)

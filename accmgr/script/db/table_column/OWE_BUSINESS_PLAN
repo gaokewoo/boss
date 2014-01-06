@@ -1,0 +1,7 @@
+#	欠费处理业务方案	OWE_BUSINESS_PLAN
+	REGION_CODE            CHAR(2),     
+	PLAN_CODE              CHAR(4),     
+	PLAN_NAME              VARCHAR2(60),
+	STATE                  VARCHAR2(3), 
+	STATE_DATE             DATE,        
+	PLAN_DESC              VARCHAR2(255)

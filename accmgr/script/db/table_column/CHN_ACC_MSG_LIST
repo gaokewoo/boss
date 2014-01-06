@@ -1,0 +1,10 @@
+#  CHN_ACC_MSG_LIST  代理商预存信息
+   ORG_ID               NUMBER(12)                      not null,
+   PREPAY_TYPE          VARCHAR2 (2 Byte)               not null,
+   PREPAY_FEE           NUMBER(12)                    not null,
+   OP_ACCEPT            NUMBER(14)                      not null,
+   STAFF_ID             NUMBER(9)                       not null,
+   OP_TIME              DATE                            not null,
+   OP_CODE              VARCHAR2 (4)                    not null,
+   NOTE             	VARCHAR(200),
+   constraint PK_CHN_ACC_MSG_LIST primary key (ORG_ID)

@@ -1,0 +1,4 @@
+#	详单查询类型（CDR_QUERY_TYPE）
+   QUERY_TYPE          VARCHAR2(4),  
+   FEE_NAME            VARCHAR2(100),
+   TITLE_NAME          VARCHAR2(50) 

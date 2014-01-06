@@ -1,0 +1,8 @@
+#	参数取值	PRODUCT_OFFER_PARAM_INSTANCE
+	OFFER_PARAM_INSTANCE_ID     	NUMBER(9),   	
+	PRODUCT_OFFER_INSTANCE_ID       NUMBER(12)  	NOT NULL,											
+	LIFE_CYCLE_ID                   NUMBER(9)   	NOT NULL,											
+	OFFER_PARAM_ID                  NUMBER(9)   	NOT NULL,											
+	PARAM_VALUE                     VARCHAR2(30)	NOT NULL,											
+	PARAM_ATTR_ID                   VARCHAR2(30)	NOT NULL,
+	constraint PK_PRODUCT_OFFER_PARAM_INST primary key (OFFER_PARAM_INSTANCE_ID)										

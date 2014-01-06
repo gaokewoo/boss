@@ -1,0 +1,5 @@
+#  PRICING_ENUM_PARAM  定价参数有限枚举值定义
+   ENUM_ID              NUMBER(9)                       not null,
+   PRICING_PARAM_ID     NUMBER(9)                       not null,
+   PARAM_VALUE          VARCHAR2(30)                    not null,
+   constraint PK_PRICING_ENUM_PARAM primary key (ENUM_ID)

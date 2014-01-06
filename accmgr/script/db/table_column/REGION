@@ -1,0 +1,9 @@
+#  REGION  ÇøÓò
+   REGION_ID            NUMBER(10)                       not null,
+   REGION_NAME          VARCHAR2(100)                    not null,
+   REGION_DESC          VARCHAR2(250)                   not null,
+   REGION_LEVEL			VARCHAR2(3),
+   REGION_CLASS			VARCHAR2(4),
+   STATE				VARCHAR2(3),
+   STATE_DATE			DATE,
+   constraint PK_REGION primary key (REGION_ID)

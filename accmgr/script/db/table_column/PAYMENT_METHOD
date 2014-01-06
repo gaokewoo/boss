@@ -1,0 +1,5 @@
+#  PAYMENT_METHOD  Ö§¸¶·½Ê½
+   PAYMENT_METHOD       NUMBER(9)                       not null,
+   PAYMENT_METHOD_NAME  VARCHAR(50)                     not null,
+   BALANCE_TYPE_ID      NUMBER(9),
+   constraint PK_PAYMENT_METHOD primary key (PAYMENT_METHOD)

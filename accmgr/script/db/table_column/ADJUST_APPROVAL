@@ -1,0 +1,17 @@
+#  ADJUST_APPROVAL  µ˜’À…Û≈˙
+   LOGIN_ACCEPT         NUMBER(14)                      not null,
+   ACCT_ITEM_ID         NUMBER(12)                      not null,
+   ACCT_ITEM_TYPE_ID	NUMBER(9),
+   ACC_NBR              Varchar2(30)                    not null,
+   ACCT_ID              NUMBER(14)                      not null,
+   BILL_MONTH           NUMBER(6)                       not null,
+   ADJ_FEE              NUMBER(12)                      not null,
+   STAFF_ID             NUMBER(9)                       not null,
+   SERV_ID              NUMBER(14)                      not null,
+   OP_NOTE              VARCHAR2 (250)                  not null,
+   OP_TIME              DATE                            not null,
+   PAYMENT_METHOD       NUMBER(9)                       not null,
+   SIGN_STATE         VARCHAR2(3),
+   OP_CODE              VARCHAR2 (4),
+   SIGN_STAFF_ID        NUMBER(9),
+   SIGN_TIME            DATE

@@ -1,0 +1,7 @@
+#  PAY_CARD_OPR_HIS  Ö§¸¶¿¨²Ù×÷¼ÇÂ¼
+   PAYMENT_ID           NUMBER(12)                      not null,
+   card_type          	CHAR(2),
+   card_nbr           	VARCHAR(30),
+   card_fee           	NUMBER(12),
+   HIS_DATE				DATE,
+   constraint PK_PAY_CARD_OPR_HIS primary key (PAYMENT_ID)

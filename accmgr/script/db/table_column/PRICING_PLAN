@@ -1,0 +1,6 @@
+#  PRICING_PLAN  定价计划
+   PRICING_PLAN_ID      NUMBER(9)                       not null,
+   PRICING_PLAN_NAME    VARCHAR2(50)                    not null,
+   PRICING_DESC         VARCHAR2(4000)                  not null,
+   PARAM_DESC           VARCHAR2(4000)                  not null,
+   constraint PK_PRICING_PLAN primary key (PRICING_PLAN_ID)

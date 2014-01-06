@@ -1,0 +1,9 @@
+#  ADDRESS  µÿ÷∑
+   ADDRESS_ID           NUMBER(9)                       not null,
+   PROVINCE_NAME        VARCHAR(30)                     not null,
+   CITY_NAME            VARCHAR(30)                     not null,
+   STREET_NAME          VARCHAR(30)                     not null,
+   STREET_NBR           VARCHAR(30)                     not null,
+   DETAIL               VARCHAR(250)                    not null,
+   POSTCODE             VARCHAR(30)                     not null,
+   constraint PK_ADDRESS primary key (ADDRESS_ID)

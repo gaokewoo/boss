@@ -1,0 +1,14 @@
+#	Ω…∑—‘˘ÀÕ»’÷æ£®SEND_FEE_LOG_HIS£©
+	SEND_LOG_ID		NUMBER (14)  	NOT NULL,
+    ACCT_ID         NUMBER (14)  	NOT NULL,
+    PAY_MONEY       NUMBER(12)   	NOT NULL,
+    SEND_MONEY      NUMBER(12)   	NOT NULL,
+    SEND_FLAG       VARCHAR2(1)  	NOT NULL,
+    STAFF_ID        NUMBER(12)   	NOT NULL,
+    OP_TIME         DATE         	NOT NULL,
+    OP_NOTE         VARCHAR2(250),
+    ACC_NBR         VARCHAR2(30),
+    his_DATE    	DATE,      
+    his_staff_id    NUMBER(9), 
+    his_optsn       NUMBER(14),
+    constraint PK_SEND_FEE_LOG_HIS primary key (SEND_LOG_ID) 
