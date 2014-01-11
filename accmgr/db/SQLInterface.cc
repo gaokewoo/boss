@@ -4,7 +4,7 @@ void SQLInterface::executeQurey()
 {
     try
     {
-        Statement *stmt=conn->createStatement(sqlStmt);
+        stmt=conn->createStatement(sqlStmt);
         prepareSQL();
         rset = stmt->executeQuery();
         while(rset->next())
@@ -39,10 +39,9 @@ void SQLInterface::executeUpdate()
 
     try
     {
-        Statement *stmt=conn->createStatement(sqlStmt);
+        stmt=conn->createStatement(sqlStmt);
         prepareSQL();
         stmt->executeUpdate();
-        stmt->closeResultSet(rset);//to free resources 
     }
     catch(SQLException& sqlExcp)
     {

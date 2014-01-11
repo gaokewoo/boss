@@ -139,3 +139,13 @@ bool OracleDB::reConnectToDB()
     return true;
 }
 
+void OracleDB::commit()
+{
+    conn->commit();
+}
+
+void OracleDB::rollback()
+{
+    conn->rollback();
+}
+

@@ -12,7 +12,10 @@ public:
     virtual bool connectToDB();
     virtual bool disConnectFromDB();
     virtual bool reConnectToDB();
+
     Connection * getConnection() { return conn; };
+    void commit();
+    void rollback();
 
 private:   
     void initializeEnv();
