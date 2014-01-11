@@ -1,5 +1,6 @@
+#!/bin/bash
 #批量建索引脚本
-#从配置文件$ACCMGR_HOME/cfg/create_index.cfg中读取需要建索引的记录
+#从配置文件$BOSS_HOME/script/db/create_index.cfg中读取需要建索引的记录
 #按逗号和分号进行解析
 #第一个字段为表类型
 #第二个字段为表的拥有者
@@ -17,12 +18,12 @@ then
 fi
 create_flag=$1
 
-ORACLEID=`$ACCMGR_HOME/shell/get_globalpara.sh|grep ORACLEID|awk -F= '{print $2}'`
-year=`$ACCMGR_HOME/shell/get_globalpara.sh|grep YEAR|awk -F= '{print $2}'`
-year_2=`$ACCMGR_HOME/shell/get_globalpara.sh|grep YEAR|awk -F= '{print $2}'|cut -b 3-`
+ORACLEID=`$BOSS_HOME/script/db/get_globalpara.sh|grep ORACLEID|awk -F= '{print $2}'`
+year=`$BOSS_HOME/script/db/get_globalpara.sh|grep YEAR|awk -F= '{print $2}'`
+year_2=`$BOSS_HOME/script/db/get_globalpara.sh|grep YEAR|awk -F= '{print $2}'|cut -b 3-`
 
 #取系统时间
-echo `date +%Y%m%d%H%M`|read sysdate
+sysdate=`date +%Y%m%d%H%M`
 
 echo $ORACLEID
 echo $year
@@ -32,21 +33,18 @@ create_index()
 {
 	if [ "$3" = "Y" ]
 	then
-		echo "create UNIQUE index $1"
-		echo "......................."
+		echo -e "create UNIQUE index $1"
 		sql="create UNIQUE index $2;"
 	else
-		echo "create index $1"
-		echo "......................"
+		echo -e "create index $1"
 		sql="create index $2;"
 	fi
 
 	if [ $create_flag -eq "1" ]
 	then
-		echo "$sql" >> $ACCMGR_HOME/data/create_sql/create_index$sysdate
-		echo "...................." >> $ACCMGR_HOME/data/create_sql/create_index$sysdate
+		echo -e "$sql" >> $BOSS_HOME/script/db/create_index.sql.$sysdate
 	else
-		echo "	set echo off\n
+		echo -e "	set echo off\n
 				set feedback off\n
 				set heading off\n
 				set newpage 0\n
@@ -61,8 +59,8 @@ fun_type1()
 {
 	table_space_new=$table_space"_IDX"
 	
-	full_index_name="$owner.$index_name ON $owner.$table_name \n($index_column) \n$table_space_new"
-	table_index_tmp="$owner.$index_name ON $owner.$table_name \n($index_column) \n$table_space_new"
+	full_index_name="$index_name ON $table_name \n($index_column)"
+	table_index_tmp="$index_name ON $table_name \n($index_column)"
 
 	create_index "$table_index_tmp" "$full_index_name" "$index_typae"
 }
@@ -79,8 +77,8 @@ fun_type2()
 		table_space_new=$table_space$str_month"_IDX"
 		table_name_new=$table_name$year$str_month
 		
-		full_index_name="$owner.$index_name_new ON $owner.$table_name_new \n($index_column) \n$table_space_new"
-		table_index_tmp="$owner.$index_name_new ON $owner.$table_name_new \n($index_column) \n$table_space_new"
+		full_index_name="$index_name_new ON $table_name_new \n($index_column)"
+		table_index_tmp="$index_name_new ON $table_name_new \n($index_column)"
 
 		create_index "$table_index_tmp" "$full_index_name" "$index_typae"
 
@@ -89,10 +87,10 @@ fun_type2()
 }
 
 #读配置文件,循环处理每一条记录
-while [ $year -lt 2011 ]
+while [ $year -lt 2014 ]
 do
 	echo "CUR YEAR = $year"
-	for record in `cat $ACCMGR_HOME/cfg/create_index.cfg`
+	for record in `cat $BOSS_HOME/script/db/create_index.cfg`
 	do
 		comment=`echo $record | cut -b 1-1`
 		if [ "$comment" = "#" ]
@@ -122,7 +120,7 @@ do
 		flag=0
 		if [ $type -eq "1" ]
 		then
-			if [ $year -eq 2000 ]
+			if [ $year -eq 2010 ]
 			then
 				flag=1
 				fun_type1

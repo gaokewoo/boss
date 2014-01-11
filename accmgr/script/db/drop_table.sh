@@ -1,5 +1,6 @@
+#!/bin/bash
 #批量drop表
-#从配置文件$ACCMGR_HOME/cfg/create_table.cfg中读取需要drop表的记录
+#从配置文件$BOSS_HOME/script/db/create_table.cfg中读取需要drop表的记录
 #按逗号进行解析
 #第一个字段为表的拥有者
 #第二个字段为原始表名称
@@ -16,11 +17,11 @@ then
 fi
 create_flag=$1
 
-ORACLEID=`$ACCMGR_HOME/shell/get_globalpara.sh|grep ORACLEID|awk -F= '{print $2}'`
-year=`$ACCMGR_HOME/shell/get_globalpara.sh|grep YEAR|awk -F= '{print $2}'`
+ORACLEID=`$BOSS_HOME/script/db/get_globalpara.sh|grep ORACLEID|awk -F= '{print $2}'`
+year=`$BOSS_HOME/script/db/get_globalpara.sh|grep YEAR|awk -F= '{print $2}'`
 
 #取系统时间
-echo `date +%Y%m%d%H%M`|read sysdate
+sysdate=`date +%Y%m%d%H%M`
 
 echo $ORACLEID
 echo $year
@@ -33,9 +34,9 @@ drop_table()
 	
 	if [ $create_flag -eq "1" ]
 	then
-		echo "$sql" >> $ACCMGR_HOME/data/create_sql/drop_table$sysdate
+		echo -e "$sql" >> $BOSS_HOME/script/db/drop_table.sql.$sysdate
 	else
-		echo "	set echo off\n
+		echo -e "	set echo off\n
 				set feedback off\n
 				set heading off\n
 				set newpage 0\n
@@ -49,8 +50,8 @@ drop_table()
 #SERV
 fun_type1()	
 {
-	full_table_name="$owner.$table_name"
-	table_name_tmp="$owner.$table_name"
+	full_table_name="$table_name"
+	table_name_tmp="$table_name"
 	
 	drop_table "$table_name_tmp" "$full_table_name"
 }
@@ -64,8 +65,8 @@ fun_type2()
 	do
 		str_month=`echo $month|awk '{printf "%02d\n",$1}'`
 		
-		full_table_name="$owner.$table_name$year$str_month"
-		table_name_tmp="$owner.$table_name$year$str_month"
+		full_table_name="$table_name$year$str_month"
+		table_name_tmp="$table_name$year$str_month"
 		
 		drop_table "$table_name_tmp" "$full_table_name"
 		
@@ -86,8 +87,8 @@ fun_type3()
 			str_month=`echo $month|awk '{printf "%02d\n",$1}'`
 			str_suffix=`echo $suffix|awk '{printf "%d\n",$1}'`
 			
-			full_table_name="$owner.$table_name$year$str_month$str_suffix"
-			table_name_tmp="$owner.$table_name$year$str_month$str_suffix"
+			full_table_name="$table_name$year$str_month$str_suffix"
+			table_name_tmp="$table_name$year$str_month$str_suffix"
 			
 			drop_table "$table_name_tmp" "$full_table_name"
 			
@@ -110,8 +111,8 @@ fun_type4()
 			str_month=`echo $month|awk '{printf "%02d\n",$1}'`
 			str_suffix=`echo $suffix|awk '{printf "%02d\n",$1}'`
 			
-			full_table_name="$owner.$table_name$year$str_month$str_suffix"
-			table_name_tmp="$owner.$table_name$year$str_month$str_suffix"
+			full_table_name="$table_name$year$str_month$str_suffix"
+			table_name_tmp="$table_name$year$str_month$str_suffix"
 			
 			drop_table "$table_name_tmp" "$full_table_name"
 			
@@ -130,7 +131,7 @@ fun_type5()
 	do
 		str_suffix=`echo $suffix|awk '{printf "%d\n",$1}'`
 		
-		full_table_name="$owner.$table_name$str_suffix"
+		full_table_name="$table_name$str_suffix"
 		table_name_tmp="$table_name$str_suffix"
 		
 		drop_table "$table_name_tmp" "$full_table_name"
@@ -140,9 +141,9 @@ fun_type5()
 }
 
 #读配置文件，循环处理每一条记录
-while [ $year -lt 2011 ]
+while [ $year -lt 2014 ]
 do
-	for record in `cat $ACCMGR_HOME/cfg/create_table.cfg`
+	for record in `cat $BOSS_HOME/script/db/create_table.cfg`
 	do
 		comment=`echo $record | cut -b 1-1`
 		if [ "$comment" = "#" ]
@@ -162,7 +163,7 @@ do
 		flag=0
 		if [ $type -eq "1" ]	#类型1表名的组成“拥有者.原始表名”
 		then
-			if [ $year -eq 2000 ]
+			if [ $year -eq 2010 ]
 			then
 				flag=1
 				fun_type1

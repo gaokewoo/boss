@@ -1,5 +1,6 @@
+#!/bin/bash
 #批量建表脚本
-#从配置文件$ACCMGR_HOME/cfg/create_table.cfg中读取需要建表的记录
+#从配置文件$BOSS_HOME/script/db/create_table.cfg中读取需要建表的记录
 #按逗号进行解析
 #解析后的第一个字段为表类型
 #第二个字段为表的拥有者
@@ -15,12 +16,12 @@ then
 fi
 create_flag=$1
 
-ORACLEID=`$ACCMGR_HOME/shell/get_globalpara.sh|grep ORACLEID|awk -F= '{print $2}'`
-year=`$ACCMGR_HOME/shell/get_globalpara.sh|grep YEAR|awk -F= '{print $2}'`
-year_2=`$ACCMGR_HOME/shell/get_globalpara.sh|grep YEAR|awk -F= '{print $2}'|cut -b 3-`
+ORACLEID=`$BOSS_HOME/script/db/get_globalpara.sh|grep ORACLEID|awk -F= '{print $2}'`
+year=`$BOSS_HOME/script/db/get_globalpara.sh|grep YEAR|awk -F= '{print $2}'`
+year_2=`$BOSS_HOME/script/db/get_globalpara.sh|grep YEAR|awk -F= '{print $2}'|cut -b 3-`
 
 #取系统时间
-echo `date +%Y%m%d%H%M`|read sysdate
+sysdate=`date +%Y%m%d%H%M`
 
 echo $ORACLEID
 echo $year
@@ -34,9 +35,9 @@ create_table()
 	
 	if [ $create_flag -eq "1" ]
 	then
-		echo "$sql" >> $ACCMGR_HOME/data/create_sql/create_table$sysdate
+		echo -e "$sql" >> $BOSS_HOME/script/db/create_table.sql.$sysdate
 	else
-		echo "	set echo off\n
+		echo -e "	set echo off\n
 				set feedback off\n
 				set heading off\n
 				set newpage 0\n
@@ -50,7 +51,7 @@ create_table()
 #SERV
 fun_type1()	
 {
-	full_table_name="$owner.$table_name\n($column)\n$table_space"
+	full_table_name="$table_name\n($column)\n"
 	table_name_tmp="$table_name"
 	
 	create_table "$table_name_tmp" "$full_table_name"
@@ -68,9 +69,9 @@ fun_type2()
 
 		if [ "$table_space" = "TABLESPACE maintain" ]
 		then		
-			full_table_name="$owner.$table_name$year$str_month\n($column_new)\n$table_space"
+			full_table_name="$table_name$year$str_month\n($column_new)\n"
 		else 
-			full_table_name="$owner.$table_name$year$str_month\n($column_new)\n$table_space$str_month"
+			full_table_name="$table_name$year$str_month\n($column_new)\n"
 		fi
 		
 		table_name_tmp="$table_name$year$str_month"
@@ -95,7 +96,7 @@ fun_type3()
 			str_suffix=`echo $suffix|awk '{printf "%d\n",$1}'`
 			column_new=`echo $column|sed s/PK_$table_name/PK_$table_name$year_2$str_month$str_suffix/g`
 			
-			full_table_name="$owner.$table_name$year$str_month$str_suffix\n($column)\n$table_space$str_month"
+			full_table_name="$table_name$year$str_month$str_suffix\n($column)\n"
 			table_name_tmp="$table_name$year$str_month$str_suffix"
 			
 			create_table "$table_name_tmp" "$full_table_name"
@@ -120,7 +121,7 @@ fun_type4()
 			str_suffix=`echo $suffix|awk '{printf "%02d\n",$1}'`
 			column_new=`echo $column|sed s/PK_$table_name/PK_$table_name$year_2$str_month$str_suffix/g`
 			
-			full_table_name="$owner.$table_name$year$str_month$str_suffix\n($column_new)\n$table_space$str_month"
+			full_table_name="$table_name$year$str_month$str_suffix\n($column_new)\n"
 			table_name_tmp="$table_name$year$str_month$str_suffix"
 			
 			create_table "$table_name_tmp" "$full_table_name"
@@ -144,7 +145,7 @@ fun_type5()
 		str_suffix=`echo $suffix|awk '{printf "%d\n",$1}'`
 		column_new=`echo $column|sed s/PK_$table_name/PK_$table_name$str_suffix/g`
 		
-		full_table_name="$owner.$table_name$str_suffix\n($column_new)\n$table_space"
+		full_table_name="$table_name$str_suffix\n($column_new)\n"
 		table_name_tmp="$table_name$str_suffix"
 		
 		create_table "$table_name_tmp" "$full_table_name"
@@ -154,10 +155,10 @@ fun_type5()
 }
 
 #读配置文件，循环处理每一条记录
-while [ $year -lt 2011 ]
+while [ $year -lt 2014 ]
 do
 	echo "CUR YEAR = $year"
-	for record in `cat $ACCMGR_HOME/cfg/create_table.cfg`
+	for record in `cat $BOSS_HOME/script/db/create_table.cfg`
 	do
 		comment=`echo $record | cut -b 1-1`
 		if [ "$comment" = "#" ]
@@ -172,9 +173,11 @@ do
 		fi
 		
 		type=`echo $record|awk -F, '{print $1}'`
-		owner=`echo $record|awk -F, '{print $2}'`
+        #owner=`echo $record|awk -F, '{print $2}'`
+        owner=""
 		table_name=`echo $record|awk -F, '{print $3}'`
-		table_space="TABLESPACE "`echo $record|awk -F, '{print $4}'`
+        #table_space="TABLESPACE "`echo $record|awk -F, '{print $4}'`
+        table_space="TABLESPACE"
 		column_data=`echo $record|awk -F, '{print $5}'`
 			
 		if [ "$table_space" = "TABLESPACE " ]
@@ -182,19 +185,19 @@ do
 			table_space=""
 		fi
 		
-		column=`cat $ACCMGR_HOME/data/table_column/$column_data|grep -v "#"`
+		column=`cat $BOSS_HOME/script/db/table_column/$column_data|grep -v "#"`
 			
 		#如果找不到对应的shell则报错
 		if [ "${column:=null}" = "null" ]
 		then
-			echo "table_name=[$table_name]$column_data not found,confirm $ACCMGR_HOME/cfg/create_table.cfg column 5 please"
+			echo "table_name=[$table_name]$column_data not found,confirm $BOSS_HOME/script/db/create_table.cfg column 5 please"
 			continue
 		fi
 		
 		flag=0
 		if [ $type -eq "1" ]	#类型1表名的组成“拥有者.原始表名”
 		then
-			if [ $year -eq 2000 ]
+			if [ $year -eq 2010 ]
 			then
 				flag=1
 				fun_type1
