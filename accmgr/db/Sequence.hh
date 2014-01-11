@@ -1,10 +1,14 @@
-#ifndef __DBSTRUCT__
-#define __DBSTRUCT__
+#ifndef __SEQUENCE__
+#define __SEQUENCE__
 #include "SQLInterface.hh"
 
 class Sequence:public SQLInterface
 {
 public:
+    long long getServId();
+    long long getAcctId();
+    long long getCustId();
+    long long getAgreementId();
     long long getScardvcsn();
     long long getSpePaymentId();
     long long getSbatchaccept();

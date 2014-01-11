@@ -12,6 +12,7 @@ void SQLInterface::executeQurey()
             doParse();
         }
         stmt->closeResultSet(rset);//to free resources 
+        conn->terminateStatement(stmt);
     }
     catch(SQLException& sqlExcp)
     {
@@ -42,6 +43,7 @@ void SQLInterface::executeUpdate()
         stmt=conn->createStatement(sqlStmt);
         prepareSQL();
         stmt->executeUpdate();
+        conn->terminateStatement(stmt);
     }
     catch(SQLException& sqlExcp)
     {

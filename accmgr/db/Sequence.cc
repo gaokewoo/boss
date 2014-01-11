@@ -1,5 +1,37 @@
 #include "Sequence.hh"
 
+long long Sequence::getServId()
+{
+    setSQL("select SERV_ID.nextval from dual");
+    executeQurey();
+
+    return id;
+}
+
+long long Sequence::getAcctId()
+{
+    setSQL("select ACCT_ID.nextval from dual");
+    executeQurey();
+
+    return id;
+}
+
+long long Sequence::getCustId()
+{
+    setSQL("select CUST_ID.nextval from dual");
+    executeQurey();
+
+    return id;
+}
+
+long long Sequence::getAgreementId()
+{
+    setSQL("select AGREEMENT_ID.nextval from dual");
+    executeQurey();
+
+    return id;
+}
+
 long long Sequence::getScardvcsn()
 {
     setSQL("select SCARDVCSN.nextval from dual");

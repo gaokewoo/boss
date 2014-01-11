@@ -10,8 +10,8 @@ dest_cc_obj = open(dest_cc,"w")
 
 
 #main function
-dest_hh_obj.write("#ifndef __DBSTRUCT__\n"
-                    "#define __DBSTRUCT__\n")
+dest_hh_obj.write("#ifndef __SEQUENCE__\n"
+                    "#define __SEQUENCE__\n")
 dest_hh_obj.write('#include "SQLInterface.hh"\n\n')
 dest_hh_obj.write('class Sequence:public SQLInterface\n')
 dest_hh_obj.write('{\n')
