@@ -5,7 +5,9 @@ include ${BOSS_HOME}/global.mk
 
 all: libdb.a
 OBJS=DBInterface.o \
-     OracleDB.o 
+     OracleDB.o \
+     SQLInterface.o \
+     Sequence.o
 
 libdb.a:$(OBJS)
 	$(AR_CMD) $@ $(OBJS)

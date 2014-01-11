@@ -138,31 +138,4 @@ bool OracleDB::reConnectToDB()
     
     return true;
 }
-void OracleDB::getSysDate()
-{
-    string sqlStmt = "SELECT to_char(sysdate,'yyyymmdd') from dual";
 
-    try
-    {
-        Statement *stmt=conn->createStatement(sqlStmt);
-        ResultSet* rset = stmt->executeQuery();
-        while(rset->next())
-        {
-            cout <<"Date:" << rset->getString(1) << endl;
-        }
-    }
-    catch(SQLException& sqlExcp)
-    {
-        cout << "*Db Exception*,"
-            << "ErrorCode=" << sqlExcp.getErrorCode()
-            <<",ErrorStr=" << sqlExcp.getMessage() << endl;
-    }
-    catch(exception& excp)
-    {
-        cout <<"*Exception*," <<excp.what() << endl;
-    }
-    catch(...)
-    {
-        cout <<"Unknown Exception!" << endl;
-    }
-}

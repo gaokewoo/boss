@@ -1,7 +1,7 @@
 #include <iostream>
 #include <occi.h>
 
-#ifndef  _DBINTERFACE__
+#ifndef __DBINTERFACE__
 #define __DBINTERFACE__
 
 #define LINUXOCCI //避免函数重定义错误

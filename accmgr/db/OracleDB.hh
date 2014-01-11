@@ -12,7 +12,7 @@ public:
     virtual bool connectToDB();
     virtual bool disConnectFromDB();
     virtual bool reConnectToDB();
-    void getSysDate();
+    Connection * getConnection() { return conn; };
 
 private:   
     void initializeEnv();
