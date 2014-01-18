@@ -6,11 +6,12 @@ AR_CMD=ar -rv
 BOSS_LIB_PATH=$(BOSS_HOME)/libs/
 
 #define database include file path
-DB_INCLUDE=$(BOSS_HOME)/db/
+DB_INCLUDE=$(BOSS_HOME)/db/ 
 
 
 CC_INCLDIR=-I. \
 		   -I$(ORACLE_HOME)/rdbms/public/ \
+           -I$(BOSS_HOME)/3rd/ \
 		   -I$(DB_INCLUDE) \
 		   -I/usr/include
 
