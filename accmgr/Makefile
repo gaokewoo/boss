@@ -16,5 +16,6 @@ debug:
 	$(call make_subdir , debug)
 
 clean:
+	rm -rf bin/* libs/*
 	$(call make_subdir , clean)
 
