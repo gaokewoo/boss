@@ -190,7 +190,7 @@ namespace txtutils
         {
             std::string key_inside;
             make_inside_key(sec_name, key, key_inside);
-            str_str_map_citer it = kv_map_.find(key_inside);
+            //str_str_map_citer it = kv_map_.find(key_inside); //wugk comments out for avoid warning as compiling
             kv_map_[key_inside] = value;
         }
 

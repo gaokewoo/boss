@@ -8,6 +8,7 @@
 #include <thrift/transport/TBufferTransports.h>
 #include "OpenAccount.hh"
 #include "libconfparser/confparser.hpp"
+#include "BossMonitorClient.hh"
 
 using namespace ::apache::thrift;
 using namespace ::apache::thrift::protocol;
@@ -82,6 +83,15 @@ int main(int argc, char **argv) {
     CONF_PARSER_SIMPLE_INIT("../conf/boss.cfg");
     int port = CONF_PARSER_GET_NUM_VAL("OpenAccount", "port");
     LOG_INFO(logId, "Server listening port:"<<port);
+
+    ::BossMonitorClient client;
+    BossData::BossMonitor data;
+    data.id=getpid();
+    data.name=argv[0];
+    data.status="Active";
+    data.ip=CONF_PARSER_GET_VAL("OpenAccount", "ip");;
+    data.port=port;
+    client.subscirbe(data);
 
     shared_ptr<OpenAccountServletHandler> handler(new OpenAccountServletHandler(logId));
     shared_ptr<TProcessor> processor(new OpenAccountServletProcessor(handler));

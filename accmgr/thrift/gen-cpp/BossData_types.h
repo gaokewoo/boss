@@ -68,6 +68,81 @@ class OpenAccount {
 
 void swap(OpenAccount &a, OpenAccount &b);
 
+typedef struct _BossMonitor__isset {
+  _BossMonitor__isset() : id(false), name(false), ip(false), port(false), status(false) {}
+  bool id;
+  bool name;
+  bool ip;
+  bool port;
+  bool status;
+} _BossMonitor__isset;
+
+class BossMonitor {
+ public:
+
+  static const char* ascii_fingerprint; // = "3DEA490DCFDBF7F9065EFB84569A610F";
+  static const uint8_t binary_fingerprint[16]; // = {0x3D,0xEA,0x49,0x0D,0xCF,0xDB,0xF7,0xF9,0x06,0x5E,0xFB,0x84,0x56,0x9A,0x61,0x0F};
+
+  BossMonitor() : id(0), name(), ip(), port(0), status() {
+  }
+
+  virtual ~BossMonitor() throw() {}
+
+  int32_t id;
+  std::string name;
+  std::string ip;
+  int32_t port;
+  std::string status;
+
+  _BossMonitor__isset __isset;
+
+  void __set_id(const int32_t val) {
+    id = val;
+  }
+
+  void __set_name(const std::string& val) {
+    name = val;
+  }
+
+  void __set_ip(const std::string& val) {
+    ip = val;
+  }
+
+  void __set_port(const int32_t val) {
+    port = val;
+  }
+
+  void __set_status(const std::string& val) {
+    status = val;
+  }
+
+  bool operator == (const BossMonitor & rhs) const
+  {
+    if (!(id == rhs.id))
+      return false;
+    if (!(name == rhs.name))
+      return false;
+    if (!(ip == rhs.ip))
+      return false;
+    if (!(port == rhs.port))
+      return false;
+    if (!(status == rhs.status))
+      return false;
+    return true;
+  }
+  bool operator != (const BossMonitor &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const BossMonitor & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+void swap(BossMonitor &a, BossMonitor &b);
+
 } // namespace
 
 #endif
