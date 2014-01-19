@@ -11,7 +11,7 @@ BOSS_LIB_PATH=$(BOSS_HOME)/libs/
 DB_INCLUDE=$(BOSS_HOME)/db/ 
 PUB_INCLUDE=$(BOSS_HOME)/pub/ 
 BIZ_INCLUDE=$(BOSS_HOME)/biz/ 
-BOSS_THRIFT_INCLUDE=$(BOSS_HOME)/thrift/
+BOSS_THRIFT_INCLUDE=$(BOSS_HOME)/thrift/gen-cpp/
 
 #thrift dir
 THRIFT_INCLUDE=/usr/local/include/thrift

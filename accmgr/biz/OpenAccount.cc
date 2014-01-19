@@ -96,6 +96,7 @@ void OpenAccount::doBiz()
 
         if(i%200==0) m_db->commit();
     }
+    m_db->commit();
     LOG_DEBUG(m_logId, "OpenAccount::doBiz end");
 }
 
