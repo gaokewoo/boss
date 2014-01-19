@@ -1,4 +1,4 @@
-CC_FLAGS= -g
+CC_FLAGS= -g -Wall
 CC=g++
 AR_CMD=ar -rv
 
