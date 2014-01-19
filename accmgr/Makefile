@@ -1,7 +1,5 @@
 include ${BOSS_HOME}/global.mk
 
-SUBDIRS=db pub biz
-
 define make_subdir
 @for subdir in $(SUBDIRS) ; do \
     ( cd $$subdir && make $1) \

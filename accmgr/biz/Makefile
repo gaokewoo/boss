@@ -1,17 +1,21 @@
 include ${BOSS_HOME}/global.mk
 
-SRCS = $(wildcard *.cc)
-BUILD = $(patsubst %.cc, %, $(SRCS))
+.SUFFIXES:.cc
 
-.cc:
-	$(CC) $(CC_FLAGS) -o $@ $< $(BOSS_HOME)/3rd/log4z/log4z.cpp $(CC_INCLDIR) -L$(BOSSLIBS) -L$(ORALIBS)
-	@if [ ! -d ../bin/ ];then mkdir ../bin/;fi
-	cp $@ ../bin/
-	strip ../bin/$@
-	@echo
+LIB_NAME=libbiz.a
+all: $(LIB_NAME)
+OBJS=OpenAccount.o 
 
+$(LIB_NAME):$(OBJS)
+	$(AR_CMD) $@ $(OBJS)
+	@if [ ! -d ../libs/ ];then mkdir ../libs/;fi
+	mv -f $@ $(BOSS_LIB_PATH)
+	@echo "### $@ loaded ###\n"
 
-all: $(BUILD)
+.cc.o:
+	$(CC) $(CC_FLAGS) $(CC_INCLDIR)  -c $<
 
 clean:
-	rm -f $(BUILD)
+	rm -f *.o
+	rm -f *.lis
+
