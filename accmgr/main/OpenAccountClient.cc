@@ -2,6 +2,7 @@
 #include <transport/TSocket.h>
 #include <transport/TTransportUtils.h>
 #include "gen-cpp/OpenAccountServlet.h"
+#include "libconfparser/confparser.hpp"
 
 #include <string>
  
@@ -14,7 +15,12 @@ using boost::shared_ptr;
 
 int main(int argc, char** argv) {   
 
-    shared_ptr<TTransport> socket(new TSocket("localhost", 9090));   
+    CONF_PARSER_SIMPLE_INIT("../conf/boss.cfg");
+    int port = CONF_PARSER_GET_NUM_VAL("OpenAccount", "port");
+    const char* pval = CONF_PARSER_GET_VAL("OpenAccount", "ip");
+    cout<<"Server IP:"<<pval<<" Port:"<<port<<endl;
+
+    shared_ptr<TTransport> socket(new TSocket(pval, port));   
 
     shared_ptr<TTransport> transport(new TBufferedTransport(socket));   
 

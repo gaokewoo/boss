@@ -7,6 +7,7 @@
 #include <thrift/transport/TServerSocket.h>
 #include <thrift/transport/TBufferTransports.h>
 #include "OpenAccount.hh"
+#include "libconfparser/confparser.hpp"
 
 using namespace ::apache::thrift;
 using namespace ::apache::thrift::protocol;
@@ -77,7 +78,11 @@ int main(int argc, char **argv) {
     logId = ILog4zManager::GetInstance()->FindLogger("OpenAccount");
     ILog4zManager::GetInstance()->Start();
 
-    int port = 9090;
+    LOG_INFO(logId, "Parse boss.cfg");
+    CONF_PARSER_SIMPLE_INIT("../conf/boss.cfg");
+    int port = CONF_PARSER_GET_NUM_VAL("OpenAccount", "port");
+    LOG_INFO(logId, "Server listening port:"<<port);
+
     shared_ptr<OpenAccountServletHandler> handler(new OpenAccountServletHandler(logId));
     shared_ptr<TProcessor> processor(new OpenAccountServletProcessor(handler));
     shared_ptr<TServerTransport> serverTransport(new TServerSocket(port));
