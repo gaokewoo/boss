@@ -15,7 +15,7 @@ using namespace zsummer::log4z;
 int main()
 {
     LoggerId open_account;
-    ILog4zManager::GetInstance()->Config("conf/log.cfg");
+    ILog4zManager::GetInstance()->Config("../conf/log.cfg");
     open_account = ILog4zManager::GetInstance()->FindLogger("OpenAccount");
     ILog4zManager::GetInstance()->Start();
     //ILog4zManager::GetInstance()->SetLoggerDisplay(open_account, true);

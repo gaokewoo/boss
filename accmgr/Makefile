@@ -1,10 +1,22 @@
 include ${BOSS_HOME}/global.mk
 
-.SUFFIXES:.cc
+SUBDIRS=db pub biz
 
-all:test
-test:test.cc Name.cc
-	$(CC) $(CC_FLAGS) -o test test.cc Name.cc 3rd/log4z/log4z.cpp $(CC_INCLDIR) -L$(BOSSLIBS) -L$(ORALIBS)
+define make_subdir
+@for subdir in $(SUBDIRS) ; do \
+    ( cd $$subdir && make $1) \
+    done;
+endef
+
+all:
+	$(call make_subdir , all)
+
+install :
+	$(call make_subdir , install)
+
+debug:
+	$(call make_subdir , debug)
 
 clean:
-	rm -rf test
+	$(call make_subdir , clean)
+

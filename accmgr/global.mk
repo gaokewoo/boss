@@ -7,14 +7,16 @@ BOSS_LIB_PATH=$(BOSS_HOME)/libs/
 
 #define database include file path
 DB_INCLUDE=$(BOSS_HOME)/db/ 
+PUB_INCLUDE=$(BOSS_HOME)/pub/ 
 
 
 CC_INCLDIR=-I. \
 		   -I$(ORACLE_HOME)/rdbms/public/ \
            -I$(BOSS_HOME)/3rd/ \
 		   -I$(DB_INCLUDE) \
+		   -I$(PUB_INCLUDE) \
 		   -I/usr/include
 
 #ORALIBS=$(ORACLE_HOME)/lib -locci -lsqlplus
 ORALIBS=$(ORACLE_HOME)/lib -locci -lclntsh
-BOSSLIBS=$(BOSS_LIB_PATH)/ -ldb
+BOSSLIBS=$(BOSS_LIB_PATH)/ -ldb -lpub
