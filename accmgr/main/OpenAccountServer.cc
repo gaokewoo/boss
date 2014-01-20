@@ -9,6 +9,7 @@
 #include "OpenAccount.hh"
 #include "libconfparser/confparser.hpp"
 #include "BossMonitorClient.hh"
+#include <libgen.h>
 
 using namespace ::apache::thrift;
 using namespace ::apache::thrift::protocol;
@@ -87,11 +88,11 @@ int main(int argc, char **argv) {
     ::BossMonitorClient client;
     BossData::BossMonitor data;
     data.id=getpid();
-    data.name=argv[0];
+    data.name=basename(argv[0]);
     data.status="Active";
     data.ip=CONF_PARSER_GET_VAL("OpenAccount", "ip");;
     data.port=port;
-    client.subscirbe(data);
+    client.subscribe(data);
 
     shared_ptr<OpenAccountServletHandler> handler(new OpenAccountServletHandler(logId));
     shared_ptr<TProcessor> processor(new OpenAccountServletProcessor(handler));

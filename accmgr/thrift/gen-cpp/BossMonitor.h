@@ -15,7 +15,7 @@ namespace BossInterface {
 class BossMonitorIf {
  public:
   virtual ~BossMonitorIf() {}
-  virtual bool subscirbe(const  ::BossData::BossMonitor& datas) = 0;
+  virtual bool subscribe(const  ::BossData::BossMonitor& datas) = 0;
   virtual void getAll(std::vector< ::BossData::BossMonitor> & _return) = 0;
 };
 
@@ -46,7 +46,7 @@ class BossMonitorIfSingletonFactory : virtual public BossMonitorIfFactory {
 class BossMonitorNull : virtual public BossMonitorIf {
  public:
   virtual ~BossMonitorNull() {}
-  bool subscirbe(const  ::BossData::BossMonitor& /* datas */) {
+  bool subscribe(const  ::BossData::BossMonitor& /* datas */) {
     bool _return = false;
     return _return;
   }
@@ -55,38 +55,38 @@ class BossMonitorNull : virtual public BossMonitorIf {
   }
 };
 
-typedef struct _BossMonitor_subscirbe_args__isset {
-  _BossMonitor_subscirbe_args__isset() : datas(false) {}
+typedef struct _BossMonitor_subscribe_args__isset {
+  _BossMonitor_subscribe_args__isset() : datas(false) {}
   bool datas;
-} _BossMonitor_subscirbe_args__isset;
+} _BossMonitor_subscribe_args__isset;
 
-class BossMonitor_subscirbe_args {
+class BossMonitor_subscribe_args {
  public:
 
-  BossMonitor_subscirbe_args() {
+  BossMonitor_subscribe_args() {
   }
 
-  virtual ~BossMonitor_subscirbe_args() throw() {}
+  virtual ~BossMonitor_subscribe_args() throw() {}
 
    ::BossData::BossMonitor datas;
 
-  _BossMonitor_subscirbe_args__isset __isset;
+  _BossMonitor_subscribe_args__isset __isset;
 
   void __set_datas(const  ::BossData::BossMonitor& val) {
     datas = val;
   }
 
-  bool operator == (const BossMonitor_subscirbe_args & rhs) const
+  bool operator == (const BossMonitor_subscribe_args & rhs) const
   {
     if (!(datas == rhs.datas))
       return false;
     return true;
   }
-  bool operator != (const BossMonitor_subscirbe_args &rhs) const {
+  bool operator != (const BossMonitor_subscribe_args &rhs) const {
     return !(*this == rhs);
   }
 
-  bool operator < (const BossMonitor_subscirbe_args & ) const;
+  bool operator < (const BossMonitor_subscribe_args & ) const;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
@@ -94,11 +94,11 @@ class BossMonitor_subscirbe_args {
 };
 
 
-class BossMonitor_subscirbe_pargs {
+class BossMonitor_subscribe_pargs {
  public:
 
 
-  virtual ~BossMonitor_subscirbe_pargs() throw() {}
+  virtual ~BossMonitor_subscribe_pargs() throw() {}
 
   const  ::BossData::BossMonitor* datas;
 
@@ -106,58 +106,58 @@ class BossMonitor_subscirbe_pargs {
 
 };
 
-typedef struct _BossMonitor_subscirbe_result__isset {
-  _BossMonitor_subscirbe_result__isset() : success(false) {}
+typedef struct _BossMonitor_subscribe_result__isset {
+  _BossMonitor_subscribe_result__isset() : success(false) {}
   bool success;
-} _BossMonitor_subscirbe_result__isset;
+} _BossMonitor_subscribe_result__isset;
 
-class BossMonitor_subscirbe_result {
+class BossMonitor_subscribe_result {
  public:
 
-  BossMonitor_subscirbe_result() : success(0) {
+  BossMonitor_subscribe_result() : success(0) {
   }
 
-  virtual ~BossMonitor_subscirbe_result() throw() {}
+  virtual ~BossMonitor_subscribe_result() throw() {}
 
   bool success;
 
-  _BossMonitor_subscirbe_result__isset __isset;
+  _BossMonitor_subscribe_result__isset __isset;
 
   void __set_success(const bool val) {
     success = val;
   }
 
-  bool operator == (const BossMonitor_subscirbe_result & rhs) const
+  bool operator == (const BossMonitor_subscribe_result & rhs) const
   {
     if (!(success == rhs.success))
       return false;
     return true;
   }
-  bool operator != (const BossMonitor_subscirbe_result &rhs) const {
+  bool operator != (const BossMonitor_subscribe_result &rhs) const {
     return !(*this == rhs);
   }
 
-  bool operator < (const BossMonitor_subscirbe_result & ) const;
+  bool operator < (const BossMonitor_subscribe_result & ) const;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
 };
 
-typedef struct _BossMonitor_subscirbe_presult__isset {
-  _BossMonitor_subscirbe_presult__isset() : success(false) {}
+typedef struct _BossMonitor_subscribe_presult__isset {
+  _BossMonitor_subscribe_presult__isset() : success(false) {}
   bool success;
-} _BossMonitor_subscirbe_presult__isset;
+} _BossMonitor_subscribe_presult__isset;
 
-class BossMonitor_subscirbe_presult {
+class BossMonitor_subscribe_presult {
  public:
 
 
-  virtual ~BossMonitor_subscirbe_presult() throw() {}
+  virtual ~BossMonitor_subscribe_presult() throw() {}
 
   bool* success;
 
-  _BossMonitor_subscirbe_presult__isset __isset;
+  _BossMonitor_subscribe_presult__isset __isset;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
 
@@ -277,9 +277,9 @@ class BossMonitorClient : virtual public BossMonitorIf {
   boost::shared_ptr< ::apache::thrift::protocol::TProtocol> getOutputProtocol() {
     return poprot_;
   }
-  bool subscirbe(const  ::BossData::BossMonitor& datas);
-  void send_subscirbe(const  ::BossData::BossMonitor& datas);
-  bool recv_subscirbe();
+  bool subscribe(const  ::BossData::BossMonitor& datas);
+  void send_subscribe(const  ::BossData::BossMonitor& datas);
+  bool recv_subscribe();
   void getAll(std::vector< ::BossData::BossMonitor> & _return);
   void send_getAll();
   void recv_getAll(std::vector< ::BossData::BossMonitor> & _return);
@@ -298,12 +298,12 @@ class BossMonitorProcessor : public ::apache::thrift::TDispatchProcessor {
   typedef  void (BossMonitorProcessor::*ProcessFunction)(int32_t, ::apache::thrift::protocol::TProtocol*, ::apache::thrift::protocol::TProtocol*, void*);
   typedef std::map<std::string, ProcessFunction> ProcessMap;
   ProcessMap processMap_;
-  void process_subscirbe(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
+  void process_subscribe(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
   void process_getAll(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
  public:
   BossMonitorProcessor(boost::shared_ptr<BossMonitorIf> iface) :
     iface_(iface) {
-    processMap_["subscirbe"] = &BossMonitorProcessor::process_subscirbe;
+    processMap_["subscribe"] = &BossMonitorProcessor::process_subscribe;
     processMap_["getAll"] = &BossMonitorProcessor::process_getAll;
   }
 
@@ -333,13 +333,13 @@ class BossMonitorMultiface : virtual public BossMonitorIf {
     ifaces_.push_back(iface);
   }
  public:
-  bool subscirbe(const  ::BossData::BossMonitor& datas) {
+  bool subscribe(const  ::BossData::BossMonitor& datas) {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
-      ifaces_[i]->subscirbe(datas);
+      ifaces_[i]->subscribe(datas);
     }
-    return ifaces_[i]->subscirbe(datas);
+    return ifaces_[i]->subscribe(datas);
   }
 
   void getAll(std::vector< ::BossData::BossMonitor> & _return) {

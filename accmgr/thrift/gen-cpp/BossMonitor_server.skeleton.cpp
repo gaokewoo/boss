@@ -22,9 +22,9 @@ class BossMonitorHandler : virtual public BossMonitorIf {
     // Your initialization goes here
   }
 
-  bool subscirbe(const  ::BossData::BossMonitor& datas) {
+  bool subscribe(const  ::BossData::BossMonitor& datas) {
     // Your implementation goes here
-    printf("subscirbe\n");
+    printf("subscribe\n");
   }
 
   void getAll(std::vector< ::BossData::BossMonitor> & _return) {

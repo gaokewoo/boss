@@ -33,13 +33,13 @@ public:
         client.reset(new BossInterface::BossMonitorClient(protocol));
     }
 
-    void subscirbe(BossData::BossMonitor data)
+    void subscribe(BossData::BossMonitor data)
     {
         try {   
 
             transport->open();   
 
-            client->subscirbe(data);
+            client->subscribe(data);
 
             transport->close();   
 
@@ -58,13 +58,17 @@ public:
             client->getAll(datas);
 
             vector<BossData::BossMonitor>::iterator it;
-            cout<<"******************************************************************************"<<endl;
-            cout<<"PROCESS_ID\tPROCESS_NAME\t\tPROCESS_STATUS\tLISTENING_IP\t\tLISTENING_PORT"<<endl;
+            cout<<"****************************************************************************"<<endl;
+            printf("%-12.12s%-25.25s%-10.10s%-15.15s%-15.15s\n","PROCESS_ID","  PROCESS_NAME","STATUS","LISTENING_IP","LISTENING_PORT");
             for (it=datas.begin(); it!=datas.end(); it++)
             {
-                cout<<(*it).id<<"\t\t"<<(*it).name<<"\t"<<(*it).status<<"\t\t"<<(*it).ip<<"\t\t"<<(*it).port<<"\t\t"<<endl;
+                char id[10]={0};
+                char port[10]={0};
+                sprintf(id,"%d",(*it).id);
+                sprintf(port,"%d",(*it).port);
+                printf("%-12.12s%-25.25s%-10.10s%-15.15s%-15.15s\n",id,(*it).name.c_str(),(*it).status.c_str(),(*it).ip.c_str(),port);
             }
-            cout<<"******************************************************************************"<<endl;
+            cout<<"****************************************************************************"<<endl;
 
             transport->close();   
 

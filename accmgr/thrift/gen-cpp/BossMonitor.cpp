@@ -8,7 +8,7 @@
 
 namespace BossInterface {
 
-uint32_t BossMonitor_subscirbe_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t BossMonitor_subscribe_args::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   uint32_t xfer = 0;
   std::string fname;
@@ -48,9 +48,9 @@ uint32_t BossMonitor_subscirbe_args::read(::apache::thrift::protocol::TProtocol*
   return xfer;
 }
 
-uint32_t BossMonitor_subscirbe_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t BossMonitor_subscribe_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
-  xfer += oprot->writeStructBegin("BossMonitor_subscirbe_args");
+  xfer += oprot->writeStructBegin("BossMonitor_subscribe_args");
 
   xfer += oprot->writeFieldBegin("datas", ::apache::thrift::protocol::T_STRUCT, 1);
   xfer += this->datas.write(oprot);
@@ -61,9 +61,9 @@ uint32_t BossMonitor_subscirbe_args::write(::apache::thrift::protocol::TProtocol
   return xfer;
 }
 
-uint32_t BossMonitor_subscirbe_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t BossMonitor_subscribe_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
-  xfer += oprot->writeStructBegin("BossMonitor_subscirbe_pargs");
+  xfer += oprot->writeStructBegin("BossMonitor_subscribe_pargs");
 
   xfer += oprot->writeFieldBegin("datas", ::apache::thrift::protocol::T_STRUCT, 1);
   xfer += (*(this->datas)).write(oprot);
@@ -74,7 +74,7 @@ uint32_t BossMonitor_subscirbe_pargs::write(::apache::thrift::protocol::TProtoco
   return xfer;
 }
 
-uint32_t BossMonitor_subscirbe_result::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t BossMonitor_subscribe_result::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   uint32_t xfer = 0;
   std::string fname;
@@ -114,11 +114,11 @@ uint32_t BossMonitor_subscirbe_result::read(::apache::thrift::protocol::TProtoco
   return xfer;
 }
 
-uint32_t BossMonitor_subscirbe_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t BossMonitor_subscribe_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
 
   uint32_t xfer = 0;
 
-  xfer += oprot->writeStructBegin("BossMonitor_subscirbe_result");
+  xfer += oprot->writeStructBegin("BossMonitor_subscribe_result");
 
   if (this->__isset.success) {
     xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_BOOL, 0);
@@ -130,7 +130,7 @@ uint32_t BossMonitor_subscirbe_result::write(::apache::thrift::protocol::TProtoc
   return xfer;
 }
 
-uint32_t BossMonitor_subscirbe_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t BossMonitor_subscribe_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   uint32_t xfer = 0;
   std::string fname;
@@ -343,18 +343,18 @@ uint32_t BossMonitor_getAll_presult::read(::apache::thrift::protocol::TProtocol*
   return xfer;
 }
 
-bool BossMonitorClient::subscirbe(const  ::BossData::BossMonitor& datas)
+bool BossMonitorClient::subscribe(const  ::BossData::BossMonitor& datas)
 {
-  send_subscirbe(datas);
-  return recv_subscirbe();
+  send_subscribe(datas);
+  return recv_subscribe();
 }
 
-void BossMonitorClient::send_subscirbe(const  ::BossData::BossMonitor& datas)
+void BossMonitorClient::send_subscribe(const  ::BossData::BossMonitor& datas)
 {
   int32_t cseqid = 0;
-  oprot_->writeMessageBegin("subscirbe", ::apache::thrift::protocol::T_CALL, cseqid);
+  oprot_->writeMessageBegin("subscribe", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  BossMonitor_subscirbe_pargs args;
+  BossMonitor_subscribe_pargs args;
   args.datas = &datas;
   args.write(oprot_);
 
@@ -363,7 +363,7 @@ void BossMonitorClient::send_subscirbe(const  ::BossData::BossMonitor& datas)
   oprot_->getTransport()->flush();
 }
 
-bool BossMonitorClient::recv_subscirbe()
+bool BossMonitorClient::recv_subscribe()
 {
 
   int32_t rseqid = 0;
@@ -383,13 +383,13 @@ bool BossMonitorClient::recv_subscirbe()
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  if (fname.compare("subscirbe") != 0) {
+  if (fname.compare("subscribe") != 0) {
     iprot_->skip(::apache::thrift::protocol::T_STRUCT);
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
   bool _return;
-  BossMonitor_subscirbe_presult result;
+  BossMonitor_subscribe_presult result;
   result.success = &_return;
   result.read(iprot_);
   iprot_->readMessageEnd();
@@ -398,7 +398,7 @@ bool BossMonitorClient::recv_subscirbe()
   if (result.__isset.success) {
     return _return;
   }
-  throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "subscirbe failed: unknown result");
+  throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "subscribe failed: unknown result");
 }
 
 void BossMonitorClient::getAll(std::vector< ::BossData::BossMonitor> & _return)
@@ -477,38 +477,38 @@ bool BossMonitorProcessor::dispatchCall(::apache::thrift::protocol::TProtocol* i
   return true;
 }
 
-void BossMonitorProcessor::process_subscirbe(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
+void BossMonitorProcessor::process_subscribe(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
 {
   void* ctx = NULL;
   if (this->eventHandler_.get() != NULL) {
-    ctx = this->eventHandler_->getContext("BossMonitor.subscirbe", callContext);
+    ctx = this->eventHandler_->getContext("BossMonitor.subscribe", callContext);
   }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "BossMonitor.subscirbe");
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "BossMonitor.subscribe");
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preRead(ctx, "BossMonitor.subscirbe");
+    this->eventHandler_->preRead(ctx, "BossMonitor.subscribe");
   }
 
-  BossMonitor_subscirbe_args args;
+  BossMonitor_subscribe_args args;
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postRead(ctx, "BossMonitor.subscirbe", bytes);
+    this->eventHandler_->postRead(ctx, "BossMonitor.subscribe", bytes);
   }
 
-  BossMonitor_subscirbe_result result;
+  BossMonitor_subscribe_result result;
   try {
-    result.success = iface_->subscirbe(args.datas);
+    result.success = iface_->subscribe(args.datas);
     result.__isset.success = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
-      this->eventHandler_->handlerError(ctx, "BossMonitor.subscirbe");
+      this->eventHandler_->handlerError(ctx, "BossMonitor.subscribe");
     }
 
     ::apache::thrift::TApplicationException x(e.what());
-    oprot->writeMessageBegin("subscirbe", ::apache::thrift::protocol::T_EXCEPTION, seqid);
+    oprot->writeMessageBegin("subscribe", ::apache::thrift::protocol::T_EXCEPTION, seqid);
     x.write(oprot);
     oprot->writeMessageEnd();
     oprot->getTransport()->writeEnd();
@@ -517,17 +517,17 @@ void BossMonitorProcessor::process_subscirbe(int32_t seqid, ::apache::thrift::pr
   }
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preWrite(ctx, "BossMonitor.subscirbe");
+    this->eventHandler_->preWrite(ctx, "BossMonitor.subscribe");
   }
 
-  oprot->writeMessageBegin("subscirbe", ::apache::thrift::protocol::T_REPLY, seqid);
+  oprot->writeMessageBegin("subscribe", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postWrite(ctx, "BossMonitor.subscirbe", bytes);
+    this->eventHandler_->postWrite(ctx, "BossMonitor.subscribe", bytes);
   }
 }
 

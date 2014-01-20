@@ -10,6 +10,7 @@
 #include "libconfparser/confparser.hpp"
 #include <algorithm>
 #include <iterator>
+#include <libgen.h>
 
 using namespace zsummer::log4z;
 using namespace ::apache::thrift;
@@ -28,7 +29,7 @@ class BossMonitorHandler : virtual public BossMonitorIf {
     m_logId = logId;
   }
 
-  bool subscirbe(const  ::BossData::BossMonitor& datas) {
+  bool subscribe(const  ::BossData::BossMonitor& datas) {
     // Your implementation goes here
     LOG_INFO(m_logId, "One server is registering.");
     LOG_INFO(m_logId, "Process ID:"<<datas.id);
@@ -97,6 +98,14 @@ int main(int argc, char **argv) {
     shared_ptr<TServerTransport> serverTransport(new TServerSocket(port));
     shared_ptr<TTransportFactory> transportFactory(new TBufferedTransportFactory());
     shared_ptr<TProtocolFactory> protocolFactory(new TBinaryProtocolFactory());
+
+    BossData::BossMonitor data;
+    data.id=getpid();
+    data.name=basename(argv[0]);
+    data.status="Active";
+    data.ip=CONF_PARSER_GET_VAL("BossMonitor", "ip");;
+    data.port=port;
+    handler->subscribe(data);
 
     TSimpleServer server(processor, serverTransport, transportFactory, protocolFactory);
     server.serve();
