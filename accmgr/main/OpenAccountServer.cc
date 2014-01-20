@@ -85,6 +85,12 @@ int main(int argc, char **argv) {
     int port = CONF_PARSER_GET_NUM_VAL("OpenAccount", "port");
     LOG_INFO(logId, "Server listening port:"<<port);
 
+    shared_ptr<OpenAccountServletHandler> handler(new OpenAccountServletHandler(logId));
+    shared_ptr<TProcessor> processor(new OpenAccountServletProcessor(handler));
+    shared_ptr<TServerTransport> serverTransport(new TServerSocket(port));
+    shared_ptr<TTransportFactory> transportFactory(new TBufferedTransportFactory());
+    shared_ptr<TProtocolFactory> protocolFactory(new TBinaryProtocolFactory());
+
     ::BossMonitorClient client;
     BossData::BossMonitor data;
     data.id=getpid();
@@ -93,12 +99,6 @@ int main(int argc, char **argv) {
     data.ip=CONF_PARSER_GET_VAL("OpenAccount", "ip");;
     data.port=port;
     client.subscribe(data);
-
-    shared_ptr<OpenAccountServletHandler> handler(new OpenAccountServletHandler(logId));
-    shared_ptr<TProcessor> processor(new OpenAccountServletProcessor(handler));
-    shared_ptr<TServerTransport> serverTransport(new TServerSocket(port));
-    shared_ptr<TTransportFactory> transportFactory(new TBufferedTransportFactory());
-    shared_ptr<TProtocolFactory> protocolFactory(new TBinaryProtocolFactory());
 
     TSimpleServer server(processor, serverTransport, transportFactory, protocolFactory);
     server.serve();

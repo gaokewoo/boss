@@ -5,5 +5,12 @@ PWD=`pwd`
 source $PWD/env.sh
 
 cd $BOSS_HOME/bin
-./BossMonitorClient
 
+p_num=`./BossMonitorClient 2>&1|grep PROCESS_ID|wc -l`
+
+if [ "$p_num" = "0" ];then
+    echo "Servers not starting!"
+    exit 1
+fi
+
+./BossMonitorClient
