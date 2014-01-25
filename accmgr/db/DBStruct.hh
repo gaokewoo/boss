@@ -1,6 +1,10 @@
 #ifndef __DBSTRUCT__
 #define __DBSTRUCT__
 #include <string>
+#include <vector>
+#include <map>
+#include <algorithm>
+
 using namespace std;
 
 typedef struct {

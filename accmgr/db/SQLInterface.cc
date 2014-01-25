@@ -1,6 +1,6 @@
 #include "SQLInterface.hh"
 
-void SQLInterface::executeQurey()
+void SQLInterface::executeQuery()
 {
     try
     {

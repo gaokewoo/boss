@@ -4,7 +4,7 @@ include ${BOSS_HOME}/global.mk
 
 LIB_NAME=libbiz.a
 all: $(LIB_NAME)
-OBJS=OpenAccount.o 
+OBJS=OpenAccount.o ConfigData.o
 
 $(LIB_NAME):$(OBJS)
 	$(AR_CMD) $@ $(OBJS)

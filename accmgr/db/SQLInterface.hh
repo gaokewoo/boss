@@ -9,7 +9,7 @@ public:
     SQLInterface(){}
     SQLInterface(Connection *dbConn){ conn = dbConn; }
     void setConnection(Connection *dbConn) { conn = dbConn; }
-    void executeQurey();
+    void executeQuery();
     void executeUpdate();
 
     void setSQL(string sql) { sqlStmt = sql; }
