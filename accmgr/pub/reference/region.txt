@@ -1,0 +1,17 @@
+region.insert(make_pair(410100,"河南省郑州市"));
+region.insert(make_pair(410200,"河南省开封市"));
+region.insert(make_pair(410300,"河南省洛阳市"));
+region.insert(make_pair(410400,"河南省平顶山市"));
+region.insert(make_pair(410500,"河南省安阳市"));
+region.insert(make_pair(410600,"河南省鹤壁市"));
+region.insert(make_pair(410700,"河南省新乡市"));
+region.insert(make_pair(410800,"河南省焦作市"));
+region.insert(make_pair(410900,"河南省濮阳市"));
+region.insert(make_pair(411000,"河南省许昌市"));
+region.insert(make_pair(411100,"河南省漯河市"));
+region.insert(make_pair(411200,"河南省三门峡市"));
+region.insert(make_pair(411300,"河南省南阳市"));
+region.insert(make_pair(411400,"河南省商丘市"));
+region.insert(make_pair(411500,"河南省信阳市"));
+region.insert(make_pair(411600,"河南省周口市"));
+region.insert(make_pair(411700,"河南省驻马店市"));

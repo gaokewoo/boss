@@ -4,7 +4,7 @@ include ${BOSS_HOME}/global.mk
 
 LIB_NAME=libpub.a
 all: $(LIB_NAME)
-OBJS=Name.o 
+OBJS=Name.o IDInfo.o
 
 $(LIB_NAME):$(OBJS)
 	$(AR_CMD) $@ $(OBJS)
