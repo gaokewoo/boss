@@ -215,6 +215,11 @@ string RandomGen::getAddress()
     return it->second;
 }
 
+map<int,string> RandomGen::getAllAddress()
+{
+    return id;
+}
+
 string RandomGen::getID()
 {
     int index = rand()%id.size();

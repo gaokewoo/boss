@@ -14,6 +14,7 @@ class RandomGen
 public:
     RandomGen();
     string getAddress();
+    map<int,string> getAllAddress();
     string getID();
     string getNbr();
     string getName();
