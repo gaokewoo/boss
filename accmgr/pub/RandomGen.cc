@@ -181,23 +181,6 @@ RandomGen::RandomGen()
     id.insert(make_pair(411728,"河南省遂平县"));
     id.insert(make_pair(411729,"河南省新蔡县"));
 
-    region.insert(make_pair(1,"河南省郑州市"));
-    region.insert(make_pair(2,"河南省开封市"));
-    region.insert(make_pair(3,"河南省洛阳市"));
-    region.insert(make_pair(4,"河南省平顶山市"));
-    region.insert(make_pair(5,"河南省安阳市"));
-    region.insert(make_pair(6,"河南省鹤壁市"));
-    region.insert(make_pair(7,"河南省新乡市"));
-    region.insert(make_pair(8,"河南省焦作市"));
-    region.insert(make_pair(9,"河南省濮阳市"));
-    region.insert(make_pair(10,"河南省许昌市"));
-    region.insert(make_pair(11,"河南省漯河市"));
-    region.insert(make_pair(12,"河南省三门峡市"));
-    region.insert(make_pair(13,"河南省南阳市"));
-    region.insert(make_pair(14,"河南省商丘市"));
-    region.insert(make_pair(15,"河南省信阳市"));
-    region.insert(make_pair(16,"河南省周口市"));
-    region.insert(make_pair(17,"河南省驻马店市"));
 }
 
 string RandomGen::getAddress()
@@ -257,6 +240,37 @@ string RandomGen::getNbr()
 string RandomGen::getName()
 {
     return name.getName();
+}
+
+RandomInfo RandomGen::getRandomInfo()
+{
+    RandomInfo local;
+    string region_nbr[]={"0371","0378","0379","0375","0372","0392","0373","0391","0393","0374","0395","0398","0377","0370","0376","0394","0396"};
+    string post_code[]={"450000","475000","471000","467000","455000","458000","453000","454150","457000","461000","462000","472000","473000","476000","464000","466000","463000"};
+
+    string mail_suffix[]={"sina.com","126.com","gmail.com","163.com","sohu.com","ibm.com","qq.com"};
+
+    int index = rand()%17;
+    local.id=getID();
+    local.name=getName();
+    local.addr=getAddress();
+    local.region_nbr=region_nbr[index];
+    local.post_code=post_code[index];
+
+    char tmp[20];
+    sprintf(tmp,"%s%04d%04d",region_nbr[index].c_str(),rand()%10000,rand()%10000);
+    local.fax_nbr=tmp;
+
+    sprintf(tmp,"%s%04d%04d",region_nbr[index].c_str(),rand()%10000,rand()%10000);
+    local.tel_nbr=tmp;
+
+    sprintf(tmp,"%c%c%c%c%c%c%c%c%c%c@%s",97+rand()%26,97+rand()%26,97+rand()%26,97+rand()%26,97+rand()%26,97+rand()%26,97+rand()%26,97+rand()%26,97+rand()%26,97+rand()%26,mail_suffix[rand()%7].c_str());
+    local.email_addr=tmp;
+
+    string gender[]={"M","F"};
+    local.gender=gender[rand()%2];
+
+    return local;
 }
 
 
