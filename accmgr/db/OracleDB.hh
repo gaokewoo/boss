@@ -1,8 +1,12 @@
 #include "DBInterface.hh"
 #include <exception>
+#include <iostream>
 
 #ifndef __ORACLEDB__
 #define __ORACLEDB__
+
+using namespace std;
+
 class OracleDB:public DBInterface
 {
 public:
