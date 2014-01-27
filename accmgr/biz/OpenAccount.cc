@@ -19,6 +19,8 @@ OpenAccount::OpenAccount(LoggerId logId)
 
     m_cust_contact_info.setConnection(m_db->getConnection());
 
+    m_cust_ident.setConnection(m_db->getConnection());
+
     LOG_DEBUG(m_logId, "OpenAccount::OpenAccount end");
 }
 
@@ -70,6 +72,7 @@ void OpenAccount::doBiz()
     long product_id = 0;
     long billing_cycle_type_id = v_billing_cycle[rand()%v_billing_cycle.size()].m_billing_cycle_type_id;
     long address_id = v_address[rand()%v_address.size()].m_address_id;
+    string certificate_type = v_certificate_type[rand()%v_certificate_type.size()].m_certificate_type;
 
     LOG_INFO(m_logId, "region_id:"<<region_id);
     LOG_INFO(m_logId, "product_id:"<<product_id);
@@ -118,6 +121,17 @@ void OpenAccount::doBiz()
     m_cust_contact_info.cust_contact_info.m_fax=rand_info.fax_nbr;
     m_cust_contact_info.cust_contact_info.m_comments="无";
     m_cust_contact_info.insertData();
+
+
+	m_cust_ident.cust_identification.m_cust_id=cust_id;
+	m_cust_ident.cust_identification.m_agreement_id=agreement_id;
+	m_cust_ident.cust_identification.m_certificate_type=certificate_type ;
+	m_cust_ident.cust_identification.m_certificate_no=rand_info.id;
+	m_cust_ident.cust_identification.m_attest_type="A01";
+	m_cust_ident.cust_identification.m_attest_passwd="123456";
+	m_cust_ident.cust_identification.m_secrecy_level="0";
+    m_cust_ident.insertData();
+
 
     long acct_id = m_seq.getAcctId();
     LOG_INFO(m_logId, "acct_id :"<<acct_id );
