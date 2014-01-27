@@ -44,6 +44,7 @@ private:
     CustIdentification m_cust_ident;
     Agreement m_agreement;
     ServIdentification m_serv_ident;
+    ServLocation m_serv_location;
 
     vector<ST_CERTIFICATE_TYPE> v_certificate_type; 
     vector<ST_ACCT_TYPE> v_acct_type; 

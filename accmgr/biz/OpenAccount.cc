@@ -25,6 +25,8 @@ OpenAccount::OpenAccount(LoggerId logId)
 
     m_serv_ident.setConnection(m_db->getConnection());
 
+    m_serv_location.setConnection(m_db->getConnection());
+
     LOG_DEBUG(m_logId, "OpenAccount::OpenAccount end");
 }
 
@@ -178,6 +180,13 @@ void OpenAccount::doBiz()
 	m_serv_ident.serv_identification.m_acc_nbr = generator.getNbr();
     m_serv_ident.insertData();
 
+	m_serv_location.serv_location.m_serv_id=serv_id;
+	m_serv_location.serv_location.m_agreement_id=agreement_id;
+	m_serv_location.serv_location.m_address_id=address_id;
+	m_serv_location.serv_location.m_bureau_id=region_id;
+	m_serv_location.serv_location.m_exchange_id=region_id;
+	m_serv_location.serv_location.m_stat_region_id=region_id;
+    m_serv_location.insertData();
 
     m_db->commit();
     LOG_DEBUG(m_logId, "OpenAccount::doBiz end");
