@@ -147,7 +147,7 @@ void OpenAccount::doBiz()
 	m_cust_ident.cust_identification.m_agreement_id=agreement_id;
 	m_cust_ident.cust_identification.m_certificate_type=certificate_type ;
 	m_cust_ident.cust_identification.m_certificate_no=rand_info.id;
-	m_cust_ident.cust_identification.m_attest_type="A01";
+	m_cust_ident.cust_identification.m_attest_type="A0";
 	m_cust_ident.cust_identification.m_attest_passwd="123456";
 	m_cust_ident.cust_identification.m_secrecy_level="0";
     m_cust_ident.insertData();
