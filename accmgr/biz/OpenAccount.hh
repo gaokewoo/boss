@@ -42,6 +42,8 @@ private:
     Acct m_acct;
     CustContactInfo m_cust_contact_info;
     CustIdentification m_cust_ident;
+    Agreement m_agreement;
+    ServIdentification m_serv_ident;
 
     vector<ST_CERTIFICATE_TYPE> v_certificate_type; 
     vector<ST_ACCT_TYPE> v_acct_type; 

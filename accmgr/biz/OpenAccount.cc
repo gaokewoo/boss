@@ -21,6 +21,10 @@ OpenAccount::OpenAccount(LoggerId logId)
 
     m_cust_ident.setConnection(m_db->getConnection());
 
+    m_agreement.setConnection(m_db->getConnection());
+
+    m_serv_ident.setConnection(m_db->getConnection());
+
     LOG_DEBUG(m_logId, "OpenAccount::OpenAccount end");
 }
 
@@ -73,11 +77,14 @@ void OpenAccount::doBiz()
     long billing_cycle_type_id = v_billing_cycle[rand()%v_billing_cycle.size()].m_billing_cycle_type_id;
     long address_id = v_address[rand()%v_address.size()].m_address_id;
     string certificate_type = v_certificate_type[rand()%v_certificate_type.size()].m_certificate_type;
+    long staff_id = v_staff[rand()%v_staff.size()].m_staff_id;
 
     LOG_INFO(m_logId, "region_id:"<<region_id);
     LOG_INFO(m_logId, "product_id:"<<product_id);
     LOG_INFO(m_logId, "billing_cycle_type_id:"<<billing_cycle_type_id);
     LOG_INFO(m_logId, "address_id:"<<address_id);
+    LOG_INFO(m_logId, "certificate_type:"<<certificate_type);
+    LOG_INFO(m_logId, "staff_id :"<<staff_id);
 
     RandomGen generator;
     RandomInfo rand_info=generator.getRandomInfo();
@@ -122,7 +129,6 @@ void OpenAccount::doBiz()
     m_cust_contact_info.cust_contact_info.m_comments="无";
     m_cust_contact_info.insertData();
 
-
 	m_cust_ident.cust_identification.m_cust_id=cust_id;
 	m_cust_ident.cust_identification.m_agreement_id=agreement_id;
 	m_cust_ident.cust_identification.m_certificate_type=certificate_type ;
@@ -132,6 +138,13 @@ void OpenAccount::doBiz()
 	m_cust_ident.cust_identification.m_secrecy_level="0";
     m_cust_ident.insertData();
 
+	m_agreement.agreement.m_agreement_id=agreement_id;
+	m_agreement.agreement.m_cust_id=cust_id;
+	m_agreement.agreement.m_agreement_type="0A";
+	m_agreement.agreement.m_accept_staff_id=staff_id;
+	m_agreement.agreement.m_state="0A";
+	m_agreement.agreement.m_comments="无";
+    m_agreement.insertData();
 
     long acct_id = m_seq.getAcctId();
     LOG_INFO(m_logId, "acct_id :"<<acct_id );
@@ -159,6 +172,12 @@ void OpenAccount::doBiz()
     m_serv.serv.m_region_id=region_id;
     m_serv.serv.m_band_id=0;
     m_serv.insertData();
+
+	m_serv_ident.serv_identification.m_serv_id = serv_id;
+	m_serv_ident.serv_identification.m_agreement_id = agreement_id;
+	m_serv_ident.serv_identification.m_acc_nbr = generator.getNbr();
+    m_serv_ident.insertData();
+
 
     m_db->commit();
     LOG_DEBUG(m_logId, "OpenAccount::doBiz end");
