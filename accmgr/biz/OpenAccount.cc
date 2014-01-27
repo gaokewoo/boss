@@ -27,6 +27,8 @@ OpenAccount::OpenAccount(LoggerId logId)
 
     m_serv_location.setConnection(m_db->getConnection());
 
+    m_serv_state_attr.setConnection(m_db->getConnection());
+
     LOG_DEBUG(m_logId, "OpenAccount::OpenAccount end");
 }
 
@@ -80,6 +82,13 @@ void OpenAccount::doBiz()
     long address_id = v_address[rand()%v_address.size()].m_address_id;
     string certificate_type = v_certificate_type[rand()%v_certificate_type.size()].m_certificate_type;
     long staff_id = v_staff[rand()%v_staff.size()].m_staff_id;
+    string serv_state;
+    vector<ST_SERV_STATE_DESC>::iterator it;
+    for(it=v_serv_state_desc.begin();it!=v_serv_state_desc.end();it++)
+    {
+        if(it->m_region_id == region_id)
+          serv_state = it->m_state;
+    }
 
     LOG_INFO(m_logId, "region_id:"<<region_id);
     LOG_INFO(m_logId, "product_id:"<<product_id);
@@ -87,6 +96,7 @@ void OpenAccount::doBiz()
     LOG_INFO(m_logId, "address_id:"<<address_id);
     LOG_INFO(m_logId, "certificate_type:"<<certificate_type);
     LOG_INFO(m_logId, "staff_id :"<<staff_id);
+    LOG_INFO(m_logId, "serv_state:"<<serv_state);
 
     RandomGen generator;
     RandomInfo rand_info=generator.getRandomInfo();
@@ -170,7 +180,7 @@ void OpenAccount::doBiz()
     m_serv.serv.m_product_id=product_id;
     m_serv.serv.m_billing_cycle_type_id=billing_cycle_type_id;
     m_serv.serv.m_product_family_id=0;
-    m_serv.serv.m_state="0";
+    m_serv.serv.m_state=serv_state;
     m_serv.serv.m_region_id=region_id;
     m_serv.serv.m_band_id=0;
     m_serv.insertData();
@@ -187,6 +197,13 @@ void OpenAccount::doBiz()
 	m_serv_location.serv_location.m_exchange_id=region_id;
 	m_serv_location.serv_location.m_stat_region_id=region_id;
     m_serv_location.insertData();
+
+	m_serv_state_attr.serv_state_attr.m_serv_id=serv_id;
+	m_serv_state_attr.serv_state_attr.m_billing_cycle_type_id=billing_cycle_type_id;
+	m_serv_state_attr.serv_state_attr.m_agreement_id=agreement_id;
+	m_serv_state_attr.serv_state_attr.m_owe_business_type_id=0;
+	m_serv_state_attr.serv_state_attr.m_state=serv_state;
+    m_serv_state_attr.insertData();
 
     m_db->commit();
     LOG_DEBUG(m_logId, "OpenAccount::doBiz end");

@@ -25,6 +25,7 @@
 #include "Agreement.hh"
 #include "ServIdentification.hh"
 #include "ServLocation.hh"
+#include "ServStateAttr.hh"
 #include "log4z/log4z.h"
 
 using namespace zsummer::log4z;
@@ -49,6 +50,7 @@ private:
     Agreement m_agreement;
     ServIdentification m_serv_ident;
     ServLocation m_serv_location;
+    ServStateAttr m_serv_state_attr;
 
     vector<ST_CERTIFICATE_TYPE> v_certificate_type; 
     vector<ST_ACCT_TYPE> v_acct_type; 
