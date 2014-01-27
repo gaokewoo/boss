@@ -87,7 +87,7 @@ fun_type2()
 }
 
 #读配置文件,循环处理每一条记录
-while [ $year -lt 2014 ]
+while [ $year -lt 2015 ]
 do
 	echo "CUR YEAR = $year"
 	for record in `cat $BOSS_HOME/script/db/create_index.cfg`

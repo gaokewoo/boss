@@ -141,7 +141,7 @@ fun_type5()
 }
 
 #读配置文件，循环处理每一条记录
-while [ $year -lt 2014 ]
+while [ $year -lt 2015 ]
 do
 	for record in `cat $BOSS_HOME/script/db/create_table.cfg`
 	do
