@@ -21,6 +21,10 @@
 #include "Cust.hh"
 #include "Acct.hh"
 #include "CustContactInfo.hh"
+#include "CustIdentification.hh"
+#include "Agreement.hh"
+#include "ServIdentification.hh"
+#include "ServLocation.hh"
 #include "log4z/log4z.h"
 
 using namespace zsummer::log4z;
