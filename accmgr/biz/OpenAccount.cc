@@ -29,6 +29,8 @@ OpenAccount::OpenAccount(LoggerId logId)
 
     m_serv_state_attr.setConnection(m_db->getConnection());
 
+    m_serv_billing_mode.setConnection(m_db->getConnection());
+
     LOG_DEBUG(m_logId, "OpenAccount::OpenAccount end");
 }
 
@@ -204,6 +206,11 @@ void OpenAccount::doBiz()
 	m_serv_state_attr.serv_state_attr.m_owe_business_type_id=0;
 	m_serv_state_attr.serv_state_attr.m_state=serv_state;
     m_serv_state_attr.insertData();
+
+	m_serv_billing_mode.serv_billing_mode.m_serv_id = serv_id;
+	m_serv_billing_mode.serv_billing_mode.m_agreement_id = agreement_id;
+	m_serv_billing_mode.serv_billing_mode.m_billing_mode = "A";
+    m_serv_billing_mode.insertData();
 
     m_db->commit();
     LOG_DEBUG(m_logId, "OpenAccount::doBiz end");
