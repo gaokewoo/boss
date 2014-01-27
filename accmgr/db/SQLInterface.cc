@@ -20,16 +20,25 @@ void SQLInterface::executeQuery()
             << "*Db Exception*,"
             << "ErrorCode=" << sqlExcp.getErrorCode()
             <<",ErrorStr=" << sqlExcp.getMessage() << endl;
+        cout<<"SQL:"<<sqlStmt<<endl;
+
+        throw;
     }
     catch(exception& excp)
     {
         cout <<__FILE__<<":"<<__func__<<":"<<__LINE__<<":"
             <<"*Exception*," <<excp.what() << endl;
+        cout<<"SQL:"<<sqlStmt<<endl;
+
+        throw;
     }
     catch(...)
     {
         cout <<__FILE__<<":"<<__func__<<":"<<__LINE__<<":"
             <<"Unknown Exception!" << endl;
+        cout<<"SQL:"<<sqlStmt<<endl;
+
+        throw;
     }
 
 }
@@ -51,16 +60,25 @@ void SQLInterface::executeUpdate()
             << "*Db Exception*,"
             << "ErrorCode=" << sqlExcp.getErrorCode()
             <<",ErrorStr=" << sqlExcp.getMessage() << endl;
+        cout<<"SQL:"<<sqlStmt<<endl;
+
+        throw;
     }
     catch(exception& excp)
     {
         cout <<__FILE__<<":"<<__func__<<":"<<__LINE__<<":"
             <<"*Exception*," <<excp.what() << endl;
+        cout<<"SQL:"<<sqlStmt<<endl;
+
+        throw;
     }
     catch(...)
     {
         cout <<__FILE__<<":"<<__func__<<":"<<__LINE__<<":"
             <<"Unknown Exception!" << endl;
+        cout<<"SQL:"<<sqlStmt<<endl;
+
+        throw;
     }
 }
 

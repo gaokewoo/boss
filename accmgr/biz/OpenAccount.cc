@@ -33,6 +33,8 @@ OpenAccount::OpenAccount(LoggerId logId)
 
     m_serv_billing_mode.setConnection(m_db->getConnection());
 
+    m_staff_opr.setConnection(m_db->getConnection());
+
     LOG_DEBUG(m_logId, "OpenAccount::OpenAccount end");
 }
 
@@ -188,9 +190,10 @@ void OpenAccount::doBiz()
     m_serv.serv.m_band_id=0;
     m_serv.insertData();
 
+    string acc_nbr = generator.getNbr();
 	m_serv_ident.serv_identification.m_serv_id = serv_id;
 	m_serv_ident.serv_identification.m_agreement_id = agreement_id;
-	m_serv_ident.serv_identification.m_acc_nbr = generator.getNbr();
+	m_serv_ident.serv_identification.m_acc_nbr = acc_nbr; 
     m_serv_ident.insertData();
 
 	m_serv_location.serv_location.m_serv_id=serv_id;
@@ -212,6 +215,20 @@ void OpenAccount::doBiz()
 	m_serv_billing_mode.serv_billing_mode.m_agreement_id = agreement_id;
 	m_serv_billing_mode.serv_billing_mode.m_billing_mode = "A";
     m_serv_billing_mode.insertData();
+
+    m_staff_opr.staff_opr.m_login_accept = m_seq.getScardvcsn();
+    m_staff_opr.staff_opr.m_op_code = "KH";
+    m_staff_opr.staff_opr.m_payment_method = 100;
+    m_staff_opr.staff_opr.m_pay_money = 0;
+    m_staff_opr.staff_opr.m_band_id = 111;
+    m_staff_opr.staff_opr.m_serv_id = serv_id;
+    m_staff_opr.staff_opr.m_acc_nbr = acc_nbr;
+    m_staff_opr.staff_opr.m_op_note = "开户";
+    m_staff_opr.staff_opr.m_ip_addr = "127.0.0.1";
+    m_staff_opr.staff_opr.m_staff_org_id = region_id;
+    m_staff_opr.staff_opr.m_nbr_org_id = region_id;
+    m_staff_opr.staff_opr.m_staff_id = staff_id;
+    m_staff_opr.insertData();
 
     m_db->commit();
     LOG_DEBUG(m_logId, "OpenAccount::doBiz end");

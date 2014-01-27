@@ -298,7 +298,8 @@ OBJS=DBInterface.o \
      ZtOprLog.o \
      ZtOweTotal.o \
      ZtOweTotalMid.o \
-     ZtStaffLog.o
+     ZtStaffLog.o \
+     Dual.o
 
 libdb.a:$(OBJS)
 	$(AR_CMD) $@ $(OBJS)

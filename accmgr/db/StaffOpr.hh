@@ -14,6 +14,5 @@ public:
     ST_STAFF_OPR staff_opr;
 
 private:
-    static string insSQL;
 };
 #endif

@@ -1,17 +1,26 @@
 #include "StaffOpr.hh"
+#include "Dual.hh"
 
-string StaffOpr::insSQL="INSERT INTO STAFF_OPR(LOGIN_ACCEPT,TOTAL_DATE,OP_CODE,PAYMENT_METHOD,PAY_MONEY,BAND_ID,SERV_ID,ACC_NBR,OP_TIME,OP_NOTE,IP_ADDR,STAFF_ORG_ID,NBR_ORG_ID,STAFF_ID)VALUES (:LOGIN_ACCEPT,:TOTAL_DATE,:OP_CODE,:PAYMENT_METHOD,:PAY_MONEY,:BAND_ID,:SERV_ID,:ACC_NBR,SYSDATE,:OP_NOTE,:IP_ADDR,:STAFF_ORG_ID,:NBR_ORG_ID,:STAFF_ID)";
 
 void StaffOpr::insertData()
 {
+    Dual dual;
+    dual.setConnection(conn);
+    string sysdate = dual.getSysDateYYYYMM();
+
+    string insSQL="INSERT INTO STAFF_OPR"+sysdate+"(LOGIN_ACCEPT,TOTAL_DATE,OP_CODE,PAYMENT_METHOD,PAY_MONEY,BAND_ID,SERV_ID,ACC_NBR,OP_TIME,OP_NOTE,IP_ADDR,STAFF_ORG_ID,NBR_ORG_ID,STAFF_ID)VALUES (:LOGIN_ACCEPT,:TOTAL_DATE,:OP_CODE,:PAYMENT_METHOD,:PAY_MONEY,:BAND_ID,:SERV_ID,:ACC_NBR,SYSDATE,:OP_NOTE,:IP_ADDR,:STAFF_ORG_ID,:NBR_ORG_ID,:STAFF_ID)";
     setSQL(insSQL);
     executeUpdate();
 }
 
 void StaffOpr::prepareSQL()
 {
+    Dual dual;
+    dual.setConnection(conn);
+    string sysdate = dual.getSysDateYYYYMMDD();
+
     stmt->setNumber(1,staff_opr.m_login_accept);
-    stmt->setNumber(2,staff_opr.m_total_date);
+    stmt->setNumber(2,atol(sysdate.c_str()));
     stmt->setString(3,staff_opr.m_op_code);
     stmt->setNumber(4,staff_opr.m_payment_method);
     stmt->setNumber(5,staff_opr.m_pay_money);
