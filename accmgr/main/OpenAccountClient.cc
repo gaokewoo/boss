@@ -20,6 +20,9 @@ int main(int argc, char** argv) {
     const char* pval = CONF_PARSER_GET_VAL("OpenAccount", "ip");
     cout<<"Server IP:"<<pval<<" Port:"<<port<<endl;
 
+    int frequence = CONF_PARSER_GET_NUM_VAL("OpenAccount", "frequence");
+    cout<<"The client send request each "<<frequence<<" seconds."<<endl;
+
     shared_ptr<TTransport> socket(new TSocket(pval, port));   
 
     shared_ptr<TTransport> transport(new TBufferedTransport(socket));   
@@ -28,13 +31,20 @@ int main(int argc, char** argv) {
 
     BossInterface::OpenAccountServletClient  client(protocol);   
 
-    try {   
-
+    try {  
+        int i=0;
         transport->open();   
 
         vector<BossData::OpenAccount> datas;   
 
-        client.Sender(datas);//RPC函数，调用serve端的该函数   
+        while(1)
+        {
+            cout<<"----------["<<++i<<"]----------"<<endl;
+
+            client.Sender(datas);//RPC函数，调用serve端的该函数   
+
+            sleep(frequence);
+        }
 
         transport->close();   
 

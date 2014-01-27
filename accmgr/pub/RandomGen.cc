@@ -220,7 +220,7 @@ string RandomGen::getID()
     int day = rand()%28;
     int suffix = rand()%10000;
 
-    char str[20]={'0'};
+    char str[50]={'0'};
     sprintf(str,"%d%d%02d%02d%04d",it->first,year,month,day,suffix);
 
     return str;
@@ -231,7 +231,7 @@ string RandomGen::getNbr()
     string nbr_head[]={"133","153","189"};
 
     int index = rand()%3;
-    char str[20]={'0'};
+    char str[50]={'0'};
     sprintf(str,"%s%04d%04d",nbr_head[index].c_str(),rand()%10000,rand()%10000);
 
     return str;
@@ -257,7 +257,7 @@ RandomInfo RandomGen::getRandomInfo()
     local.region_nbr=region_nbr[index];
     local.post_code=post_code[index];
 
-    char tmp[20];
+    char tmp[50];
     sprintf(tmp,"%s%04d%04d",region_nbr[index].c_str(),rand()%10000,rand()%10000);
     local.fax_nbr=tmp;
 

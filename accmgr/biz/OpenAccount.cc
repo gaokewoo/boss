@@ -9,6 +9,8 @@ OpenAccount::OpenAccount(LoggerId logId)
     m_db = new OracleDB();
     m_db->connectToDB();
 
+    loadConfigData();
+
     m_seq.setConnection(m_db->getConnection());
 
     m_serv.setConnection(m_db->getConnection());
@@ -77,7 +79,6 @@ void OpenAccount::doBiz()
 {
 
     LOG_DEBUG(m_logId, "OpenAccount::doBiz start");
-    loadConfigData();
     long region_id = v_region[rand()%v_region.size()].m_region_id;
     long product_id = 0;
     long billing_cycle_type_id = v_billing_cycle[rand()%v_billing_cycle.size()].m_billing_cycle_type_id;
@@ -92,31 +93,31 @@ void OpenAccount::doBiz()
           serv_state = it->m_state;
     }
 
-    LOG_INFO(m_logId, "region_id:"<<region_id);
-    LOG_INFO(m_logId, "product_id:"<<product_id);
-    LOG_INFO(m_logId, "billing_cycle_type_id:"<<billing_cycle_type_id);
-    LOG_INFO(m_logId, "address_id:"<<address_id);
-    LOG_INFO(m_logId, "certificate_type:"<<certificate_type);
-    LOG_INFO(m_logId, "staff_id :"<<staff_id);
-    LOG_INFO(m_logId, "serv_state:"<<serv_state);
+    LOG_INFO(m_logId, "Region_id:"<<region_id);
+    LOG_INFO(m_logId, "Product_id:"<<product_id);
+    LOG_INFO(m_logId, "Billing_cycle_type_id:"<<billing_cycle_type_id);
+    LOG_INFO(m_logId, "Address_id:"<<address_id);
+    LOG_INFO(m_logId, "Certificate_type:"<<certificate_type);
+    LOG_INFO(m_logId, "Staff_id :"<<staff_id);
+    LOG_INFO(m_logId, "Serv_state:"<<serv_state);
 
     RandomGen generator;
     RandomInfo rand_info=generator.getRandomInfo();
 
-    LOG_INFO(m_logId, "id"<<rand_info.id);
-    LOG_INFO(m_logId, "name"<<rand_info.name);
-    LOG_INFO(m_logId, "gender"<<rand_info.gender);
-    LOG_INFO(m_logId, "addr"<<rand_info.addr);
-    LOG_INFO(m_logId, "region_nbr"<<rand_info.region_nbr);
-    LOG_INFO(m_logId, "fax_nbr"<<rand_info.fax_nbr);
-    LOG_INFO(m_logId, "tel_nbr"<<rand_info.tel_nbr);
-    LOG_INFO(m_logId, "post_code"<<rand_info.post_code);
-    LOG_INFO(m_logId, "email_addr"<<rand_info.email_addr);
+    LOG_INFO(m_logId, "Id:"<<rand_info.id);
+    LOG_INFO(m_logId, "Name:"<<rand_info.name);
+    LOG_INFO(m_logId, "Gender:"<<rand_info.gender);
+    LOG_INFO(m_logId, "Addr:"<<rand_info.addr);
+    LOG_INFO(m_logId, "Region_nbr:"<<rand_info.region_nbr);
+    LOG_INFO(m_logId, "Fax_nbr:"<<rand_info.fax_nbr);
+    LOG_INFO(m_logId, "Tel_nbr:"<<rand_info.tel_nbr);
+    LOG_INFO(m_logId, "Post_code:"<<rand_info.post_code);
+    LOG_INFO(m_logId, "Email_addr:"<<rand_info.email_addr);
 
     long cust_id = m_seq.getCustId();
     long agreement_id = m_seq.getAgreementId();
 
-    LOG_INFO(m_logId, "cust_id :"<<cust_id );
+    LOG_INFO(m_logId, "Cust_id :"<<cust_id );
 
     m_cust.cust.m_cust_id=cust_id;
     m_cust.cust.m_party_role_id=0;
@@ -161,7 +162,7 @@ void OpenAccount::doBiz()
     m_agreement.insertData();
 
     long acct_id = m_seq.getAcctId();
-    LOG_INFO(m_logId, "acct_id :"<<acct_id );
+    LOG_INFO(m_logId, "Acct_id :"<<acct_id );
     m_acct.acct.m_acct_id=acct_id;
     m_acct.acct.m_cust_id=cust_id;
     m_acct.acct.m_acct_name=rand_info.name;
@@ -175,7 +176,7 @@ void OpenAccount::doBiz()
     m_acct.insertData();
 
     long serv_id = m_seq.getServId();
-    LOG_INFO(m_logId, "serv_id :"<<serv_id );
+    LOG_INFO(m_logId, "Serv_id :"<<serv_id );
     m_serv.serv.m_serv_id=serv_id;
     m_serv.serv.m_agreement_id=agreement_id;
     m_serv.serv.m_cust_id=cust_id;
