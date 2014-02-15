@@ -1,14 +1,16 @@
 include ${BOSS_HOME}/global.mk
 
-.SUFFIXES:.cc
+SRCS = $(wildcard *.cc)
+BUILD = $(patsubst %.cc, %.o, $(SRCS))
 
-LIB_NAME=libpub.a
+LIB_NAME=libpub.so
+
 all: $(LIB_NAME)
-OBJS=Name.o RandomGen.o
+OBJS=$(BUILD)
 
 $(LIB_NAME):$(OBJS)
-	$(AR_CMD) $@ $(OBJS)
-	@if [ ! -d ../libs/ ];then mkdir ../libs/;fi
+	$(CC) -shared -o $@ $(OBJS)
+	@if [ ! -d ../lib/ ];then mkdir ../lib/;fi
 	mv -f $@ $(BOSS_LIB_PATH)
 	@echo "### $@ loaded ###\n"
 

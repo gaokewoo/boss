@@ -1,12 +1,12 @@
-CC_FLAGS= -g -Wall
+CC_FLAGS= -g -Wall -fpic
 CC=g++
 AR_CMD=ar -rv
 
 #SUBDIRS=db pub biz thrift main
 SUBDIRS=db pub biz main
 
-#define libs path
-BOSS_LIB_PATH=$(BOSS_HOME)/libs/
+#define lib path
+BOSS_LIB_PATH=$(BOSS_HOME)/lib/
 
 #define database include file path
 DB_INCLUDE=$(BOSS_HOME)/db/ 
