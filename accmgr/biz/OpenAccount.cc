@@ -113,7 +113,6 @@ void OpenAccount::doBiz()
     LOG_INFO(m_logId, "Staff_id :"<<staff_id);
     LOG_INFO(m_logId, "Serv_state:"<<serv_state);
 
-    RandomGen generator;
     RandomInfo rand_info=generator.getRandomInfo();
 
     LOG_INFO(m_logId, "Id:"<<rand_info.id);

@@ -43,6 +43,7 @@ private:
     LoggerId m_logId;
     OracleDB *m_db;
 
+    RandomGen generator;
     Sequence m_seq;
     Serv m_serv;
     Cust m_cust;

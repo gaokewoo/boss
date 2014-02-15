@@ -23,7 +23,7 @@ int main(int argc, char** argv) {
     cout<<"Server IP:"<<pval<<" Port:"<<port<<endl;
 
     int frequence = CONF_PARSER_GET_NUM_VAL("OpenAccount", "frequence");
-    cout<<"The client send request each "<<frequence<<" seconds."<<endl;
+    cout<<"The client send request each "<<frequence<<" milliseconds."<<endl;
 
     OpenAccount *m_open_account = new OpenAccount(logId);
 
@@ -38,7 +38,7 @@ int main(int argc, char** argv) {
             cout<<"----------["<<++i<<"]----------"<<endl;
             m_open_account->doBiz();
 
-            sleep(frequence);
+            usleep(frequence*1000);
         }
 
 
