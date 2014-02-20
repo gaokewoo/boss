@@ -22,7 +22,7 @@ void SQLInterface::executeQuery()
             <<",ErrorStr=" << sqlExcp.getMessage() << endl;
         cout<<"SQL:"<<sqlStmt<<endl;
 
-        throw;
+        throw sqlExcp;
     }
     catch(exception& excp)
     {
@@ -30,7 +30,7 @@ void SQLInterface::executeQuery()
             <<"*Exception*," <<excp.what() << endl;
         cout<<"SQL:"<<sqlStmt<<endl;
 
-        throw;
+        throw excp;
     }
     catch(...)
     {
@@ -62,7 +62,7 @@ void SQLInterface::executeUpdate()
             <<",ErrorStr=" << sqlExcp.getMessage() << endl;
         cout<<"SQL:"<<sqlStmt<<endl;
 
-        throw;
+        throw sqlExcp;
     }
     catch(exception& excp)
     {
@@ -70,7 +70,7 @@ void SQLInterface::executeUpdate()
             <<"*Exception*," <<excp.what() << endl;
         cout<<"SQL:"<<sqlStmt<<endl;
 
-        throw;
+        throw excp;
     }
     catch(...)
     {
