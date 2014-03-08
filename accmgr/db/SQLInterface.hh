@@ -8,6 +8,7 @@ class SQLInterface
 public:
     SQLInterface(){}
     SQLInterface(Connection *dbConn){ conn = dbConn; }
+    virtual ~SQLInterface(){}
     void setConnection(Connection *dbConn) { conn = dbConn; }
     void executeQuery();
     void executeUpdate();

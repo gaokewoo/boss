@@ -35,6 +35,6 @@ ORA_LIBS=$(ORACLE_HOME)/lib -locci -lclntsh
 #THRIFT_LIBS=/usr/local/lib -lthrift
 THRIFT_LIBS=.
 #BOSS_LIBS=$(BOSS_LIB_PATH)/ -lbiz -ldb -lpub -lbossthrift
-BOSS_LIBS=$(BOSS_LIB_PATH)/ -lbiz -ldb -lpub 
+BOSS_LIBS=$(BOSS_LIB_PATH)/ -lbossbiz -lbossdb -lbosspub 
 
 LIBS= -L$(BOSS_LIBS) -L$(ORA_LIBS) -L$(THRIFT_LIBS) -lpthread

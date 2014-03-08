@@ -3,7 +3,7 @@ include ${BOSS_HOME}/global.mk
 SRCS = $(wildcard *.cc)
 BUILD = $(patsubst %.cc, %.o, $(SRCS))
 
-LIB_NAME=libpub.so
+LIB_NAME=libbosspub.so
 
 all: $(LIB_NAME)
 OBJS=$(BUILD)
