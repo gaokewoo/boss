@@ -8,6 +8,6 @@ export PATH=$ORACLE_HOME/bin:$BOSS_INSTALL_HOME/thrift/bin/:/usr/local/bin:/usr/
 export CLASSPATH=$ORACLE_HOME/JRE:$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib:$ORACLE_HOME/jdk/jre/lib/ext
 export SHLIB_PATH=$ORACLE_HOME/lib:$ORACLE_HOME/rdbms/lib:$ORACLE_HOME/lib:.
 
-export BOSS_HOME=/home/wugk/dev/boss/accmgr/
+export BOSS_HOME=~/boss/accmgr/
 
-export LD_LIBRARY_PATH=$ORACLE_HOME/lib:/lib:/usr/lib:$ORACLE_HOME/rdbms/lib:$ORACLE_HOME/lib32:$BOSS_HOME/lib:.:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$ORACLE_HOME/lib:/lib:/usr/lib:$ORACLE_HOME/rdbms/lib:$ORACLE_HOME/lib32:$BOSS_HOME/lib:$BOSS_INSTALL_HOME/thrift/lib:.:$LD_LIBRARY_PATH

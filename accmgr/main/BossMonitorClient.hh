@@ -1,8 +1,8 @@
 #ifndef __BOSS_MONITOR_CLIENT_HH__
 #define __BOSS_MONITOR_CLIENT_HH__
-#include <protocol/TBinaryProtocol.h>
-#include <transport/TSocket.h>
-#include <transport/TTransportUtils.h>
+#include <thrift/protocol/TBinaryProtocol.h>
+#include <thrift/transport/TSocket.h>
+#include <thrift/transport/TTransportUtils.h>
 #include "gen-cpp/BossMonitor.h"
 #include "libconfparser/confparser.hpp"
 #include <iostream>

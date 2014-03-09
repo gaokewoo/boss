@@ -14,7 +14,7 @@ BIZ_INCLUDE=$(BOSS_HOME)/biz/
 BOSS_THRIFT_INCLUDE=$(BOSS_HOME)/thrift/
 
 #thrift dir
-THRIFT_INCLUDE=$(BOSS_INSTALL_HOME)/thrift/include/thrift
+THRIFT_INCLUDE=$(BOSS_INSTALL_HOME)/thrift/include/
 
 
 CC_INCLDIR=-I. \

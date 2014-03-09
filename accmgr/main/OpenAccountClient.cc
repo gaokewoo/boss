@@ -1,6 +1,6 @@
-#include <protocol/TBinaryProtocol.h>
-#include <transport/TSocket.h>
-#include <transport/TTransportUtils.h>
+#include <thrift/protocol/TBinaryProtocol.h>
+#include <thrift/transport/TSocket.h>
+#include <thrift/transport/TTransportUtils.h>
 #include "gen-cpp/OpenAccountServlet.h"
 #include "libconfparser/confparser.hpp"
 #include <iostream>
