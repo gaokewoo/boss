@@ -2,8 +2,7 @@ CC_FLAGS= -g -Wall -fpic
 CC=g++
 AR_CMD=ar -rv
 
-#SUBDIRS=db pub biz thrift main
-SUBDIRS=db pub biz main
+SUBDIRS=db pub biz thrift main
 
 #define lib path
 BOSS_LIB_PATH=$(BOSS_HOME)/lib/
@@ -12,12 +11,10 @@ BOSS_LIB_PATH=$(BOSS_HOME)/lib/
 DB_INCLUDE=$(BOSS_HOME)/db/ 
 PUB_INCLUDE=$(BOSS_HOME)/pub/ 
 BIZ_INCLUDE=$(BOSS_HOME)/biz/ 
-#BOSS_THRIFT_INCLUDE=$(BOSS_HOME)/thrift/
-BOSS_THRIFT_INCLUDE=.
+BOSS_THRIFT_INCLUDE=$(BOSS_HOME)/thrift/
 
 #thrift dir
-#THRIFT_INCLUDE=/usr/local/include/thrift
-THRIFT_INCLUDE=.
+THRIFT_INCLUDE=$(BOSS_INSTALL_HOME)/thrift/include/thrift
 
 
 CC_INCLDIR=-I. \
@@ -32,9 +29,7 @@ CC_INCLDIR=-I. \
 
 #ORA_LIBS=$(ORACLE_HOME)/lib -locci -lsqlplus
 ORA_LIBS=$(ORACLE_HOME)/lib -locci -lclntsh
-#THRIFT_LIBS=/usr/local/lib -lthrift
-THRIFT_LIBS=.
-#BOSS_LIBS=$(BOSS_LIB_PATH)/ -lbiz -ldb -lpub -lbossthrift
-BOSS_LIBS=$(BOSS_LIB_PATH)/ -lbossbiz -lbossdb -lbosspub 
+THRIFT_LIBS=$(BOSS_INSTALL_HOME)/thrift/lib -lthrift
+BOSS_LIBS=$(BOSS_LIB_PATH)/ -lbossbiz -lbossdb -lbosspub -lbossthrift
 
 LIBS= -L$(BOSS_LIBS) -L$(ORA_LIBS) -L$(THRIFT_LIBS) -lpthread
