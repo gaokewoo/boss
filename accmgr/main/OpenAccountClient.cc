@@ -43,15 +43,15 @@ int main(int argc, char** argv) {
 
             client.Sender(datas);//RPC函数，调用serve端的该函数   
 
-            sleep(frequence);
+            usleep(frequence*1000);
         }
 
         transport->close();   
 
-    } catch (TException &tx) {   
+    } catch (TException &tx) {
 
-        printf("ERROR: %s\n", tx.what());   
+        printf("ERROR: %s\n", tx.what());
 
-    }   
+    }
 
 }  

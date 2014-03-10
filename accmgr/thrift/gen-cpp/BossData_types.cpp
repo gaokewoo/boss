@@ -199,4 +199,79 @@ void swap(BossMonitor &a, BossMonitor &b) {
   swap(a.__isset, b.__isset);
 }
 
+const char* Payment::ascii_fingerprint = "C712EF0DA8599E55DF4D0F13415232EF";
+const uint8_t Payment::binary_fingerprint[16] = {0xC7,0x12,0xEF,0x0D,0xA8,0x59,0x9E,0x55,0xDF,0x4D,0x0F,0x13,0x41,0x52,0x32,0xEF};
+
+uint32_t Payment::read(::apache::thrift::protocol::TProtocol* iprot) {
+
+  uint32_t xfer = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TType ftype;
+  int16_t fid;
+
+  xfer += iprot->readStructBegin(fname);
+
+  using ::apache::thrift::protocol::TProtocolException;
+
+
+  while (true)
+  {
+    xfer += iprot->readFieldBegin(fname, ftype, fid);
+    if (ftype == ::apache::thrift::protocol::T_STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->nbr);
+          this->__isset.nbr = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 2:
+        if (ftype == ::apache::thrift::protocol::T_DOUBLE) {
+          xfer += iprot->readDouble(this->fee);
+          this->__isset.fee = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
+    xfer += iprot->readFieldEnd();
+  }
+
+  xfer += iprot->readStructEnd();
+
+  return xfer;
+}
+
+uint32_t Payment::write(::apache::thrift::protocol::TProtocol* oprot) const {
+  uint32_t xfer = 0;
+  xfer += oprot->writeStructBegin("Payment");
+
+  xfer += oprot->writeFieldBegin("nbr", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString(this->nbr);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("fee", ::apache::thrift::protocol::T_DOUBLE, 2);
+  xfer += oprot->writeDouble(this->fee);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldStop();
+  xfer += oprot->writeStructEnd();
+  return xfer;
+}
+
+void swap(Payment &a, Payment &b) {
+  using ::std::swap;
+  swap(a.nbr, b.nbr);
+  swap(a.fee, b.fee);
+  swap(a.__isset, b.__isset);
+}
+
 } // namespace

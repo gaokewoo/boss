@@ -51,11 +51,10 @@ make install
 
 #install simplejson, Note:make sure python has been installed
 cd simplejson-3.3.3
-python setup.py install
+sudo python setup.py install
 
 #install rabbitmq, Note:make sure xmlto has been installed
 cd rabbitmq-server-3.2.4
-make TARGET_DIR=/opt-boss/rabbitmq SBIN_DIR=/opt-boss/rabbitmq/sbin
-MAN_DIR=/opt-boss/rabbitmq/man DOC_INSTALL_DIR=/opt-boss/rabbitmq/doc install
+make TARGET_DIR=/opt-boss/rabbitmq SBIN_DIR=/opt-boss/rabbitmq/sbin MAN_DIR=/opt-boss/rabbitmq/man DOC_INSTALL_DIR=/opt-boss/rabbitmq/doc install
 
 #####install rabbitmq end#######

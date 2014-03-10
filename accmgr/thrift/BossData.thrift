@@ -15,3 +15,9 @@ struct BossMonitor
     4: i32 port,
     5: string status,
 }
+
+struct Payment
+{
+    1: string nbr,
+    2: double fee,
+}
