@@ -12,7 +12,12 @@ if [ "$p_num" != "0" ];then
 fi
 
 cd $BOSS_HOME/bin
+echo "Start BossMonitorServer begin"
 ./BossMonitorServer
+echo "Start BossMonitorServer end"
+sleep 1
+echo "Start OpenAccountServer begin"
 ./OpenAccountServer
+echo "Start OpenAccountServer end"
 
 
