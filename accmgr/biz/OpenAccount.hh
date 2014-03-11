@@ -31,12 +31,24 @@
 #include "log4z/log4z.h"
 
 using namespace zsummer::log4z;
+
+class AccountData{
+    public:
+        AccountData():nbr(""),name(""),gender(""),idNo(""),address(""){}
+
+        string nbr;
+        string name;
+        string gender;
+        string idNo;
+        string address;
+};
+
 class OpenAccount
 {
 public:
     OpenAccount(LoggerId logId);
     ~OpenAccount();
-    void doBiz();
+    void doBiz(AccountData & data);
     void loadConfigData();
 
 private:

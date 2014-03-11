@@ -35,13 +35,13 @@ int main(int argc, char** argv) {
         int i=0;
         transport->open();   
 
-        vector<BossData::OpenAccount> datas;   
+        BossData::OpenAccount data;   
 
         while(1)
         {
             cout<<"----------["<<++i<<"]----------"<<endl;
 
-            client.Sender(datas);//RPC函数，调用serve端的该函数   
+            client.send(data);//RPC函数，调用serve端的该函数   
 
             usleep(frequence*1000);
         }
@@ -49,9 +49,8 @@ int main(int argc, char** argv) {
         transport->close();   
 
     } catch (TException &tx) {
-
-        printf("ERROR: %s\n", tx.what());
-
+        transport->close();   
+        cerr<<"ERROR: "<<tx.what()<<endl;   
     }
 
 }  

@@ -8,7 +8,7 @@
 
 namespace BossInterface {
 
-uint32_t OpenAccountServlet_Sender_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t OpenAccountServlet_send_args::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   uint32_t xfer = 0;
   std::string fname;
@@ -29,21 +29,9 @@ uint32_t OpenAccountServlet_Sender_args::read(::apache::thrift::protocol::TProto
     switch (fid)
     {
       case 1:
-        if (ftype == ::apache::thrift::protocol::T_LIST) {
-          {
-            this->datas.clear();
-            uint32_t _size0;
-            ::apache::thrift::protocol::TType _etype3;
-            xfer += iprot->readListBegin(_etype3, _size0);
-            this->datas.resize(_size0);
-            uint32_t _i4;
-            for (_i4 = 0; _i4 < _size0; ++_i4)
-            {
-              xfer += this->datas[_i4].read(iprot);
-            }
-            xfer += iprot->readListEnd();
-          }
-          this->__isset.datas = true;
+        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+          xfer += this->data.read(iprot);
+          this->__isset.data = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -60,20 +48,12 @@ uint32_t OpenAccountServlet_Sender_args::read(::apache::thrift::protocol::TProto
   return xfer;
 }
 
-uint32_t OpenAccountServlet_Sender_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t OpenAccountServlet_send_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
-  xfer += oprot->writeStructBegin("OpenAccountServlet_Sender_args");
+  xfer += oprot->writeStructBegin("OpenAccountServlet_send_args");
 
-  xfer += oprot->writeFieldBegin("datas", ::apache::thrift::protocol::T_LIST, 1);
-  {
-    xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->datas.size()));
-    std::vector< ::BossData::OpenAccount> ::const_iterator _iter5;
-    for (_iter5 = this->datas.begin(); _iter5 != this->datas.end(); ++_iter5)
-    {
-      xfer += (*_iter5).write(oprot);
-    }
-    xfer += oprot->writeListEnd();
-  }
+  xfer += oprot->writeFieldBegin("data", ::apache::thrift::protocol::T_STRUCT, 1);
+  xfer += this->data.write(oprot);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -81,20 +61,12 @@ uint32_t OpenAccountServlet_Sender_args::write(::apache::thrift::protocol::TProt
   return xfer;
 }
 
-uint32_t OpenAccountServlet_Sender_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t OpenAccountServlet_send_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
-  xfer += oprot->writeStructBegin("OpenAccountServlet_Sender_pargs");
+  xfer += oprot->writeStructBegin("OpenAccountServlet_send_pargs");
 
-  xfer += oprot->writeFieldBegin("datas", ::apache::thrift::protocol::T_LIST, 1);
-  {
-    xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>((*(this->datas)).size()));
-    std::vector< ::BossData::OpenAccount> ::const_iterator _iter6;
-    for (_iter6 = (*(this->datas)).begin(); _iter6 != (*(this->datas)).end(); ++_iter6)
-    {
-      xfer += (*_iter6).write(oprot);
-    }
-    xfer += oprot->writeListEnd();
-  }
+  xfer += oprot->writeFieldBegin("data", ::apache::thrift::protocol::T_STRUCT, 1);
+  xfer += (*(this->data)).write(oprot);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -102,7 +74,7 @@ uint32_t OpenAccountServlet_Sender_pargs::write(::apache::thrift::protocol::TPro
   return xfer;
 }
 
-uint32_t OpenAccountServlet_Sender_result::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t OpenAccountServlet_send_result::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   uint32_t xfer = 0;
   std::string fname;
@@ -142,11 +114,11 @@ uint32_t OpenAccountServlet_Sender_result::read(::apache::thrift::protocol::TPro
   return xfer;
 }
 
-uint32_t OpenAccountServlet_Sender_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t OpenAccountServlet_send_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
 
   uint32_t xfer = 0;
 
-  xfer += oprot->writeStructBegin("OpenAccountServlet_Sender_result");
+  xfer += oprot->writeStructBegin("OpenAccountServlet_send_result");
 
   if (this->__isset.success) {
     xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_BOOL, 0);
@@ -158,7 +130,7 @@ uint32_t OpenAccountServlet_Sender_result::write(::apache::thrift::protocol::TPr
   return xfer;
 }
 
-uint32_t OpenAccountServlet_Sender_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t OpenAccountServlet_send_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   uint32_t xfer = 0;
   std::string fname;
@@ -198,113 +170,19 @@ uint32_t OpenAccountServlet_Sender_presult::read(::apache::thrift::protocol::TPr
   return xfer;
 }
 
-uint32_t OpenAccountServlet_Sender2_args::read(::apache::thrift::protocol::TProtocol* iprot) {
-
-  uint32_t xfer = 0;
-  std::string fname;
-  ::apache::thrift::protocol::TType ftype;
-  int16_t fid;
-
-  xfer += iprot->readStructBegin(fname);
-
-  using ::apache::thrift::protocol::TProtocolException;
-
-
-  while (true)
-  {
-    xfer += iprot->readFieldBegin(fname, ftype, fid);
-    if (ftype == ::apache::thrift::protocol::T_STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 1:
-        if (ftype == ::apache::thrift::protocol::T_LIST) {
-          {
-            this->datas.clear();
-            uint32_t _size7;
-            ::apache::thrift::protocol::TType _etype10;
-            xfer += iprot->readListBegin(_etype10, _size7);
-            this->datas.resize(_size7);
-            uint32_t _i11;
-            for (_i11 = 0; _i11 < _size7; ++_i11)
-            {
-              xfer += this->datas[_i11].read(iprot);
-            }
-            xfer += iprot->readListEnd();
-          }
-          this->__isset.datas = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      default:
-        xfer += iprot->skip(ftype);
-        break;
-    }
-    xfer += iprot->readFieldEnd();
-  }
-
-  xfer += iprot->readStructEnd();
-
-  return xfer;
-}
-
-uint32_t OpenAccountServlet_Sender2_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
-  uint32_t xfer = 0;
-  xfer += oprot->writeStructBegin("OpenAccountServlet_Sender2_args");
-
-  xfer += oprot->writeFieldBegin("datas", ::apache::thrift::protocol::T_LIST, 1);
-  {
-    xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->datas.size()));
-    std::vector< ::BossData::OpenAccount> ::const_iterator _iter12;
-    for (_iter12 = this->datas.begin(); _iter12 != this->datas.end(); ++_iter12)
-    {
-      xfer += (*_iter12).write(oprot);
-    }
-    xfer += oprot->writeListEnd();
-  }
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldStop();
-  xfer += oprot->writeStructEnd();
-  return xfer;
-}
-
-uint32_t OpenAccountServlet_Sender2_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
-  uint32_t xfer = 0;
-  xfer += oprot->writeStructBegin("OpenAccountServlet_Sender2_pargs");
-
-  xfer += oprot->writeFieldBegin("datas", ::apache::thrift::protocol::T_LIST, 1);
-  {
-    xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>((*(this->datas)).size()));
-    std::vector< ::BossData::OpenAccount> ::const_iterator _iter13;
-    for (_iter13 = (*(this->datas)).begin(); _iter13 != (*(this->datas)).end(); ++_iter13)
-    {
-      xfer += (*_iter13).write(oprot);
-    }
-    xfer += oprot->writeListEnd();
-  }
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldStop();
-  xfer += oprot->writeStructEnd();
-  return xfer;
-}
-
-bool OpenAccountServletClient::Sender(const std::vector< ::BossData::OpenAccount> & datas)
+bool OpenAccountServletClient::send(const  ::BossData::OpenAccount& data)
 {
-  send_Sender(datas);
-  return recv_Sender();
+  send_send(data);
+  return recv_send();
 }
 
-void OpenAccountServletClient::send_Sender(const std::vector< ::BossData::OpenAccount> & datas)
+void OpenAccountServletClient::send_send(const  ::BossData::OpenAccount& data)
 {
   int32_t cseqid = 0;
-  oprot_->writeMessageBegin("Sender", ::apache::thrift::protocol::T_CALL, cseqid);
+  oprot_->writeMessageBegin("send", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  OpenAccountServlet_Sender_pargs args;
-  args.datas = &datas;
+  OpenAccountServlet_send_pargs args;
+  args.data = &data;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -312,7 +190,7 @@ void OpenAccountServletClient::send_Sender(const std::vector< ::BossData::OpenAc
   oprot_->getTransport()->flush();
 }
 
-bool OpenAccountServletClient::recv_Sender()
+bool OpenAccountServletClient::recv_send()
 {
 
   int32_t rseqid = 0;
@@ -332,13 +210,13 @@ bool OpenAccountServletClient::recv_Sender()
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  if (fname.compare("Sender") != 0) {
+  if (fname.compare("send") != 0) {
     iprot_->skip(::apache::thrift::protocol::T_STRUCT);
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
   bool _return;
-  OpenAccountServlet_Sender_presult result;
+  OpenAccountServlet_send_presult result;
   result.success = &_return;
   result.read(iprot_);
   iprot_->readMessageEnd();
@@ -347,26 +225,7 @@ bool OpenAccountServletClient::recv_Sender()
   if (result.__isset.success) {
     return _return;
   }
-  throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "Sender failed: unknown result");
-}
-
-void OpenAccountServletClient::Sender2(const std::vector< ::BossData::OpenAccount> & datas)
-{
-  send_Sender2(datas);
-}
-
-void OpenAccountServletClient::send_Sender2(const std::vector< ::BossData::OpenAccount> & datas)
-{
-  int32_t cseqid = 0;
-  oprot_->writeMessageBegin("Sender2", ::apache::thrift::protocol::T_CALL, cseqid);
-
-  OpenAccountServlet_Sender2_pargs args;
-  args.datas = &datas;
-  args.write(oprot_);
-
-  oprot_->writeMessageEnd();
-  oprot_->getTransport()->writeEnd();
-  oprot_->getTransport()->flush();
+  throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "send failed: unknown result");
 }
 
 bool OpenAccountServletProcessor::dispatchCall(::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, const std::string& fname, int32_t seqid, void* callContext) {
@@ -388,38 +247,38 @@ bool OpenAccountServletProcessor::dispatchCall(::apache::thrift::protocol::TProt
   return true;
 }
 
-void OpenAccountServletProcessor::process_Sender(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
+void OpenAccountServletProcessor::process_send(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
 {
   void* ctx = NULL;
   if (this->eventHandler_.get() != NULL) {
-    ctx = this->eventHandler_->getContext("OpenAccountServlet.Sender", callContext);
+    ctx = this->eventHandler_->getContext("OpenAccountServlet.send", callContext);
   }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "OpenAccountServlet.Sender");
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "OpenAccountServlet.send");
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preRead(ctx, "OpenAccountServlet.Sender");
+    this->eventHandler_->preRead(ctx, "OpenAccountServlet.send");
   }
 
-  OpenAccountServlet_Sender_args args;
+  OpenAccountServlet_send_args args;
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postRead(ctx, "OpenAccountServlet.Sender", bytes);
+    this->eventHandler_->postRead(ctx, "OpenAccountServlet.send", bytes);
   }
 
-  OpenAccountServlet_Sender_result result;
+  OpenAccountServlet_send_result result;
   try {
-    result.success = iface_->Sender(args.datas);
+    result.success = iface_->send(args.data);
     result.__isset.success = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
-      this->eventHandler_->handlerError(ctx, "OpenAccountServlet.Sender");
+      this->eventHandler_->handlerError(ctx, "OpenAccountServlet.send");
     }
 
     ::apache::thrift::TApplicationException x(e.what());
-    oprot->writeMessageBegin("Sender", ::apache::thrift::protocol::T_EXCEPTION, seqid);
+    oprot->writeMessageBegin("send", ::apache::thrift::protocol::T_EXCEPTION, seqid);
     x.write(oprot);
     oprot->writeMessageEnd();
     oprot->getTransport()->writeEnd();
@@ -428,55 +287,18 @@ void OpenAccountServletProcessor::process_Sender(int32_t seqid, ::apache::thrift
   }
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preWrite(ctx, "OpenAccountServlet.Sender");
+    this->eventHandler_->preWrite(ctx, "OpenAccountServlet.send");
   }
 
-  oprot->writeMessageBegin("Sender", ::apache::thrift::protocol::T_REPLY, seqid);
+  oprot->writeMessageBegin("send", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postWrite(ctx, "OpenAccountServlet.Sender", bytes);
+    this->eventHandler_->postWrite(ctx, "OpenAccountServlet.send", bytes);
   }
-}
-
-void OpenAccountServletProcessor::process_Sender2(int32_t, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol*, void* callContext)
-{
-  void* ctx = NULL;
-  if (this->eventHandler_.get() != NULL) {
-    ctx = this->eventHandler_->getContext("OpenAccountServlet.Sender2", callContext);
-  }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "OpenAccountServlet.Sender2");
-
-  if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preRead(ctx, "OpenAccountServlet.Sender2");
-  }
-
-  OpenAccountServlet_Sender2_args args;
-  args.read(iprot);
-  iprot->readMessageEnd();
-  uint32_t bytes = iprot->getTransport()->readEnd();
-
-  if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postRead(ctx, "OpenAccountServlet.Sender2", bytes);
-  }
-
-  try {
-    iface_->Sender2(args.datas);
-  } catch (const std::exception& e) {
-    if (this->eventHandler_.get() != NULL) {
-      this->eventHandler_->handlerError(ctx, "OpenAccountServlet.Sender2");
-    }
-    return;
-  }
-
-  if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->asyncComplete(ctx, "OpenAccountServlet.Sender2");
-  }
-
-  return;
 }
 
 ::boost::shared_ptr< ::apache::thrift::TProcessor > OpenAccountServletProcessorFactory::getProcessor(const ::apache::thrift::TConnectionInfo& connInfo) {

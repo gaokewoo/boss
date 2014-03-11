@@ -33,10 +33,11 @@ int main(int argc, char** argv) {
         int i=0;
 
 
+        AccountData data;
         while(1)
         {
             cout<<"----------["<<++i<<"]----------"<<endl;
-            m_open_account->doBiz();
+            m_open_account->doBiz(data);
 
             usleep(frequence*1000);
         }

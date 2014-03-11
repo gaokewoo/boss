@@ -15,8 +15,7 @@ namespace BossInterface {
 class OpenAccountServletIf {
  public:
   virtual ~OpenAccountServletIf() {}
-  virtual bool Sender(const std::vector< ::BossData::OpenAccount> & datas) = 0;
-  virtual void Sender2(const std::vector< ::BossData::OpenAccount> & datas) = 0;
+  virtual bool send(const  ::BossData::OpenAccount& data) = 0;
 };
 
 class OpenAccountServletIfFactory {
@@ -46,47 +45,44 @@ class OpenAccountServletIfSingletonFactory : virtual public OpenAccountServletIf
 class OpenAccountServletNull : virtual public OpenAccountServletIf {
  public:
   virtual ~OpenAccountServletNull() {}
-  bool Sender(const std::vector< ::BossData::OpenAccount> & /* datas */) {
+  bool send(const  ::BossData::OpenAccount& /* data */) {
     bool _return = false;
     return _return;
   }
-  void Sender2(const std::vector< ::BossData::OpenAccount> & /* datas */) {
-    return;
-  }
 };
 
-typedef struct _OpenAccountServlet_Sender_args__isset {
-  _OpenAccountServlet_Sender_args__isset() : datas(false) {}
-  bool datas;
-} _OpenAccountServlet_Sender_args__isset;
+typedef struct _OpenAccountServlet_send_args__isset {
+  _OpenAccountServlet_send_args__isset() : data(false) {}
+  bool data;
+} _OpenAccountServlet_send_args__isset;
 
-class OpenAccountServlet_Sender_args {
+class OpenAccountServlet_send_args {
  public:
 
-  OpenAccountServlet_Sender_args() {
+  OpenAccountServlet_send_args() {
   }
 
-  virtual ~OpenAccountServlet_Sender_args() throw() {}
+  virtual ~OpenAccountServlet_send_args() throw() {}
 
-  std::vector< ::BossData::OpenAccount>  datas;
+   ::BossData::OpenAccount data;
 
-  _OpenAccountServlet_Sender_args__isset __isset;
+  _OpenAccountServlet_send_args__isset __isset;
 
-  void __set_datas(const std::vector< ::BossData::OpenAccount> & val) {
-    datas = val;
+  void __set_data(const  ::BossData::OpenAccount& val) {
+    data = val;
   }
 
-  bool operator == (const OpenAccountServlet_Sender_args & rhs) const
+  bool operator == (const OpenAccountServlet_send_args & rhs) const
   {
-    if (!(datas == rhs.datas))
+    if (!(data == rhs.data))
       return false;
     return true;
   }
-  bool operator != (const OpenAccountServlet_Sender_args &rhs) const {
+  bool operator != (const OpenAccountServlet_send_args &rhs) const {
     return !(*this == rhs);
   }
 
-  bool operator < (const OpenAccountServlet_Sender_args & ) const;
+  bool operator < (const OpenAccountServlet_send_args & ) const;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
@@ -94,123 +90,72 @@ class OpenAccountServlet_Sender_args {
 };
 
 
-class OpenAccountServlet_Sender_pargs {
+class OpenAccountServlet_send_pargs {
  public:
 
 
-  virtual ~OpenAccountServlet_Sender_pargs() throw() {}
+  virtual ~OpenAccountServlet_send_pargs() throw() {}
 
-  const std::vector< ::BossData::OpenAccount> * datas;
+  const  ::BossData::OpenAccount* data;
 
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
 };
 
-typedef struct _OpenAccountServlet_Sender_result__isset {
-  _OpenAccountServlet_Sender_result__isset() : success(false) {}
+typedef struct _OpenAccountServlet_send_result__isset {
+  _OpenAccountServlet_send_result__isset() : success(false) {}
   bool success;
-} _OpenAccountServlet_Sender_result__isset;
+} _OpenAccountServlet_send_result__isset;
 
-class OpenAccountServlet_Sender_result {
+class OpenAccountServlet_send_result {
  public:
 
-  OpenAccountServlet_Sender_result() : success(0) {
+  OpenAccountServlet_send_result() : success(0) {
   }
 
-  virtual ~OpenAccountServlet_Sender_result() throw() {}
+  virtual ~OpenAccountServlet_send_result() throw() {}
 
   bool success;
 
-  _OpenAccountServlet_Sender_result__isset __isset;
+  _OpenAccountServlet_send_result__isset __isset;
 
   void __set_success(const bool val) {
     success = val;
   }
 
-  bool operator == (const OpenAccountServlet_Sender_result & rhs) const
+  bool operator == (const OpenAccountServlet_send_result & rhs) const
   {
     if (!(success == rhs.success))
       return false;
     return true;
   }
-  bool operator != (const OpenAccountServlet_Sender_result &rhs) const {
+  bool operator != (const OpenAccountServlet_send_result &rhs) const {
     return !(*this == rhs);
   }
 
-  bool operator < (const OpenAccountServlet_Sender_result & ) const;
+  bool operator < (const OpenAccountServlet_send_result & ) const;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
 };
 
-typedef struct _OpenAccountServlet_Sender_presult__isset {
-  _OpenAccountServlet_Sender_presult__isset() : success(false) {}
+typedef struct _OpenAccountServlet_send_presult__isset {
+  _OpenAccountServlet_send_presult__isset() : success(false) {}
   bool success;
-} _OpenAccountServlet_Sender_presult__isset;
+} _OpenAccountServlet_send_presult__isset;
 
-class OpenAccountServlet_Sender_presult {
+class OpenAccountServlet_send_presult {
  public:
 
 
-  virtual ~OpenAccountServlet_Sender_presult() throw() {}
+  virtual ~OpenAccountServlet_send_presult() throw() {}
 
   bool* success;
 
-  _OpenAccountServlet_Sender_presult__isset __isset;
+  _OpenAccountServlet_send_presult__isset __isset;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
-
-};
-
-typedef struct _OpenAccountServlet_Sender2_args__isset {
-  _OpenAccountServlet_Sender2_args__isset() : datas(false) {}
-  bool datas;
-} _OpenAccountServlet_Sender2_args__isset;
-
-class OpenAccountServlet_Sender2_args {
- public:
-
-  OpenAccountServlet_Sender2_args() {
-  }
-
-  virtual ~OpenAccountServlet_Sender2_args() throw() {}
-
-  std::vector< ::BossData::OpenAccount>  datas;
-
-  _OpenAccountServlet_Sender2_args__isset __isset;
-
-  void __set_datas(const std::vector< ::BossData::OpenAccount> & val) {
-    datas = val;
-  }
-
-  bool operator == (const OpenAccountServlet_Sender2_args & rhs) const
-  {
-    if (!(datas == rhs.datas))
-      return false;
-    return true;
-  }
-  bool operator != (const OpenAccountServlet_Sender2_args &rhs) const {
-    return !(*this == rhs);
-  }
-
-  bool operator < (const OpenAccountServlet_Sender2_args & ) const;
-
-  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
-  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
-
-};
-
-
-class OpenAccountServlet_Sender2_pargs {
- public:
-
-
-  virtual ~OpenAccountServlet_Sender2_pargs() throw() {}
-
-  const std::vector< ::BossData::OpenAccount> * datas;
-
-  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
 };
 
@@ -234,11 +179,9 @@ class OpenAccountServletClient : virtual public OpenAccountServletIf {
   boost::shared_ptr< ::apache::thrift::protocol::TProtocol> getOutputProtocol() {
     return poprot_;
   }
-  bool Sender(const std::vector< ::BossData::OpenAccount> & datas);
-  void send_Sender(const std::vector< ::BossData::OpenAccount> & datas);
-  bool recv_Sender();
-  void Sender2(const std::vector< ::BossData::OpenAccount> & datas);
-  void send_Sender2(const std::vector< ::BossData::OpenAccount> & datas);
+  bool send(const  ::BossData::OpenAccount& data);
+  void send_send(const  ::BossData::OpenAccount& data);
+  bool recv_send();
  protected:
   boost::shared_ptr< ::apache::thrift::protocol::TProtocol> piprot_;
   boost::shared_ptr< ::apache::thrift::protocol::TProtocol> poprot_;
@@ -254,13 +197,11 @@ class OpenAccountServletProcessor : public ::apache::thrift::TDispatchProcessor 
   typedef  void (OpenAccountServletProcessor::*ProcessFunction)(int32_t, ::apache::thrift::protocol::TProtocol*, ::apache::thrift::protocol::TProtocol*, void*);
   typedef std::map<std::string, ProcessFunction> ProcessMap;
   ProcessMap processMap_;
-  void process_Sender(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
-  void process_Sender2(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
+  void process_send(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
  public:
   OpenAccountServletProcessor(boost::shared_ptr<OpenAccountServletIf> iface) :
     iface_(iface) {
-    processMap_["Sender"] = &OpenAccountServletProcessor::process_Sender;
-    processMap_["Sender2"] = &OpenAccountServletProcessor::process_Sender2;
+    processMap_["send"] = &OpenAccountServletProcessor::process_send;
   }
 
   virtual ~OpenAccountServletProcessor() {}
@@ -289,22 +230,13 @@ class OpenAccountServletMultiface : virtual public OpenAccountServletIf {
     ifaces_.push_back(iface);
   }
  public:
-  bool Sender(const std::vector< ::BossData::OpenAccount> & datas) {
+  bool send(const  ::BossData::OpenAccount& data) {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
-      ifaces_[i]->Sender(datas);
+      ifaces_[i]->send(data);
     }
-    return ifaces_[i]->Sender(datas);
-  }
-
-  void Sender2(const std::vector< ::BossData::OpenAccount> & datas) {
-    size_t sz = ifaces_.size();
-    size_t i = 0;
-    for (; i < (sz - 1); ++i) {
-      ifaces_[i]->Sender2(datas);
-    }
-    ifaces_[i]->Sender2(datas);
+    return ifaces_[i]->send(data);
   }
 
 };

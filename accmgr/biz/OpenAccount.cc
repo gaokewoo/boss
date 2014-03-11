@@ -87,7 +87,7 @@ void OpenAccount::loadConfigData()
     LOG_DEBUG(m_logId, "OpenAccount::loadConfigData end");
 }
 
-void OpenAccount::doBiz()
+void OpenAccount::doBiz(AccountData & data)
 {
 
     try
@@ -117,10 +117,10 @@ void OpenAccount::doBiz()
 
         RandomInfo rand_info=generator.getRandomInfo();
 
-        LOG_INFO(m_logId, "Id:"<<rand_info.id);
-        LOG_INFO(m_logId, "Name:"<<rand_info.name);
-        LOG_INFO(m_logId, "Gender:"<<rand_info.gender);
-        LOG_INFO(m_logId, "Addr:"<<rand_info.addr);
+        LOG_INFO(m_logId, "Id:"<<(data.idNo != "" ? data.idNo : rand_info.id));
+        LOG_INFO(m_logId, "Name:"<<(data.name != "" ? data.name : rand_info.name));
+        LOG_INFO(m_logId, "Gender:"<<(data.gender != "" ? data.gender : rand_info.gender));
+        LOG_INFO(m_logId, "Addr:"<<(data.address != "" ? data.address : rand_info.addr));
         LOG_INFO(m_logId, "Region_nbr:"<<rand_info.region_nbr);
         LOG_INFO(m_logId, "Fax_nbr:"<<rand_info.fax_nbr);
         LOG_INFO(m_logId, "Tel_nbr:"<<rand_info.tel_nbr);
@@ -134,7 +134,7 @@ void OpenAccount::doBiz()
 
         m_cust.cust.m_cust_id=cust_id;
         m_cust.cust.m_party_role_id=0;
-        m_cust.cust.m_cust_name=rand_info.name;
+        m_cust.cust.m_cust_name=data.name != "" ? data.name : rand_info.name;
         m_cust.cust.m_cust_type="01";
         m_cust.cust.m_cust_location=region_id;
         m_cust.cust.m_is_vip="N";
@@ -144,10 +144,10 @@ void OpenAccount::doBiz()
 
         m_cust_contact_info.cust_contact_info.m_cust_id=cust_id;
         m_cust_contact_info.cust_contact_info.m_agreement_id=agreement_id;
-        m_cust_contact_info.cust_contact_info.m_contact_name=rand_info.name;
-        m_cust_contact_info.cust_contact_info.m_contact_gender=rand_info.gender;
-        m_cust_contact_info.cust_contact_info.m_contact_addr=rand_info.addr;
-        m_cust_contact_info.cust_contact_info.m_contact_company=rand_info.addr;
+        m_cust_contact_info.cust_contact_info.m_contact_name=data.name != "" ? data.name : rand_info.name;
+        m_cust_contact_info.cust_contact_info.m_contact_gender=data.gender != "" ? data.gender : rand_info.gender;
+        m_cust_contact_info.cust_contact_info.m_contact_addr=data.address != "" ? data.address : rand_info.addr;
+        m_cust_contact_info.cust_contact_info.m_contact_company=data.address != "" ? data.address : rand_info.addr;
         m_cust_contact_info.cust_contact_info.m_duty_desc="无";
         m_cust_contact_info.cust_contact_info.m_telephone=rand_info.tel_nbr;
         m_cust_contact_info.cust_contact_info.m_mobile=generator.getNbr();
@@ -160,7 +160,7 @@ void OpenAccount::doBiz()
         m_cust_ident.cust_identification.m_cust_id=cust_id;
         m_cust_ident.cust_identification.m_agreement_id=agreement_id;
         m_cust_ident.cust_identification.m_certificate_type=certificate_type ;
-        m_cust_ident.cust_identification.m_certificate_no=rand_info.id;
+        m_cust_ident.cust_identification.m_certificate_no=data.idNo != "" ? data.idNo : rand_info.id;
         m_cust_ident.cust_identification.m_attest_type="A0";
         m_cust_ident.cust_identification.m_attest_passwd="123456";
         m_cust_ident.cust_identification.m_secrecy_level="0";
@@ -178,7 +178,7 @@ void OpenAccount::doBiz()
         LOG_INFO(m_logId, "Acct_id :"<<acct_id );
         m_acct.acct.m_acct_id=acct_id;
         m_acct.acct.m_cust_id=cust_id;
-        m_acct.acct.m_acct_name=rand_info.name;
+        m_acct.acct.m_acct_name=data.name != "" ? data.name : rand_info.name;
         m_acct.acct.m_address_id=address_id;
         m_acct.acct.m_state="0";
         m_acct.acct.m_acct_pwd="&8re@31";
@@ -201,7 +201,7 @@ void OpenAccount::doBiz()
         m_serv.serv.m_band_id=0;
         m_serv.insertData();
 
-        string acc_nbr = generator.getNbr();
+        string acc_nbr = (data.nbr != "" ? data.nbr : generator.getNbr());
         LOG_INFO(m_logId, "Acc_nbr:"<<acc_nbr);
         m_serv_ident.serv_identification.m_serv_id = serv_id;
         m_serv_ident.serv_identification.m_agreement_id = agreement_id;

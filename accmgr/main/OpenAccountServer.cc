@@ -33,18 +33,20 @@ class OpenAccountServletHandler : virtual public OpenAccountServletIf {
             delete m_open_account;
             m_open_account=NULL;
         }
-        bool Sender(const std::vector< ::BossData::OpenAccount> & datas) {
+
+        bool send(const  ::BossData::OpenAccount& data) {
             // Your implementation goes here
             LOG_INFO(m_logId, "Receive a message...");
-            m_open_account->doBiz();
+            AccountData account_data;
+            account_data.nbr = data.nbr;
+            account_data.name = data.name;
+            account_data.gender = data.gender;
+            account_data.idNo = data.idNo;
+            account_data.address = data.address;
+            m_open_account->doBiz(account_data);
             LOG_INFO(m_logId, "Server handle successfully.");
 
             return true;
-        }
-
-        void Sender2(const std::vector< ::BossData::OpenAccount> & datas) {
-            // Your implementation goes here
-            printf("Sender2\n");
         }
 
     private:

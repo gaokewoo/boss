@@ -10,8 +10,8 @@
 
 namespace BossData {
 
-const char* OpenAccount::ascii_fingerprint = "3F5FC93B338687BC7235B1AB103F47B3";
-const uint8_t OpenAccount::binary_fingerprint[16] = {0x3F,0x5F,0xC9,0x3B,0x33,0x86,0x87,0xBC,0x72,0x35,0xB1,0xAB,0x10,0x3F,0x47,0xB3};
+const char* OpenAccount::ascii_fingerprint = "BFF0E21728CB005F9AA5774A41542B8D";
+const uint8_t OpenAccount::binary_fingerprint[16] = {0xBF,0xF0,0xE2,0x17,0x28,0xCB,0x00,0x5F,0x9A,0xA5,0x77,0x4A,0x41,0x54,0x2B,0x8D};
 
 uint32_t OpenAccount::read(::apache::thrift::protocol::TProtocol* iprot) {
 
@@ -34,9 +34,9 @@ uint32_t OpenAccount::read(::apache::thrift::protocol::TProtocol* iprot) {
     switch (fid)
     {
       case 1:
-        if (ftype == ::apache::thrift::protocol::T_I32) {
-          xfer += iprot->readI32(this->id);
-          this->__isset.id = true;
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->nbr);
+          this->__isset.nbr = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -45,6 +45,30 @@ uint32_t OpenAccount::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_STRING) {
           xfer += iprot->readString(this->name);
           this->__isset.name = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 3:
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->gender);
+          this->__isset.gender = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 4:
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->idNo);
+          this->__isset.idNo = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 5:
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->address);
+          this->__isset.address = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -65,12 +89,24 @@ uint32_t OpenAccount::write(::apache::thrift::protocol::TProtocol* oprot) const 
   uint32_t xfer = 0;
   xfer += oprot->writeStructBegin("OpenAccount");
 
-  xfer += oprot->writeFieldBegin("id", ::apache::thrift::protocol::T_I32, 1);
-  xfer += oprot->writeI32(this->id);
+  xfer += oprot->writeFieldBegin("nbr", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString(this->nbr);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldBegin("name", ::apache::thrift::protocol::T_STRING, 2);
   xfer += oprot->writeString(this->name);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("gender", ::apache::thrift::protocol::T_STRING, 3);
+  xfer += oprot->writeString(this->gender);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("idNo", ::apache::thrift::protocol::T_STRING, 4);
+  xfer += oprot->writeString(this->idNo);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("address", ::apache::thrift::protocol::T_STRING, 5);
+  xfer += oprot->writeString(this->address);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -80,8 +116,11 @@ uint32_t OpenAccount::write(::apache::thrift::protocol::TProtocol* oprot) const 
 
 void swap(OpenAccount &a, OpenAccount &b) {
   using ::std::swap;
-  swap(a.id, b.id);
+  swap(a.nbr, b.nbr);
   swap(a.name, b.name);
+  swap(a.gender, b.gender);
+  swap(a.idNo, b.idNo);
+  swap(a.address, b.address);
   swap(a.__isset, b.__isset);
 }
 

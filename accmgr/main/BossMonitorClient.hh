@@ -50,9 +50,9 @@ public:
 
     void getAll()
     {
-        try {   
+        try {
 
-            transport->open();   
+            transport->open();
 
             vector<BossData::BossMonitor> datas;
             client->getAll(datas);
@@ -72,9 +72,10 @@ public:
 
             transport->close();   
 
-        } catch (TException &tx) {   
-            printf("ERROR: %s\n", tx.what());   
-        }   
+        } catch (TException &tx) {
+            transport->close();   
+            cerr<<"ERROR: "<<tx.what()<<endl;   
+        }
 
     }
 

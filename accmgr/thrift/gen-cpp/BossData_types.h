@@ -18,40 +18,64 @@
 namespace BossData {
 
 typedef struct _OpenAccount__isset {
-  _OpenAccount__isset() : id(false), name(false) {}
-  bool id;
+  _OpenAccount__isset() : nbr(true), name(true), gender(true), idNo(true), address(true) {}
+  bool nbr;
   bool name;
+  bool gender;
+  bool idNo;
+  bool address;
 } _OpenAccount__isset;
 
 class OpenAccount {
  public:
 
-  static const char* ascii_fingerprint; // = "3F5FC93B338687BC7235B1AB103F47B3";
-  static const uint8_t binary_fingerprint[16]; // = {0x3F,0x5F,0xC9,0x3B,0x33,0x86,0x87,0xBC,0x72,0x35,0xB1,0xAB,0x10,0x3F,0x47,0xB3};
+  static const char* ascii_fingerprint; // = "BFF0E21728CB005F9AA5774A41542B8D";
+  static const uint8_t binary_fingerprint[16]; // = {0xBF,0xF0,0xE2,0x17,0x28,0xCB,0x00,0x5F,0x9A,0xA5,0x77,0x4A,0x41,0x54,0x2B,0x8D};
 
-  OpenAccount() : id(0), name() {
+  OpenAccount() : nbr(""), name(""), gender(""), idNo(""), address("") {
   }
 
   virtual ~OpenAccount() throw() {}
 
-  int32_t id;
+  std::string nbr;
   std::string name;
+  std::string gender;
+  std::string idNo;
+  std::string address;
 
   _OpenAccount__isset __isset;
 
-  void __set_id(const int32_t val) {
-    id = val;
+  void __set_nbr(const std::string& val) {
+    nbr = val;
   }
 
   void __set_name(const std::string& val) {
     name = val;
   }
 
+  void __set_gender(const std::string& val) {
+    gender = val;
+  }
+
+  void __set_idNo(const std::string& val) {
+    idNo = val;
+  }
+
+  void __set_address(const std::string& val) {
+    address = val;
+  }
+
   bool operator == (const OpenAccount & rhs) const
   {
-    if (!(id == rhs.id))
+    if (!(nbr == rhs.nbr))
       return false;
     if (!(name == rhs.name))
+      return false;
+    if (!(gender == rhs.gender))
+      return false;
+    if (!(idNo == rhs.idNo))
+      return false;
+    if (!(address == rhs.address))
       return false;
     return true;
   }
