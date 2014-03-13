@@ -14,7 +14,7 @@ BOSS_3RD=$(BOSS_HOME)/boss/3rd/
 all:
 	$(call make_subdir , all)
 
-install :
+install:
 	$(call make_subdir , install)
 
 	@if [ ! -d $(BOSS_3RD) ]; then mkdir $(BOSS_3RD);fi

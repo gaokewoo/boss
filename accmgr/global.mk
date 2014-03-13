@@ -5,13 +5,13 @@ AR_CMD=ar -rv
 SUBDIRS=db pub biz thrift main
 
 #define lib path
-BOSS_LIB_PATH=$(BOSS_HOME)/boss/lib/
+BOSS_LIB_PATH=$(BOSS_DEV_HOME)/lib/
 
 #define database include file path
-DB_INCLUDE=$(BOSS_HOME)/boss/db/ 
-PUB_INCLUDE=$(BOSS_HOME)/boss/pub/ 
-BIZ_INCLUDE=$(BOSS_HOME)/boss/biz/ 
-BOSS_THRIFT_INCLUDE=$(BOSS_HOME)/boss/thrift/
+DB_INCLUDE=$(BOSS_DEV_HOME)/db/ 
+PUB_INCLUDE=$(BOSS_DEV_HOME)/pub/ 
+BIZ_INCLUDE=$(BOSS_DEV_HOME)/biz/ 
+BOSS_THRIFT_INCLUDE=$(BOSS_DEV_HOME)/thrift/
 
 #thrift dir
 THRIFT_INCLUDE=$(BOSS_HOME)/thrift/include/
@@ -21,7 +21,7 @@ CC_INCLDIR=-I. \
 		   -I$(ORACLE_HOME)/rdbms/public/ \
 		   -I$(THRIFT_INCLUDE)/ \
            -I$(BOSS_THRIFT_INCLUDE)/ \
-           -I$(BOSS_HOME)/boss/3rd/ \
+           -I$(BOSS_DEV_HOME)/3rd/ \
 		   -I$(DB_INCLUDE) \
 		   -I$(PUB_INCLUDE) \
 		   -I$(BIZ_INCLUDE) \
