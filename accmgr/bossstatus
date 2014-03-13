@@ -2,9 +2,7 @@
 
 PWD=`pwd`
 
-source $PWD/env.sh
-
-cd $BOSS_HOME/bin
+cd $BOSS_HOME/boss/bin
 
 p_num=`./BossMonitorClient 2>&1|grep PROCESS_ID|wc -l`
 

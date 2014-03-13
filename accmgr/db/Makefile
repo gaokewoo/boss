@@ -1,4 +1,4 @@
-include ${BOSS_HOME}/global.mk
+include ../global.mk
 
 SRCS = $(wildcard *.cc)
 BUILD = $(patsubst %.cc, %.o, $(SRCS))
@@ -11,11 +11,15 @@ OBJS=$(BUILD)
 $(LIB_NAME):$(OBJS)
 	$(CC) -shared -o $@ $(OBJS)
 	@if [ ! -d ../lib/ ];then mkdir ../lib/;fi
-	mv -f $@ $(BOSS_LIB_PATH)
+	mv -f $@ ../lib/
 	@echo "### $@ loaded ###\n"
 
 .cc.o:
 	$(CC) $(CC_FLAGS) $(CC_INCLDIR)  -c $<
+
+install:
+	@if [ ! -d $(BOSS_HOME)/boss/db/ ]; then mkdir $(BOSS_HOME)/boss/db/;fi
+	cp -f *.hh $(BOSS_HOME)/boss/db/
 
 clean:
 	rm -f *.o

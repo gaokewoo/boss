@@ -1,4 +1,4 @@
-include ${BOSS_HOME}/global.mk
+include ../global.mk
 
 SRCS = $(wildcard gen-cpp/*.cpp)
 BUILD = $(patsubst %.cpp, %.o, $(SRCS))
@@ -11,11 +11,15 @@ OBJS=$(BUILD)
 $(LIB_NAME):$(OBJS)
 	$(CC) -shared -o $@ $(OBJS)
 	@if [ ! -d ../lib/ ];then mkdir ../lib/;fi
-	mv -f $@ $(BOSS_LIB_PATH)
+	mv -f $@ ../lib/
 	@echo "### $@ loaded ###\n"
 
 .cpp.o:
 	$(CC) $(CC_FLAGS) $(CC_INCLDIR)  -c $< -o $@
+
+install:
+	@if [ ! -d $(BOSS_HOME)/boss/thrift/gen-cpp ]; then mkdir -p $(BOSS_HOME)/boss/thrift/gen-cpp/;fi
+	cp -f gen-cpp/*.h $(BOSS_HOME)/boss/thrift/gen-cpp/
 
 clean:
 	rm -f gen-cpp/*.o

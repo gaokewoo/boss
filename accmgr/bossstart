@@ -1,17 +1,13 @@
 #/bin/bash
 
-PWD=`pwd`
-
-source $PWD/env.sh
-
-p_num=`$PWD/bossstatus 2>&1|grep PROCESS_ID|wc -l`
+p_num=`$BOSS_HOME/boss/bossstatus 2>&1|grep PROCESS_ID|wc -l`
 
 if [ "$p_num" != "0" ];then
     echo "Servers already started!"
     exit 1
 fi
 
-cd $BOSS_HOME/bin
+cd $BOSS_HOME/boss/bin
 echo "Start BossMonitorServer begin"
 ./BossMonitorServer
 echo "Start BossMonitorServer end"
