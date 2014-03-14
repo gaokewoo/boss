@@ -11,7 +11,9 @@ cd $BOSS_HOME/boss/bin
 echo "Start BossMonitorServer begin"
 ./BossMonitorServer
 echo "Start BossMonitorServer end"
+
 sleep 1
+
 echo "Start OpenAccountServer begin"
 ./OpenAccountServer
 echo "Start OpenAccountServer end"

@@ -11,6 +11,8 @@ BOSS_LIB=$(BOSS_HOME)/boss/lib/
 BOSS_BIN=$(BOSS_HOME)/boss/bin/
 BOSS_3RD=$(BOSS_HOME)/boss/3rd/
 
+.PHONY:install
+
 all:
 	$(call make_subdir , all)
 

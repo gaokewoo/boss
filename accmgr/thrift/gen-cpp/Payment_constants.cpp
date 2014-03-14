@@ -6,7 +6,7 @@
  */
 #include "Payment_constants.h"
 
-namespace PaymentInterface {
+namespace BossInterface {
 
 const PaymentConstants g_Payment_constants;
 

@@ -16,7 +16,7 @@
 #include "BossData_types.h"
 
 
-namespace PaymentInterface {
+namespace BossInterface {
 
 } // namespace
 

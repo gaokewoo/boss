@@ -18,7 +18,7 @@ using namespace ::apache::thrift::server;
 
 using boost::shared_ptr;
 
-using namespace  ::PaymentInterface;
+using namespace  ::BossInterface;
 
 using namespace zsummer::log4z;
 

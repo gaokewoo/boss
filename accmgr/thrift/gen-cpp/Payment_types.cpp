@@ -8,6 +8,6 @@
 
 #include <algorithm>
 
-namespace PaymentInterface {
+namespace BossInterface {
 
 } // namespace

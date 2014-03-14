@@ -21,7 +21,7 @@ int main(int argc, char** argv) {
     cout<<"Server IP:"<<pval<<" Port:"<<port<<endl;
 
     int frequence = CONF_PARSER_GET_NUM_VAL("OpenAccount", "frequence");
-    cout<<"The client send request each "<<frequence<<" seconds."<<endl;
+    cout<<"The client send request each "<<frequence<<" millisecond."<<endl;
 
     shared_ptr<TTransport> socket(new TSocket(pval, port));   
 
@@ -41,7 +41,7 @@ int main(int argc, char** argv) {
         {
             cout<<"----------["<<++i<<"]----------"<<endl;
 
-            client.send(data);//RPC函数，调用serve端的该函数   
+            client.send(data);
 
             usleep(frequence*1000);
         }

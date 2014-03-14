@@ -1,4 +1,4 @@
-namespace cpp PaymentInterface
+namespace cpp BossInterface
     
 include "BossData.thrift" 
 

@@ -6,7 +6,7 @@
  */
 #include "Payment.h"
 
-namespace PaymentInterface {
+namespace BossInterface {
 
 uint32_t Payment_subscribe_args::read(::apache::thrift::protocol::TProtocol* iprot) {
 

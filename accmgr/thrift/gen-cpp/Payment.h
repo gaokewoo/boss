@@ -10,7 +10,7 @@
 #include <thrift/TDispatchProcessor.h>
 #include "Payment_types.h"
 
-namespace PaymentInterface {
+namespace BossInterface {
 
 class PaymentIf {
  public:
