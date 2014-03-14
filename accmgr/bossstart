@@ -16,4 +16,8 @@ echo "Start OpenAccountServer begin"
 ./OpenAccountServer
 echo "Start OpenAccountServer end"
 
+echo "Start PaymentServer begin"
+./PaymentServer
+echo "Start PaymentServer  end"
+
 
