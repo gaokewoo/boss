@@ -8,6 +8,7 @@
 #include <thrift/transport/TBufferTransports.h>
 #include "libconfparser/confparser.hpp"
 #include "BossMonitorClient.hh"
+#include "Payment.hh"
 #include "log4z/log4z.h"
 
 using namespace ::apache::thrift;
@@ -23,15 +24,34 @@ using namespace zsummer::log4z;
 
 class PaymentHandler : virtual public PaymentIf {
     public:
-        PaymentHandler() {
+        PaymentHandler(LoggerId logId) {
             // Your initialization goes here
+            m_logId = logId;
+            m_payment=new Payment(m_logId);
         }
 
-        bool subscribe(const  ::BossData::Payment& datas) {
+        ~PaymentHandler() {
+            // Your initialization goes here
+            delete m_payment;
+            m_payment=NULL;
+        }
+
+        bool subscribe(const  ::BossData::Payment& data) {
             // Your implementation goes here
-            printf("subscribe\n");
+            LOG_INFO(m_logId, "Receive a message...");
+            LOG_INFO(m_logId, "Pay "<<data.fee<<" to "<<data.nbr);
+            PaymentData my_data;
+            my_data.nbr = data.nbr;
+            my_data.fee= data.fee;
+            m_payment->doBiz(my_data);
+            LOG_INFO(m_logId, "Server handle successfully.");
+
             return true;
         }
+
+    private:
+        Payment *m_payment;
+        LoggerId m_logId;
 
 };
 
@@ -68,7 +88,7 @@ int main(int argc, char **argv) {
     int port = CONF_PARSER_GET_NUM_VAL("Payment", "port");
     LOG_INFO(logId, "Server listening port:"<<port);
 
-    shared_ptr<PaymentHandler> handler(new PaymentHandler());
+    shared_ptr<PaymentHandler> handler(new PaymentHandler(logId));
     shared_ptr<TProcessor> processor(new PaymentProcessor(handler));
     shared_ptr<TServerTransport> serverTransport(new TServerSocket(port));
     shared_ptr<TTransportFactory> transportFactory(new TBufferedTransportFactory());
