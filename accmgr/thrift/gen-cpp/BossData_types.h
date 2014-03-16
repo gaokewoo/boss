@@ -168,7 +168,7 @@ class BossMonitor {
 void swap(BossMonitor &a, BossMonitor &b);
 
 typedef struct _Payment__isset {
-  _Payment__isset() : nbr(false), fee(false) {}
+  _Payment__isset() : nbr(true), fee(true) {}
   bool nbr;
   bool fee;
 } _Payment__isset;
@@ -179,7 +179,7 @@ class Payment {
   static const char* ascii_fingerprint; // = "C712EF0DA8599E55DF4D0F13415232EF";
   static const uint8_t binary_fingerprint[16]; // = {0xC7,0x12,0xEF,0x0D,0xA8,0x59,0x9E,0x55,0xDF,0x4D,0x0F,0x13,0x41,0x52,0x32,0xEF};
 
-  Payment() : nbr(), fee(0) {
+  Payment() : nbr(""), fee(0) {
   }
 
   virtual ~Payment() throw() {}

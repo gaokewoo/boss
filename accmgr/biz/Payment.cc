@@ -1,5 +1,6 @@
 #include "Payment.hh"
 #include "libconfparser/confparser.hpp"
+#include "ServIdentification.hh"
 
 Payment::Payment(LoggerId logId)
 {
@@ -30,8 +31,26 @@ Payment::~Payment()
 
 void Payment::doBiz(PaymentData & data)
 {
-    LOG_DEBUG(m_logId, "Payment::~Payment start");
-    LOG_DEBUG(m_logId, "Payment::~Payment end");
+    LOG_DEBUG(m_logId, "Payment::doBiz start");
+
+    //get serv_identification info
+    ServIdentification m_serv_ident;
+    m_serv_ident.setConnection(m_db->getConnection());
+    ST_SERV_IDENTIFICATION serv_ident_info;
+    if(data.nbr != "")
+    {
+        LOG_INFO(m_logId, "Payment::doBiz input nbr:"<<data.nbr);
+        m_serv_ident.serv_identification.m_acc_nbr = data.nbr; 
+        serv_ident_info = m_serv_ident.getServIdentInfoByNBR();
+    }
+    else
+    {
+        LOG_INFO(m_logId, "Payment::doBiz no input nbr, system will select a random nbr to do payment.");
+        serv_ident_info = m_serv_ident.getRandomServIdentInfo();
+        LOG_INFO(m_logId, "Payment::doBiz the random nbr:"<<serv_ident_info.m_acc_nbr);
+
+    }
+    LOG_DEBUG(m_logId, "Payment::doBiz end");
 }
 
 

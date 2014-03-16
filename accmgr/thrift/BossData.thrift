@@ -21,6 +21,6 @@ struct BossMonitor
 
 struct Payment
 {
-    1: string nbr,
-    2: double fee,
+    1: string nbr="",
+    2: double fee=0,
 }

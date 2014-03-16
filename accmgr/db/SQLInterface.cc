@@ -16,27 +16,27 @@ void SQLInterface::executeQuery()
     }
     catch(SQLException& sqlExcp)
     {
-        cout <<__FILE__<<":"<<__func__<<":"<<__LINE__<<":"
+        cerr <<__FILE__<<":"<<__func__<<":"<<__LINE__<<":"
             << "*Db Exception*,"
             << "ErrorCode=" << sqlExcp.getErrorCode()
             <<",ErrorStr=" << sqlExcp.getMessage() << endl;
-        cout<<"SQL:"<<sqlStmt<<endl;
+        cerr <<"SQL:"<<sqlStmt<<endl;
 
         throw sqlExcp;
     }
     catch(exception& excp)
     {
-        cout <<__FILE__<<":"<<__func__<<":"<<__LINE__<<":"
+        cerr <<__FILE__<<":"<<__func__<<":"<<__LINE__<<":"
             <<"*Exception*," <<excp.what() << endl;
-        cout<<"SQL:"<<sqlStmt<<endl;
+        cerr <<"SQL:"<<sqlStmt<<endl;
 
         throw excp;
     }
     catch(...)
     {
-        cout <<__FILE__<<":"<<__func__<<":"<<__LINE__<<":"
+        cerr <<__FILE__<<":"<<__func__<<":"<<__LINE__<<":"
             <<"Unknown Exception!" << endl;
-        cout<<"SQL:"<<sqlStmt<<endl;
+        cerr <<"SQL:"<<sqlStmt<<endl;
 
         throw;
     }
