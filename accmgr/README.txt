@@ -56,5 +56,18 @@ sudo python setup.py install
 #install rabbitmq, Note:make sure xmlto has been installed
 cd rabbitmq-server-3.2.4
 make TARGET_DIR=/opt-boss/rabbitmq SBIN_DIR=/opt-boss/rabbitmq/sbin MAN_DIR=/opt-boss/rabbitmq/man DOC_INSTALL_DIR=/opt-boss/rabbitmq/doc install
-
 #####install rabbitmq end#######
+
+#####install glog begin#######
+cd glog-0.3.3
+./configure --prefix=/opt-boss/glog/
+make
+make install
+#####install glog end#######
+
+#####install xerces begin#######
+cd xerces-c-3.1.1
+./configure --prefix=/opt-boss/xerces/
+make
+make install
+#####install xerces end#######
