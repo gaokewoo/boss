@@ -43,9 +43,8 @@ public:
     void configAddress();
     void configBillingCycle();
     void configServStateDesc();
-    void configPaymentMethod();
+    void configPaymentMethodAndBalanceType();
     void configBalanceSourceType();
-    void configBalanceType();
     void configBalanceState();
     void configAcctItemGroup();
     void configAcctItemGroupMember();

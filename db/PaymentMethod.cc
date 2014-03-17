@@ -42,9 +42,9 @@ void PaymentMethod::prepareSQL()
 {
     if (type == 0)
     {
-    stmt->setNumber(1,payment_method.m_payment_method);
-    stmt->setString(2,payment_method.m_payment_method_name);
-    stmt->setNumber(3,payment_method.m_balance_type_id);
+        stmt->setNumber(1,payment_method.m_payment_method);
+        stmt->setString(2,payment_method.m_payment_method_name);
+        stmt->setNumber(3,payment_method.m_balance_type_id);
     }
 }
 

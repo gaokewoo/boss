@@ -327,27 +327,49 @@ void ConfigData::configServStateDesc()
     LOG_DEBUG(m_logId, "ConfigData::configServStateDesc end");
 }
 
-void ConfigData::configPaymentMethod()
+void ConfigData::configPaymentMethodAndBalanceType()
 {
-    LOG_DEBUG(m_logId, "ConfigData::configPaymentMethod begin");
+    LOG_DEBUG(m_logId, "ConfigData::configPaymentMethodAndBalanceType begin");
     m_payment_method.setConnection(m_db->getConnection());
+    m_balance_type.setConnection(m_db->getConnection());
 
     m_payment_method.emptyData();
+    m_balance_type.emptyData();
 
-    long id = m_seq.getScardvcsn();
-    long type_id = m_seq.getScardvcsn();
+    long payment_method_id = m_seq.getPaymentMethodId();
+    long balance_type_id = m_seq.getBalanceTypeId();
+
+    m_payment_method.payment_method.m_payment_method=payment_method_id;
+    m_payment_method.payment_method.m_payment_method_name="前台缴费";
+    m_payment_method.payment_method.m_balance_type_id=balance_type_id;
     m_payment_method.insertData();
 
-    LOG_DEBUG(m_logId, "ConfigData::configPaymentMethod end");
+    payment_method_id = m_seq.getPaymentMethodId();
+    m_payment_method.payment_method.m_payment_method=payment_method_id;
+    m_payment_method.payment_method.m_payment_method_name="银行缴费";
+    m_payment_method.payment_method.m_balance_type_id=balance_type_id;
+    m_payment_method.insertData();
+
+    payment_method_id = m_seq.getPaymentMethodId();
+    m_payment_method.payment_method.m_payment_method=payment_method_id;
+    m_payment_method.payment_method.m_payment_method_name="代理商缴费";
+    m_payment_method.payment_method.m_balance_type_id=balance_type_id;
+    m_payment_method.insertData();
+
+	m_balance_type.balance_type.m_balance_type_id=balance_type_id;
+	m_balance_type.balance_type.m_priority=0;
+	m_balance_type.balance_type.m_spe_payment_id=0;
+	m_balance_type.balance_type.m_measure_method_id=0;
+	m_balance_type.balance_type.m_balance_type_name="现金";
+	m_balance_type.balance_type.m_action_mark="00";
+	m_balance_type.balance_type.m_pay_type="00";
+    m_balance_type.insertData();
+
+    LOG_DEBUG(m_logId, "ConfigData::configPaymentMethodAndBalanceType end");
 
 }
 
 void ConfigData::configBalanceSourceType()
-{
-
-}
-
-void ConfigData::configBalanceType()
 {
 
 }
@@ -388,9 +410,8 @@ void ConfigData::doBiz()
     configAddress();
     configBillingCycle();
     configServStateDesc();
-    configPaymentMethod();
+    configPaymentMethodAndBalanceType();
     configBalanceSourceType();
-    configBalanceType();
     configBalanceState();
     configAcctItemGroup();
     configAcctItemGroupMember();
