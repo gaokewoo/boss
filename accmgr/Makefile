@@ -14,6 +14,7 @@ BOSS_3RD=$(BOSS_HOME)/boss/3rd/
 .PHONY:install
 
 all:
+	@./makeGmock.sh
 	$(call make_subdir , all)
 
 install:
