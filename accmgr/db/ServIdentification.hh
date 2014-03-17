@@ -10,7 +10,7 @@ public:
     virtual void prepareSQL();
     virtual void doParse();
     ST_SERV_IDENTIFICATION getRandomServIdentInfo();
-    ST_SERV_IDENTIFICATION getServIdentInfoByNBR();
+    ST_SERV_IDENTIFICATION getServIdentInfoByNBR(string nbr);
 
 public:
     ST_SERV_IDENTIFICATION serv_identification;

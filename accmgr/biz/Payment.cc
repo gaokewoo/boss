@@ -40,8 +40,7 @@ void Payment::doBiz(PaymentData & data)
     if(data.nbr != "")
     {
         LOG_INFO(m_logId, "Payment::doBiz input nbr:"<<data.nbr);
-        m_serv_ident.serv_identification.m_acc_nbr = data.nbr; 
-        serv_ident_info = m_serv_ident.getServIdentInfoByNBR();
+        serv_ident_info = m_serv_ident.getServIdentInfoByNBR(data.nbr);
     }
     else
     {
