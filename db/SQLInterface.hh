@@ -6,7 +6,7 @@
 class SQLInterface
 {
 public:
-    SQLInterface(){}
+    SQLInterface(){stmt=NULL; rset=NULL; conn=NULL;}
     SQLInterface(Connection *dbConn){ conn = dbConn; }
     virtual ~SQLInterface(){}
     void setConnection(Connection *dbConn) { conn = dbConn; }

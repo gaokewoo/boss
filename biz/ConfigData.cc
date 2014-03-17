@@ -327,6 +327,56 @@ void ConfigData::configServStateDesc()
     LOG_DEBUG(m_logId, "ConfigData::configServStateDesc end");
 }
 
+void ConfigData::configPaymentMethod()
+{
+    LOG_DEBUG(m_logId, "ConfigData::configPaymentMethod begin");
+    m_payment_method.setConnection(m_db->getConnection());
+
+    m_payment_method.emptyData();
+
+    long id = m_seq.getScardvcsn();
+    long type_id = m_seq.getScardvcsn();
+    m_payment_method.insertData();
+
+    LOG_DEBUG(m_logId, "ConfigData::configPaymentMethod end");
+
+}
+
+void ConfigData::configBalanceSourceType()
+{
+
+}
+
+void ConfigData::configBalanceType()
+{
+
+}
+
+void ConfigData::configBalanceState()
+{
+
+}
+
+void ConfigData::configAcctItemGroup()
+{
+
+}
+
+void ConfigData::configAcctItemGroupMember()
+{
+
+}
+
+void ConfigData::configAcctItemType()
+{
+
+}
+
+void ConfigData::configAcctItemSource()
+{
+
+}
+
 void ConfigData::doBiz()
 {
 
@@ -338,6 +388,14 @@ void ConfigData::doBiz()
     configAddress();
     configBillingCycle();
     configServStateDesc();
+    configPaymentMethod();
+    configBalanceSourceType();
+    configBalanceType();
+    configBalanceState();
+    configAcctItemGroup();
+    configAcctItemGroupMember();
+    configAcctItemType();
+    configAcctItemSource();
 
     m_db->commit();
     LOG_DEBUG(m_logId, "ConfigData::doBiz end");
