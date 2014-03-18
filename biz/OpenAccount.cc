@@ -45,6 +45,8 @@ OpenAccount::OpenAccount(LoggerId logId)
 
     m_staff_opr.setConnection(m_db->getConnection());
 
+    m_serv_acct.setConnection(m_db->getConnection());
+
     LOG_DEBUG(m_logId, "OpenAccount::OpenAccount end");
 }
 
@@ -200,6 +202,20 @@ void OpenAccount::doBiz(AccountData & data)
         m_serv.serv.m_region_id=region_id;
         m_serv.serv.m_band_id=0;
         m_serv.insertData();
+
+        long serv_acct_id = m_seq.getServAcctId();
+        m_serv_acct.serv_acct.m_serv_acct_id = serv_acct_id;
+        m_serv_acct.serv_acct.m_acct_id = acct_id;
+        m_serv_acct.serv_acct.m_serv_id = serv_id;
+        m_serv_acct.serv_acct.m_billing_cycle_type_id = billing_cycle_type_id;
+        m_serv_acct.serv_acct.m_acct_item_group_id = 0;
+        m_serv_acct.serv_acct.m_priority = 0;
+        m_serv_acct.serv_acct.m_payment_rule_id = 0;
+        m_serv_acct.serv_acct.m_payment_limit_type = "5XA";
+        m_serv_acct.serv_acct.m_payment_limit = 0;
+        m_serv_acct.serv_acct.m_state = "00A";
+        m_serv_acct.serv_acct.m_pay_priority = 0;
+        m_serv_acct.insertData();
 
         string acc_nbr = (data.nbr != "" ? data.nbr : generator.getNbr());
         LOG_INFO(m_logId, "Acc_nbr:"<<acc_nbr);

@@ -28,6 +28,7 @@
 #include "ServStateAttr.hh"
 #include "ServBillingMode.hh"
 #include "StaffOpr.hh"
+#include "ServAcct.hh"
 #include "log4z/log4z.h"
 
 using namespace zsummer::log4z;
@@ -68,6 +69,7 @@ private:
     ServStateAttr m_serv_state_attr;
     ServBillingMode m_serv_billing_mode;
     StaffOpr m_staff_opr;
+    ServAcct m_serv_acct;
 
     vector<ST_CERTIFICATE_TYPE> v_certificate_type; 
     vector<ST_ACCT_TYPE> v_acct_type; 
