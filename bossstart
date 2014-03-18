@@ -22,4 +22,8 @@ echo "Start PayFeeServer begin"
 ./PayFeeServer
 echo "Start PayFeeServer  end"
 
+echo "Start FetchNbrServer begin"
+./FetchNbrServer 
+echo "Start FetchNbrServer end"
+
 
