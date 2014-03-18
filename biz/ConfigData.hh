@@ -23,9 +23,6 @@
 #include "PaymentMethod.hh"
 #include "BalanceSourceType.hh"
 #include "BalanceType.hh"
-#include "BalanceState.hh"
-#include "AcctItemGroup.hh"
-#include "AcctItemGroupMember.hh"
 #include "AcctItemType.hh"
 #include "AcctItemSource.hh"
 #include "log4z/log4z.h"
@@ -45,11 +42,7 @@ public:
     void configServStateDesc();
     void configPaymentMethodAndBalanceType();
     void configBalanceSourceType();
-    void configBalanceState();
-    void configAcctItemGroup();
-    void configAcctItemGroupMember();
-    void configAcctItemType();
-    void configAcctItemSource();
+    void configAcctItemTypeAndAcctItemSource();
     void doBiz();
 
 private:
@@ -71,9 +64,6 @@ private:
     PaymentMethod m_payment_method;
     BalanceSourceType m_balance_source_type;
     BalanceType m_balance_type;
-    BalanceState m_balance_state;
-    AcctItemGroup m_acct_item_group;
-    AcctItemGroupMember m_acct_item_group_member;
     AcctItemType m_acct_item_type;
     AcctItemSource m_acct_item_source;
 };

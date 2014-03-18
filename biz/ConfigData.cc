@@ -362,7 +362,7 @@ void ConfigData::configPaymentMethodAndBalanceType()
 	m_balance_type.balance_type.m_measure_method_id=0;
 	m_balance_type.balance_type.m_balance_type_name="现金";
 	m_balance_type.balance_type.m_action_mark="00";
-	m_balance_type.balance_type.m_pay_type="00";
+	m_balance_type.balance_type.m_pay_type="0";
     m_balance_type.insertData();
 
     LOG_DEBUG(m_logId, "ConfigData::configPaymentMethodAndBalanceType end");
@@ -371,31 +371,93 @@ void ConfigData::configPaymentMethodAndBalanceType()
 
 void ConfigData::configBalanceSourceType()
 {
+    LOG_DEBUG(m_logId, "ConfigData::configBalanceSourceType begin");
+    m_balance_source_type.setConnection(m_db->getConnection());
+
+    m_balance_source_type.balance_source_type.m_balance_source_id=m_seq.getBalanceSourceId();
+    m_balance_source_type.balance_source_type.m_balance_source_desc="现金";
+    m_balance_source_type.insertData();
+
+    LOG_DEBUG(m_logId, "ConfigData::configBalanceSourceType end");
 
 }
 
-void ConfigData::configBalanceState()
+void ConfigData::configAcctItemTypeAndAcctItemSource()
 {
+    LOG_DEBUG(m_logId, "ConfigData::configAcctItemTypeAndAcctItemSource begin");
+    m_acct_item_type.setConnection(m_db->getConnection());
+    m_acct_item_source.setConnection(m_db->getConnection());
 
-}
+    long long acct_item_type_id = m_seq.getAcctItemTypeId();
+    long long item_source_id = m_seq.getItemSourceId();
 
-void ConfigData::configAcctItemGroup()
-{
+    m_acct_item_type.acct_item_type.m_acct_item_type_id = acct_item_type_id;
+    m_acct_item_type.acct_item_type.m_acct_item_class_id = 0;
+    m_acct_item_type.acct_item_type.m_party_role_id = 0;
+    m_acct_item_type.acct_item_type.m_priority = 999;
+    m_acct_item_type.acct_item_type.m_name = "通话费";
+    m_acct_item_type.acct_item_type.m_charge_mark = "5NA";
+    m_acct_item_type.acct_item_type.m_total_mark = "5GA";
+    m_acct_item_type.acct_item_type.m_acct_item_type_code = "00";
+    m_acct_item_type.acct_item_type.m_parent_item_type_id = 0;
 
-}
+    m_acct_item_type.insertData();
 
-void ConfigData::configAcctItemGroupMember()
-{
+    m_acct_item_source.acct_item_source.m_item_source_id = item_source_id;
+    m_acct_item_source.acct_item_source.m_acct_item_type_id = acct_item_type_id;
+    m_acct_item_source.acct_item_source.m_item_source_type = "52A";
+    m_acct_item_source.acct_item_source.m_name = "帐目应收费用";
+    m_acct_item_source.acct_item_source.m_comments = "2014新增";
 
-}
+    m_acct_item_source.insertData();
 
-void ConfigData::configAcctItemType()
-{
+    acct_item_type_id = m_seq.getAcctItemTypeId();
+    item_source_id = m_seq.getItemSourceId();
 
-}
+    m_acct_item_type.acct_item_type.m_acct_item_type_id = acct_item_type_id;
+    m_acct_item_type.acct_item_type.m_acct_item_class_id = 0;
+    m_acct_item_type.acct_item_type.m_party_role_id = 0;
+    m_acct_item_type.acct_item_type.m_priority = 999;
+    m_acct_item_type.acct_item_type.m_name = "短信费";
+    m_acct_item_type.acct_item_type.m_charge_mark = "5NA";
+    m_acct_item_type.acct_item_type.m_total_mark = "5GA";
+    m_acct_item_type.acct_item_type.m_acct_item_type_code = "00";
+    m_acct_item_type.acct_item_type.m_parent_item_type_id = 0;
 
-void ConfigData::configAcctItemSource()
-{
+    m_acct_item_type.insertData();
+
+    m_acct_item_source.acct_item_source.m_item_source_id = item_source_id;
+    m_acct_item_source.acct_item_source.m_acct_item_type_id = acct_item_type_id;
+    m_acct_item_source.acct_item_source.m_item_source_type = "52A";
+    m_acct_item_source.acct_item_source.m_name = "帐目应收费用";
+    m_acct_item_source.acct_item_source.m_comments = "2014新增";
+
+    m_acct_item_source.insertData();
+
+    acct_item_type_id = m_seq.getAcctItemTypeId();
+    item_source_id = m_seq.getItemSourceId();
+
+    m_acct_item_type.acct_item_type.m_acct_item_type_id = acct_item_type_id;
+    m_acct_item_type.acct_item_type.m_acct_item_class_id = 0;
+    m_acct_item_type.acct_item_type.m_party_role_id = 0;
+    m_acct_item_type.acct_item_type.m_priority = 999;
+    m_acct_item_type.acct_item_type.m_name = "增值业务费";
+    m_acct_item_type.acct_item_type.m_charge_mark = "5NA";
+    m_acct_item_type.acct_item_type.m_total_mark = "5GA";
+    m_acct_item_type.acct_item_type.m_acct_item_type_code = "00";
+    m_acct_item_type.acct_item_type.m_parent_item_type_id = 0;
+
+    m_acct_item_type.insertData();
+
+    m_acct_item_source.acct_item_source.m_item_source_id = item_source_id;
+    m_acct_item_source.acct_item_source.m_acct_item_type_id = acct_item_type_id;
+    m_acct_item_source.acct_item_source.m_item_source_type = "52A";
+    m_acct_item_source.acct_item_source.m_name = "帐目应收费用";
+    m_acct_item_source.acct_item_source.m_comments = "2014新增";
+
+    m_acct_item_source.insertData();
+
+    LOG_DEBUG(m_logId, "ConfigData::configAcctItemTypeAndAcctItemSource end");
 
 }
 
@@ -412,11 +474,7 @@ void ConfigData::doBiz()
     configServStateDesc();
     configPaymentMethodAndBalanceType();
     configBalanceSourceType();
-    configBalanceState();
-    configAcctItemGroup();
-    configAcctItemGroupMember();
-    configAcctItemType();
-    configAcctItemSource();
+    configAcctItemTypeAndAcctItemSource();
 
     m_db->commit();
     LOG_DEBUG(m_logId, "ConfigData::doBiz end");
