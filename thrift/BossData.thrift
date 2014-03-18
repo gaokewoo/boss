@@ -19,7 +19,7 @@ struct BossMonitor
     5: string status,
 }
 
-struct Payment
+struct PayFee
 {
     1: string nbr="",
     2: double fee=0,

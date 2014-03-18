@@ -1,5 +1,5 @@
-#ifndef __PAYMENT_HH__
-#define __PAYMENT_HH__
+#ifndef __PAYFEE_HH__
+#define __PAYFEE_HH__
 
 #include <stdlib.h> 
 #include <stdio.h>
@@ -11,20 +11,20 @@
 
 using namespace zsummer::log4z;
 
-class PaymentData{
+class PayFeeData{
     public:
-        PaymentData():nbr(""),fee(0.00){}
+        PayFeeData():nbr(""),fee(0.00){}
 
         string nbr;
         double fee;
 };
 
-class Payment
+class PayFee
 {
 public:
-    Payment(LoggerId logId);
-    ~Payment();
-    void doBiz(PaymentData & data);
+    PayFee(LoggerId logId);
+    ~PayFee();
+    void doBiz(PayFeeData & data);
 
 private:
     LoggerId m_logId;

@@ -4,8 +4,8 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-#ifndef Payment_TYPES_H
-#define Payment_TYPES_H
+#ifndef PayFee_TYPES_H
+#define PayFee_TYPES_H
 
 #include <thrift/Thrift.h>
 #include <thrift/TApplicationException.h>

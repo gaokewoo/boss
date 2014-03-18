@@ -4,11 +4,11 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-#include "Payment.h"
+#include "PayFee.h"
 
 namespace BossInterface {
 
-uint32_t Payment_subscribe_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t PayFee_subscribe_args::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   uint32_t xfer = 0;
   std::string fname;
@@ -48,9 +48,9 @@ uint32_t Payment_subscribe_args::read(::apache::thrift::protocol::TProtocol* ipr
   return xfer;
 }
 
-uint32_t Payment_subscribe_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t PayFee_subscribe_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
-  xfer += oprot->writeStructBegin("Payment_subscribe_args");
+  xfer += oprot->writeStructBegin("PayFee_subscribe_args");
 
   xfer += oprot->writeFieldBegin("datas", ::apache::thrift::protocol::T_STRUCT, 1);
   xfer += this->datas.write(oprot);
@@ -61,9 +61,9 @@ uint32_t Payment_subscribe_args::write(::apache::thrift::protocol::TProtocol* op
   return xfer;
 }
 
-uint32_t Payment_subscribe_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t PayFee_subscribe_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
-  xfer += oprot->writeStructBegin("Payment_subscribe_pargs");
+  xfer += oprot->writeStructBegin("PayFee_subscribe_pargs");
 
   xfer += oprot->writeFieldBegin("datas", ::apache::thrift::protocol::T_STRUCT, 1);
   xfer += (*(this->datas)).write(oprot);
@@ -74,7 +74,7 @@ uint32_t Payment_subscribe_pargs::write(::apache::thrift::protocol::TProtocol* o
   return xfer;
 }
 
-uint32_t Payment_subscribe_result::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t PayFee_subscribe_result::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   uint32_t xfer = 0;
   std::string fname;
@@ -114,11 +114,11 @@ uint32_t Payment_subscribe_result::read(::apache::thrift::protocol::TProtocol* i
   return xfer;
 }
 
-uint32_t Payment_subscribe_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t PayFee_subscribe_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
 
   uint32_t xfer = 0;
 
-  xfer += oprot->writeStructBegin("Payment_subscribe_result");
+  xfer += oprot->writeStructBegin("PayFee_subscribe_result");
 
   if (this->__isset.success) {
     xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_BOOL, 0);
@@ -130,7 +130,7 @@ uint32_t Payment_subscribe_result::write(::apache::thrift::protocol::TProtocol* 
   return xfer;
 }
 
-uint32_t Payment_subscribe_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t PayFee_subscribe_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   uint32_t xfer = 0;
   std::string fname;
@@ -170,18 +170,18 @@ uint32_t Payment_subscribe_presult::read(::apache::thrift::protocol::TProtocol* 
   return xfer;
 }
 
-bool PaymentClient::subscribe(const  ::BossData::Payment& datas)
+bool PayFeeClient::subscribe(const  ::BossData::PayFee& datas)
 {
   send_subscribe(datas);
   return recv_subscribe();
 }
 
-void PaymentClient::send_subscribe(const  ::BossData::Payment& datas)
+void PayFeeClient::send_subscribe(const  ::BossData::PayFee& datas)
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("subscribe", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  Payment_subscribe_pargs args;
+  PayFee_subscribe_pargs args;
   args.datas = &datas;
   args.write(oprot_);
 
@@ -190,7 +190,7 @@ void PaymentClient::send_subscribe(const  ::BossData::Payment& datas)
   oprot_->getTransport()->flush();
 }
 
-bool PaymentClient::recv_subscribe()
+bool PayFeeClient::recv_subscribe()
 {
 
   int32_t rseqid = 0;
@@ -216,7 +216,7 @@ bool PaymentClient::recv_subscribe()
     iprot_->getTransport()->readEnd();
   }
   bool _return;
-  Payment_subscribe_presult result;
+  PayFee_subscribe_presult result;
   result.success = &_return;
   result.read(iprot_);
   iprot_->readMessageEnd();
@@ -228,7 +228,7 @@ bool PaymentClient::recv_subscribe()
   throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "subscribe failed: unknown result");
 }
 
-bool PaymentProcessor::dispatchCall(::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, const std::string& fname, int32_t seqid, void* callContext) {
+bool PayFeeProcessor::dispatchCall(::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, const std::string& fname, int32_t seqid, void* callContext) {
   ProcessMap::iterator pfn;
   pfn = processMap_.find(fname);
   if (pfn == processMap_.end()) {
@@ -247,34 +247,34 @@ bool PaymentProcessor::dispatchCall(::apache::thrift::protocol::TProtocol* iprot
   return true;
 }
 
-void PaymentProcessor::process_subscribe(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
+void PayFeeProcessor::process_subscribe(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
 {
   void* ctx = NULL;
   if (this->eventHandler_.get() != NULL) {
-    ctx = this->eventHandler_->getContext("Payment.subscribe", callContext);
+    ctx = this->eventHandler_->getContext("PayFee.subscribe", callContext);
   }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "Payment.subscribe");
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "PayFee.subscribe");
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preRead(ctx, "Payment.subscribe");
+    this->eventHandler_->preRead(ctx, "PayFee.subscribe");
   }
 
-  Payment_subscribe_args args;
+  PayFee_subscribe_args args;
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postRead(ctx, "Payment.subscribe", bytes);
+    this->eventHandler_->postRead(ctx, "PayFee.subscribe", bytes);
   }
 
-  Payment_subscribe_result result;
+  PayFee_subscribe_result result;
   try {
     result.success = iface_->subscribe(args.datas);
     result.__isset.success = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
-      this->eventHandler_->handlerError(ctx, "Payment.subscribe");
+      this->eventHandler_->handlerError(ctx, "PayFee.subscribe");
     }
 
     ::apache::thrift::TApplicationException x(e.what());
@@ -287,7 +287,7 @@ void PaymentProcessor::process_subscribe(int32_t seqid, ::apache::thrift::protoc
   }
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preWrite(ctx, "Payment.subscribe");
+    this->eventHandler_->preWrite(ctx, "PayFee.subscribe");
   }
 
   oprot->writeMessageBegin("subscribe", ::apache::thrift::protocol::T_REPLY, seqid);
@@ -297,14 +297,14 @@ void PaymentProcessor::process_subscribe(int32_t seqid, ::apache::thrift::protoc
   oprot->getTransport()->flush();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postWrite(ctx, "Payment.subscribe", bytes);
+    this->eventHandler_->postWrite(ctx, "PayFee.subscribe", bytes);
   }
 }
 
-::boost::shared_ptr< ::apache::thrift::TProcessor > PaymentProcessorFactory::getProcessor(const ::apache::thrift::TConnectionInfo& connInfo) {
-  ::apache::thrift::ReleaseHandler< PaymentIfFactory > cleanup(handlerFactory_);
-  ::boost::shared_ptr< PaymentIf > handler(handlerFactory_->getHandler(connInfo), cleanup);
-  ::boost::shared_ptr< ::apache::thrift::TProcessor > processor(new PaymentProcessor(handler));
+::boost::shared_ptr< ::apache::thrift::TProcessor > PayFeeProcessorFactory::getProcessor(const ::apache::thrift::TConnectionInfo& connInfo) {
+  ::apache::thrift::ReleaseHandler< PayFeeIfFactory > cleanup(handlerFactory_);
+  ::boost::shared_ptr< PayFeeIf > handler(handlerFactory_->getHandler(connInfo), cleanup);
+  ::boost::shared_ptr< ::apache::thrift::TProcessor > processor(new PayFeeProcessor(handler));
   return processor;
 }
 } // namespace

@@ -1,11 +1,11 @@
-#include "Payment.hh"
+#include "PayFee.hh"
 #include "libconfparser/confparser.hpp"
 #include "ServIdentification.hh"
 
-Payment::Payment(LoggerId logId)
+PayFee::PayFee(LoggerId logId)
 {
     m_logId = logId;
-    LOG_DEBUG(m_logId, "Payment::Payment start");
+    LOG_DEBUG(m_logId, "PayFee::PayFee start");
 
     LOG_DEBUG(logId, "Parse boss.cfg");
     CONF_PARSER_SIMPLE_INIT("../conf/boss.cfg");
@@ -19,19 +19,19 @@ Payment::Payment(LoggerId logId)
     m_db = new OracleDB(db_user,db_passwd,db_instance);
     m_db->connectToDB();
 
-    LOG_DEBUG(m_logId, "Payment::Payment end");
+    LOG_DEBUG(m_logId, "PayFee::PayFee end");
 }
 
-Payment::~Payment()
+PayFee::~PayFee()
 {
-    LOG_DEBUG(m_logId, "Payment::~Payment start");
+    LOG_DEBUG(m_logId, "PayFee::~PayFee start");
     m_db->disConnectFromDB();
-    LOG_DEBUG(m_logId, "Payment::~Payment end");
+    LOG_DEBUG(m_logId, "PayFee::~PayFee end");
 }
 
-void Payment::doBiz(PaymentData & data)
+void PayFee::doBiz(PayFeeData & data)
 {
-    LOG_DEBUG(m_logId, "Payment::doBiz start");
+    LOG_DEBUG(m_logId, "PayFee::doBiz start");
 
     //get serv_identification info
     ServIdentification m_serv_ident;
@@ -39,17 +39,17 @@ void Payment::doBiz(PaymentData & data)
     ST_SERV_IDENTIFICATION serv_ident_info;
     if(data.nbr != "")
     {
-        LOG_INFO(m_logId, "Payment::doBiz input nbr:"<<data.nbr);
+        LOG_INFO(m_logId, "PayFee::doBiz input nbr:"<<data.nbr);
         serv_ident_info = m_serv_ident.getServIdentInfoByNBR(data.nbr);
     }
     else
     {
-        LOG_INFO(m_logId, "Payment::doBiz no input nbr, system will select a random nbr to do payment.");
+        LOG_INFO(m_logId, "PayFee::doBiz no input nbr, system will select a random nbr to do payment.");
         serv_ident_info = m_serv_ident.getRandomServIdentInfo();
-        LOG_INFO(m_logId, "Payment::doBiz the random nbr:"<<serv_ident_info.m_acc_nbr);
+        LOG_INFO(m_logId, "PayFee::doBiz the random nbr:"<<serv_ident_info.m_acc_nbr);
 
     }
-    LOG_DEBUG(m_logId, "Payment::doBiz end");
+    LOG_DEBUG(m_logId, "PayFee::doBiz end");
 }
 
 

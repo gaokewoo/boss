@@ -4,14 +4,10 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-#include "Payment_constants.h"
+#include "PayFee_types.h"
+
+#include <algorithm>
 
 namespace BossInterface {
 
-const PaymentConstants g_Payment_constants;
-
-PaymentConstants::PaymentConstants() {
-}
-
 } // namespace
-

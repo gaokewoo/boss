@@ -167,27 +167,27 @@ class BossMonitor {
 
 void swap(BossMonitor &a, BossMonitor &b);
 
-typedef struct _Payment__isset {
-  _Payment__isset() : nbr(true), fee(true) {}
+typedef struct _PayFee__isset {
+  _PayFee__isset() : nbr(true), fee(true) {}
   bool nbr;
   bool fee;
-} _Payment__isset;
+} _PayFee__isset;
 
-class Payment {
+class PayFee {
  public:
 
   static const char* ascii_fingerprint; // = "C712EF0DA8599E55DF4D0F13415232EF";
   static const uint8_t binary_fingerprint[16]; // = {0xC7,0x12,0xEF,0x0D,0xA8,0x59,0x9E,0x55,0xDF,0x4D,0x0F,0x13,0x41,0x52,0x32,0xEF};
 
-  Payment() : nbr(""), fee(0) {
+  PayFee() : nbr(""), fee(0) {
   }
 
-  virtual ~Payment() throw() {}
+  virtual ~PayFee() throw() {}
 
   std::string nbr;
   double fee;
 
-  _Payment__isset __isset;
+  _PayFee__isset __isset;
 
   void __set_nbr(const std::string& val) {
     nbr = val;
@@ -197,7 +197,7 @@ class Payment {
     fee = val;
   }
 
-  bool operator == (const Payment & rhs) const
+  bool operator == (const PayFee & rhs) const
   {
     if (!(nbr == rhs.nbr))
       return false;
@@ -205,18 +205,18 @@ class Payment {
       return false;
     return true;
   }
-  bool operator != (const Payment &rhs) const {
+  bool operator != (const PayFee &rhs) const {
     return !(*this == rhs);
   }
 
-  bool operator < (const Payment & ) const;
+  bool operator < (const PayFee & ) const;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
 };
 
-void swap(Payment &a, Payment &b);
+void swap(PayFee &a, PayFee &b);
 
 } // namespace
 

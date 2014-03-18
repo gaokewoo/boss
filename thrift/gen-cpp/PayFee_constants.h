@@ -4,20 +4,20 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-#ifndef Payment_CONSTANTS_H
-#define Payment_CONSTANTS_H
+#ifndef PayFee_CONSTANTS_H
+#define PayFee_CONSTANTS_H
 
-#include "Payment_types.h"
+#include "PayFee_types.h"
 
 namespace BossInterface {
 
-class PaymentConstants {
+class PayFeeConstants {
  public:
-  PaymentConstants();
+  PayFeeConstants();
 
 };
 
-extern const PaymentConstants g_Payment_constants;
+extern const PayFeeConstants g_PayFee_constants;
 
 } // namespace
 

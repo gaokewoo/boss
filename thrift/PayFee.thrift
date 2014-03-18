@@ -2,8 +2,8 @@ namespace cpp BossInterface
     
 include "BossData.thrift" 
 
-service Payment{   
+service PayFee{   
 
-    bool subscribe(1: BossData.Payment datas);
+    bool subscribe(1: BossData.PayFee datas);
 
 }  
