@@ -97,7 +97,17 @@ void PayFee::doBiz(PayFeeData & data)
         }
 
         long serv_id = m_serv_ident.serv_identification.m_serv_id;
-        long acct_id = 0;
+
+        ServAcct m_serv_acct;
+        m_serv_acct.setConnection(m_db->getConnection());
+        ST_SERV_ACCT serv_acct_data = m_serv_acct.getServAcctByServId(serv_id);
+        long acct_id = serv_acct_data.m_acct_id;
+
+        if(acct_id == 0)
+        {
+            LOG_ERROR(m_logId,"PayFee::doBiz there is no serv_acct data with serv_id:"<<serv_id);
+            throw;
+        }
 
         Payment m_payment;
         m_payment.setConnection(m_db->getConnection());
@@ -118,6 +128,22 @@ void PayFee::doBiz(PayFeeData & data)
         m_payment.payment.m_serv_id = serv_id;
         m_payment.insertData();
         
+        StaffOpr m_staff_opr;
+        m_staff_opr.setConnection(m_db->getConnection());
+        m_staff_opr.staff_opr.m_login_accept = m_seq.getScardvcsn();
+        m_staff_opr.staff_opr.m_op_code = "JF";
+        m_staff_opr.staff_opr.m_payment_method = payment_method;
+        m_staff_opr.staff_opr.m_pay_money = (int)(100*data.fee);
+        m_staff_opr.staff_opr.m_band_id = 111;
+        m_staff_opr.staff_opr.m_serv_id = serv_id;
+        m_staff_opr.staff_opr.m_acc_nbr = serv_ident_info.m_acc_nbr;
+        m_staff_opr.staff_opr.m_op_note = "缴费";
+        m_staff_opr.staff_opr.m_ip_addr = "127.0.0.1";
+        m_staff_opr.staff_opr.m_staff_org_id = region_id;
+        m_staff_opr.staff_opr.m_nbr_org_id = region_id;
+        m_staff_opr.staff_opr.m_staff_id = staff_id;
+        m_staff_opr.insertData();
+
         m_db->commit();
         LOG_DEBUG(m_logId, "PayFee::doBiz end");
     }

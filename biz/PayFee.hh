@@ -12,8 +12,10 @@
 #include "BalanceType.hh"
 #include "BillingCycle.hh"
 #include "Staff.hh"
+#include "StaffOpr.hh"
 #include "Region.hh"
 #include "Payment.hh"
+#include "ServAcct.hh"
 #include "log4z/log4z.h"
 
 using namespace zsummer::log4z;
