@@ -14,6 +14,5 @@ public:
     ST_PAYMENT payment;
 
 private:
-    static string insSQL;
 };
 #endif

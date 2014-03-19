@@ -13,6 +13,7 @@
 #include "BillingCycle.hh"
 #include "Staff.hh"
 #include "Region.hh"
+#include "Payment.hh"
 #include "log4z/log4z.h"
 
 using namespace zsummer::log4z;
@@ -36,6 +37,7 @@ public:
 private:
     LoggerId m_logId;
     OracleDB *m_db;
+    Sequence m_seq;
 
     vector<ST_PAYMENT_METHOD> v_payment_method; 
     vector<ST_BALANCE_SOURCE_TYPE> v_balance_source_type; 

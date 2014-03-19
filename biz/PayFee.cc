@@ -21,6 +21,8 @@ PayFee::PayFee(LoggerId logId)
 
     loadConfigData();
 
+    m_seq.setConnection(m_db->getConnection());
+
     LOG_DEBUG(m_logId, "PayFee::PayFee end");
 }
 
@@ -92,8 +94,31 @@ void PayFee::doBiz(PayFeeData & data)
             LOG_INFO(m_logId, "PayFee::doBiz no input nbr, system will select a random nbr to do payment.");
             serv_ident_info = m_serv_ident.getRandomServIdentInfo();
             LOG_INFO(m_logId, "PayFee::doBiz the random nbr:"<<serv_ident_info.m_acc_nbr);
-
         }
+
+        long serv_id = m_serv_ident.serv_identification.m_serv_id;
+        long acct_id = 0;
+
+        Payment m_payment;
+        m_payment.setConnection(m_db->getConnection());
+        long payment_id = m_seq.getScardvcsn();
+        m_payment.payment.m_payment_id = payment_id;
+        m_payment.payment.m_payment_method = payment_method;
+        m_payment.payment.m_party_role_id = 0;
+        m_payment.payment.m_payed_method = payment_method;
+        m_payment.payment.m_operation_type = "5KA";
+        m_payment.payment.m_op_code = "5KA";
+        m_payment.payment.m_operated_payment_serial_nbr = payment_id;
+        m_payment.payment.m_amount = (int)(100*data.fee);
+        m_payment.payment.m_state = "5JA";
+        m_payment.payment.m_invoice_id = 0;
+        m_payment.payment.m_acct_id = acct_id;
+        m_payment.payment.m_staff_org_id = region_id;
+        m_payment.payment.m_nbr_org_id = region_id;
+        m_payment.payment.m_serv_id = serv_id;
+        m_payment.insertData();
+        
+        m_db->commit();
         LOG_DEBUG(m_logId, "PayFee::doBiz end");
     }
     catch(...)
