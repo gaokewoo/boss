@@ -20,6 +20,8 @@ $(LIB_NAME):$(OBJS)
 install:
 	@if [ ! -d $(BOSS_HOME)/boss/thrift/gen-cpp ]; then mkdir -p $(BOSS_HOME)/boss/thrift/gen-cpp/;fi
 	cp -f gen-cpp/*.h $(BOSS_HOME)/boss/thrift/gen-cpp/
+	cp -rf gen-py $(BOSS_HOME)/boss/thrift/
+	cp -f *.py $(BOSS_HOME)/boss/bin/
 
 clean:
 	rm -f gen-cpp/*.o
