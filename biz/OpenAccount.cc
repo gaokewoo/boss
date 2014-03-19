@@ -263,6 +263,7 @@ void OpenAccount::doBiz(AccountData & data)
     }
     catch(...)
     {
+        LOG_ERROR(m_logId, "OpenAccount::doBiz error");
         m_db->rollback();
     }
 }
