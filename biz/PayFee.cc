@@ -103,12 +103,6 @@ void PayFee::doBiz(PayFeeData & data)
         ST_SERV_ACCT serv_acct_data = m_serv_acct.getServAcctByServId(serv_id);
         long acct_id = serv_acct_data.m_acct_id;
 
-        if(acct_id == 0)
-        {
-            LOG_ERROR(m_logId,"PayFee::doBiz there is no serv_acct data with serv_id:"<<serv_id);
-            throw;
-        }
-
         Payment m_payment;
         m_payment.setConnection(m_db->getConnection());
         long payment_id = m_seq.getScardvcsn();

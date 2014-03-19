@@ -38,13 +38,11 @@ ST_SERV_ACCT ServAcct::getServAcctByServId(long serv_id)
     setSQL("SELECT SERV_ACCT_ID,ACCT_ID,SERV_ID,BILLING_CYCLE_TYPE_ID,ACCT_ITEM_GROUP_ID,PRIORITY,PAYMENT_RULE_ID,PAYMENT_LIMIT_TYPE,PAYMENT_LIMIT,STATE,TO_CHAR(STATE_DATE,'YYYYMMDDHH24MISS'),PAY_PRIORITY,TO_CHAR(EFF_DATE,'YYYYMMDDHH24MISS'),TO_CHAR(EXP_DATE,'YYYYMMDDHH24MISS') FROM SERV_ACCT WHERE SERV_ID=:SERV_ID");
     executeQuery();
 
-    ST_SERV_ACCT tmp;
-    memset(&tmp,0,sizeof(tmp));
     if(v_data.empty())
     {
         cerr<<"No related data with serv_id:"<<serv_id<<endl;
 
-        return tmp;
+        throw;
     }
 
     return v_data[0];
