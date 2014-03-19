@@ -16,6 +16,9 @@
 #include "Region.hh"
 #include "Payment.hh"
 #include "ServAcct.hh"
+#include "BalanceSource.hh"
+#include "AcctBalance.hh"
+#include "BillInterface.hh"
 #include "log4z/log4z.h"
 
 using namespace zsummer::log4z;

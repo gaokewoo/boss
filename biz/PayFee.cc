@@ -98,11 +98,13 @@ void PayFee::doBiz(PayFeeData & data)
 
         long serv_id = m_serv_ident.serv_identification.m_serv_id;
 
+        LOG_INFO(m_logId, "PayFee::doBiz get serv_acct info");
         ServAcct m_serv_acct;
         m_serv_acct.setConnection(m_db->getConnection());
         ST_SERV_ACCT serv_acct_data = m_serv_acct.getServAcctByServId(serv_id);
         long acct_id = serv_acct_data.m_acct_id;
 
+        LOG_INFO(m_logId, "PayFee::doBiz insert to payment table");
         Payment m_payment;
         m_payment.setConnection(m_db->getConnection());
         long payment_id = m_seq.getScardvcsn();
@@ -121,7 +123,61 @@ void PayFee::doBiz(PayFeeData & data)
         m_payment.payment.m_nbr_org_id = region_id;
         m_payment.payment.m_serv_id = serv_id;
         m_payment.insertData();
+
+        LOG_INFO(m_logId, "PayFee::doBiz insert to acct_balance table");
+        AcctBalance m_acct_balance;
+        m_acct_balance.setConnection(m_db->getConnection());
+        long acct_balance_id=m_seq.getAcctBalanceId();
+        m_acct_balance.acct_balance.m_acct_balance_id=acct_balance_id;
+        m_acct_balance.acct_balance.m_acct_id=acct_id;
+        m_acct_balance.acct_balance.m_balance_type_id=balance_type_id;
+        m_acct_balance.acct_balance.m_balance=(int)(100*data.fee);
+        m_acct_balance.acct_balance.m_reserve_balance=0;
+        m_acct_balance.acct_balance.m_cycle_upper=9999999;
+        m_acct_balance.acct_balance.m_cycle_lower=0;
+        m_acct_balance.acct_balance.m_cycle_upper_type="5LC";
+        m_acct_balance.acct_balance.m_cycle_lower_type="5LC";
+        m_acct_balance.acct_balance.m_bill_month_flag="Y";
+        m_acct_balance.acct_balance.m_state="00A";
+        m_acct_balance.insertData();
         
+        LOG_INFO(m_logId, "PayFee::doBiz insert to balance_source table");
+        BalanceSource m_balance_source;
+        m_balance_source.setConnection(m_db->getConnection());
+        m_balance_source.balance_source.m_oper_income_id=m_seq.getBalanceSourceId();
+        m_balance_source.balance_source.m_payment_id=payment_id;
+        m_balance_source.balance_source.m_acct_balance_id=acct_balance_id;
+        m_balance_source.balance_source.m_oper_type="5UA";
+        m_balance_source.balance_source.m_staff_id=staff_id;
+        m_balance_source.balance_source.m_amount=(int)(100*data.fee);
+        m_balance_source.balance_source.m_cur_amount=(int)(100*data.fee);
+        m_balance_source.balance_source.m_balance_relation_id=0;
+        m_balance_source.balance_source.m_balance_source_id=balance_source_id;
+        m_balance_source.balance_source.m_allow_draw="Y";
+        m_balance_source.balance_source.m_inv_offer="N";
+        m_balance_source.balance_source.m_cur_status="5TA";
+        m_balance_source.balance_source.m_state="00A";
+        m_balance_source.insertData();
+
+        LOG_INFO(m_logId, "PayFee::doBiz insert to bill_interface table");
+        BillInterface m_bill_interface;
+        m_bill_interface.setConnection(m_db->getConnection());
+        m_bill_interface.bill_interface.m_payment_id=payment_id;
+        m_bill_interface.bill_interface.m_acct_id=acct_id;
+        m_bill_interface.bill_interface.m_serv_id=serv_id;
+        m_bill_interface.bill_interface.m_op_code="JF";
+        m_bill_interface.bill_interface.m_staff_id=staff_id;
+        m_bill_interface.bill_interface.m_payment_method=payment_method;
+        m_bill_interface.bill_interface.m_online_flag=1;
+        m_bill_interface.bill_interface.m_state="00A";
+        m_bill_interface.bill_interface.m_op_note="缴费";
+        m_bill_interface.bill_interface.m_bill_beg_ym=0;
+        m_bill_interface.bill_interface.m_bill_end_ym=0;
+        m_bill_interface.bill_interface.m_bill_month_flag="Y";
+        m_bill_interface.bill_interface.m_serv_pay_flag=0;
+        m_bill_interface.insertData();
+
+        LOG_INFO(m_logId, "PayFee::doBiz insert to staff_opr table");
         StaffOpr m_staff_opr;
         m_staff_opr.setConnection(m_db->getConnection());
         m_staff_opr.staff_opr.m_login_accept = m_seq.getScardvcsn();
