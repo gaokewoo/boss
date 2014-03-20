@@ -20,7 +20,7 @@ echo "Start OpenAccountServer end"
 
 echo "Start PayFeeServer begin"
 ./PayFeeServer
-echo "Start PayFeeServer  end"
+echo "Start PayFeeServer end"
 
 echo "Start FetchNbrServer begin"
 ./FetchNbrServer 
@@ -28,5 +28,5 @@ echo "Start FetchNbrServer end"
 
 echo "Start AdjustAcctItemServer begin"
 ./AdjustAcctItemServer
-echo "Start AdjustAcctItemServer  end"
+echo "Start AdjustAcctItemServer end"
 
