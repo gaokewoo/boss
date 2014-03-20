@@ -6,14 +6,16 @@
 class AcctItem:public SQLInterface
 {
 public:
+    AcctItem();
     void insertData();
     virtual void prepareSQL();
     virtual void doParse(){};
+    void setYM(string ym){m_ym = ym;}
 
 public:
     ST_ACCT_ITEM acct_item;
 
 private:
-    static string insSQL;
+    string m_ym;
 };
 #endif

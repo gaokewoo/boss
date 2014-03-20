@@ -27,7 +27,7 @@ ST_SERV_IDENTIFICATION ServIdentification::getRandomServIdentInfo()
 {
     op_type=SEL_RANDOM;
     setSQL("SELECT SERV_ID,AGREEMENT_ID,ACC_NBR,TO_CHAR(EFF_DATE,'YYYYMMDD'),TO_CHAR(EXP_DATE,'YYYYMMDD') "
-                " FROM SERV_IDENTIFICATION SAMPLE(10) "
+                " FROM SERV_IDENTIFICATION SAMPLE(1) "
                 " WHERE ROWNUM<2 ");
 
     executeQuery();

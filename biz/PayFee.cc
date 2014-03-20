@@ -98,6 +98,9 @@ void PayFee::doBiz(PayFeeData & data)
 
         long serv_id = m_serv_ident.serv_identification.m_serv_id;
 
+        if(data.fee < 0.01)
+          data.fee = 100; //use the default value 100;
+
         LOG_INFO(m_logId, "PayFee::doBiz get serv_acct info");
         ServAcct m_serv_acct;
         m_serv_acct.setConnection(m_db->getConnection());

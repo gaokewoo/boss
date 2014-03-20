@@ -14,6 +14,13 @@
 #include "StaffOpr.hh"
 #include "ServIdentification.hh"
 #include "ServAcct.hh"
+#include "AcctItemType.hh"
+#include "AcctItemSource.hh"
+#include "AcctItem.hh"
+#include "AcctItemAdjusted.hh"
+#include "ChargeAdjustLog.hh"
+#include "Acct.hh"
+#include "Dual.hh"
 
 using namespace zsummer::log4z;
 
@@ -42,6 +49,7 @@ private:
     vector<ST_BILLING_CYCLE> v_billing_cycle; 
     vector<ST_STAFF> v_staff; 
     vector<ST_REGION> v_region; 
+    vector<ST_ACCT_ITEM_TYPE> v_acct_item_type; 
 };
 
 #endif
