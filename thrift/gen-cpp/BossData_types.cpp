@@ -313,4 +313,92 @@ void swap(PayFee &a, PayFee &b) {
   swap(a.__isset, b.__isset);
 }
 
+const char* AdjustAcctItem::ascii_fingerprint = "AD85F51ADB3273FFDB452ABB0A91574B";
+const uint8_t AdjustAcctItem::binary_fingerprint[16] = {0xAD,0x85,0xF5,0x1A,0xDB,0x32,0x73,0xFF,0xDB,0x45,0x2A,0xBB,0x0A,0x91,0x57,0x4B};
+
+uint32_t AdjustAcctItem::read(::apache::thrift::protocol::TProtocol* iprot) {
+
+  uint32_t xfer = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TType ftype;
+  int16_t fid;
+
+  xfer += iprot->readStructBegin(fname);
+
+  using ::apache::thrift::protocol::TProtocolException;
+
+
+  while (true)
+  {
+    xfer += iprot->readFieldBegin(fname, ftype, fid);
+    if (ftype == ::apache::thrift::protocol::T_STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->nbr);
+          this->__isset.nbr = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 2:
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->ym);
+          this->__isset.ym = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 3:
+        if (ftype == ::apache::thrift::protocol::T_DOUBLE) {
+          xfer += iprot->readDouble(this->fee);
+          this->__isset.fee = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
+    xfer += iprot->readFieldEnd();
+  }
+
+  xfer += iprot->readStructEnd();
+
+  return xfer;
+}
+
+uint32_t AdjustAcctItem::write(::apache::thrift::protocol::TProtocol* oprot) const {
+  uint32_t xfer = 0;
+  xfer += oprot->writeStructBegin("AdjustAcctItem");
+
+  xfer += oprot->writeFieldBegin("nbr", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString(this->nbr);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("ym", ::apache::thrift::protocol::T_STRING, 2);
+  xfer += oprot->writeString(this->ym);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("fee", ::apache::thrift::protocol::T_DOUBLE, 3);
+  xfer += oprot->writeDouble(this->fee);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldStop();
+  xfer += oprot->writeStructEnd();
+  return xfer;
+}
+
+void swap(AdjustAcctItem &a, AdjustAcctItem &b) {
+  using ::std::swap;
+  swap(a.nbr, b.nbr);
+  swap(a.ym, b.ym);
+  swap(a.fee, b.fee);
+  swap(a.__isset, b.__isset);
+}
+
 } // namespace

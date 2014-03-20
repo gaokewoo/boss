@@ -218,6 +218,65 @@ class PayFee {
 
 void swap(PayFee &a, PayFee &b);
 
+typedef struct _AdjustAcctItem__isset {
+  _AdjustAcctItem__isset() : nbr(true), ym(true), fee(true) {}
+  bool nbr;
+  bool ym;
+  bool fee;
+} _AdjustAcctItem__isset;
+
+class AdjustAcctItem {
+ public:
+
+  static const char* ascii_fingerprint; // = "AD85F51ADB3273FFDB452ABB0A91574B";
+  static const uint8_t binary_fingerprint[16]; // = {0xAD,0x85,0xF5,0x1A,0xDB,0x32,0x73,0xFF,0xDB,0x45,0x2A,0xBB,0x0A,0x91,0x57,0x4B};
+
+  AdjustAcctItem() : nbr(""), ym(""), fee(0) {
+  }
+
+  virtual ~AdjustAcctItem() throw() {}
+
+  std::string nbr;
+  std::string ym;
+  double fee;
+
+  _AdjustAcctItem__isset __isset;
+
+  void __set_nbr(const std::string& val) {
+    nbr = val;
+  }
+
+  void __set_ym(const std::string& val) {
+    ym = val;
+  }
+
+  void __set_fee(const double val) {
+    fee = val;
+  }
+
+  bool operator == (const AdjustAcctItem & rhs) const
+  {
+    if (!(nbr == rhs.nbr))
+      return false;
+    if (!(ym == rhs.ym))
+      return false;
+    if (!(fee == rhs.fee))
+      return false;
+    return true;
+  }
+  bool operator != (const AdjustAcctItem &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const AdjustAcctItem & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+void swap(AdjustAcctItem &a, AdjustAcctItem &b);
+
 } // namespace
 
 #endif

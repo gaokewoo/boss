@@ -24,3 +24,10 @@ struct PayFee
     1: string nbr="",
     2: double fee=0,
 }
+
+struct AdjustAcctItem
+{
+    1: string nbr="",
+    2: string ym="",
+    3: double fee=0,
+}
