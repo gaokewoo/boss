@@ -26,9 +26,13 @@ void ServIdentification::prepareSQL()
 ST_SERV_IDENTIFICATION ServIdentification::getRandomServIdentInfo()
 {
     op_type=SEL_RANDOM;
-    setSQL("SELECT SERV_ID,AGREEMENT_ID,ACC_NBR,TO_CHAR(EFF_DATE,'YYYYMMDD'),TO_CHAR(EXP_DATE,'YYYYMMDD') "
-                " FROM SERV_IDENTIFICATION SAMPLE(10) "
-                " WHERE ROWNUM<2 ");
+    string sql="SELECT * FROM "
+        "(SELECT SERV_ID,AGREEMENT_ID,ACC_NBR,TO_CHAR(EFF_DATE,'YYYYMMDD'),TO_CHAR(EXP_DATE,'YYYYMMDD') "
+        "FROM SERV_IDENTIFICATION "
+        "ORDER BY DBMS_RANDOM.VALUE "
+        ") "
+        "WHERE ROWNUM=1 ";
+    setSQL(sql);
 
     executeQuery();
 
