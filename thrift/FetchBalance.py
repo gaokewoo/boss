@@ -29,4 +29,4 @@ transport.open()
 # Call Server services
 balance = client.fetchBalance(sys.argv[1])
 
-print "Balance:"+balance
+print "Balance: ",balance

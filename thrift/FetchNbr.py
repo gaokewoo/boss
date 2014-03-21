@@ -29,4 +29,4 @@ transport.open()
 # Call Server services
 phoneNbr = client.fetchNbr()
 
-print "Phone Nbr:"+phoneNbr
+print "Phone Nbr: "+phoneNbr
