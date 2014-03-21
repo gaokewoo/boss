@@ -8,7 +8,7 @@
 #define FetchNbr_H
 
 #include <thrift/TDispatchProcessor.h>
-#include "FetchNbr_types.h"
+#include "query_types.h"
 
 namespace BossInterface {
 
