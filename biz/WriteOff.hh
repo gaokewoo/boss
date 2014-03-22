@@ -1,5 +1,5 @@
-#ifndef __FETCHBALANCE_HH__
-#define __FETCHBALANCE_HH__
+#ifndef __WRITEOFF_HH__
+#define __WRITEOFF_HH__
 
 #include <stdlib.h> 
 #include <stdio.h>
@@ -10,12 +10,12 @@
 
 using namespace zsummer::log4z;
 
-class FetchBalance
+class WriteOff
 {
 public:
-    FetchBalance(LoggerId logId);
-    ~FetchBalance();
-    double doBiz(string nbr);
+    WriteOff(LoggerId logId);
+    ~WriteOff();
+    void doBiz();
 
 private:
     LoggerId m_logId;
