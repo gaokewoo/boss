@@ -30,3 +30,7 @@ echo "Start AdjustAcctItemServer begin"
 ./AdjustAcctItemServer
 echo "Start AdjustAcctItemServer end"
 
+echo "Start WriteOffServer begin"
+./WriteOffServer
+echo "Start WriteOffServer end"
+

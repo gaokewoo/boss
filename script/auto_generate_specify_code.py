@@ -57,10 +57,10 @@ def CC(file_name,flag):
         column=column.rstrip(',')
         sel_column=sel_column.rstrip(',')
         value=value.rstrip(',')
-        insSQL='"INSERT INTO '+table_name+'('+column+')'+'VALUES ('+value+')";'
+        insSQL='"INSERT INTO '+table_name+'('+column+')'+'VALUES ('+value+')"'
 
-        emptySQL='"DELETE FROM '+table_name+'";'
-        selectAllSQL='"SELECT '+sel_column+' FROM '+table_name+'";'
+        emptySQL='"DELETE FROM '+table_name+'"'
+        selectAllSQL='"SELECT '+sel_column+' FROM '+table_name+'"'
 
         if flag=="INSERT":
             print 'void '+class_name+'::insertData()'

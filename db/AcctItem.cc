@@ -8,6 +8,7 @@ AcctItem::AcctItem()
 
 void AcctItem::insertData()
 {
+    type=INSERT;
     if(m_ym == "")
     {
         Dual dual;
@@ -21,28 +22,105 @@ void AcctItem::insertData()
     executeUpdate();
 }
 
+void AcctItem::updateStateAndAmountInAcctItemByAcctItemId(long acct_item_id,string state,long amount)
+{
+    type=UPDATE_STATE_AMOUNT;
+    m_state=state;
+    m_acct_item_id=acct_item_id;
+    m_amount=amount;
+    if(m_ym == "")
+    {
+        Dual dual;
+        dual.setConnection(conn);
+        m_ym = dual.getSysDateYYYYMM();
+    }
+    string insSQL="UPDATE ACCT_ITEM"+m_ym+" SET STATE=:STATE,AMOUNT=:AMOUNT WHERE ACCT_ITEM_ID=:ACCT_ITEM_ID";
+
+    setSQL(insSQL);
+
+    executeUpdate();
+}
+
+vector<ST_ACCT_ITEM> AcctItem::getAcctItemByAcctId(long acct_id)
+{
+    type=SELECT_BY_ACCT_ID;
+    m_acct_id = acct_id;
+    if(m_ym == "")
+    {
+        Dual dual;
+        dual.setConnection(conn);
+        m_ym = dual.getSysDateYYYYMM();
+    }
+    setSQL("SELECT ACCT_ITEM_ID,ITEM_SOURCE_ID,BILL_ID,ACCT_ITEM_TYPE_ID,BILLING_CYCLE_ID,ACCT_ID,SERV_ID,AMOUNT,TO_CHAR(CREATED_DATE,'YYYYMMDDHH24MISS'),FEE_CYCLE_ID,PAYMENT_METHOD,STATE,TO_CHAR(STATE_DATE,'YYYYMMDDHH24MISS'),LATN_ID,AI_TOTAL_ID,ACC_NBR,SHOULD_PAY,FAVOUR_FEE,TIMES,DURATION,MONTH_WRTOFF_FEE,PAY_WRTOFF_FEE,ATTR_CODE FROM ACCT_ITEM"+m_ym+" WHERE ACCT_ID=:ACCT_ID");
+    executeQuery();
+
+    return v_data;
+}
+
+void AcctItem::doParse()
+{
+    acct_item.m_acct_item_id = (long)rset->getNumber(1);
+    acct_item.m_item_source_id = (long)rset->getNumber(2);
+    acct_item.m_bill_id = (long)rset->getNumber(3);
+    acct_item.m_acct_item_type_id = (long)rset->getNumber(4);
+    acct_item.m_billing_cycle_id = (long)rset->getNumber(5);
+    acct_item.m_acct_id = (long)rset->getNumber(6);
+    acct_item.m_serv_id = (long)rset->getNumber(7);
+    acct_item.m_amount = (long)rset->getNumber(8);
+    acct_item.m_created_date = rset->getString(9);
+    acct_item.m_fee_cycle_id = (long)rset->getNumber(10);
+    acct_item.m_payment_method = (long)rset->getNumber(11);
+    acct_item.m_state = rset->getString(12);
+    acct_item.m_state_date = rset->getString(13);
+    acct_item.m_latn_id = (long)rset->getNumber(14);
+    acct_item.m_ai_total_id = (long)rset->getNumber(15);
+    acct_item.m_acc_nbr = rset->getString(16);
+    acct_item.m_should_pay = (long)rset->getNumber(17);
+    acct_item.m_favour_fee = (long)rset->getNumber(18);
+    acct_item.m_times = (long)rset->getNumber(19);
+    acct_item.m_duration = (long)rset->getNumber(20);
+    acct_item.m_month_wrtoff_fee = (long)rset->getNumber(21);
+    acct_item.m_pay_wrtoff_fee = (long)rset->getNumber(22);
+    acct_item.m_attr_code = rset->getString(23);
+
+    v_data.push_back(acct_item);
+}
+
 void AcctItem::prepareSQL()
 {
-    stmt->setNumber(1,acct_item.m_acct_item_id);
-    stmt->setNumber(2,acct_item.m_item_source_id);
-    stmt->setNumber(3,acct_item.m_bill_id);
-    stmt->setNumber(4,acct_item.m_acct_item_type_id);
-    stmt->setNumber(5,acct_item.m_billing_cycle_id);
-    stmt->setNumber(6,acct_item.m_acct_id);
-    stmt->setNumber(7,acct_item.m_serv_id);
-    stmt->setNumber(8,acct_item.m_amount);
-    stmt->setNumber(9,acct_item.m_fee_cycle_id);
-    stmt->setNumber(10,acct_item.m_payment_method);
-    stmt->setString(11,acct_item.m_state);
-    stmt->setNumber(12,acct_item.m_latn_id);
-    stmt->setNumber(13,acct_item.m_ai_total_id);
-    stmt->setString(14,acct_item.m_acc_nbr);
-    stmt->setNumber(15,acct_item.m_should_pay);
-    stmt->setNumber(16,acct_item.m_favour_fee);
-    stmt->setNumber(17,acct_item.m_times);
-    stmt->setNumber(18,acct_item.m_duration);
-    stmt->setNumber(19,acct_item.m_month_wrtoff_fee);
-    stmt->setNumber(20,acct_item.m_pay_wrtoff_fee);
-    stmt->setString(21,acct_item.m_attr_code);
+    if (type == INSERT)
+    {
+        stmt->setNumber(1,acct_item.m_acct_item_id);
+        stmt->setNumber(2,acct_item.m_item_source_id);
+        stmt->setNumber(3,acct_item.m_bill_id);
+        stmt->setNumber(4,acct_item.m_acct_item_type_id);
+        stmt->setNumber(5,acct_item.m_billing_cycle_id);
+        stmt->setNumber(6,acct_item.m_acct_id);
+        stmt->setNumber(7,acct_item.m_serv_id);
+        stmt->setNumber(8,acct_item.m_amount);
+        stmt->setNumber(9,acct_item.m_fee_cycle_id);
+        stmt->setNumber(10,acct_item.m_payment_method);
+        stmt->setString(11,acct_item.m_state);
+        stmt->setNumber(12,acct_item.m_latn_id);
+        stmt->setNumber(13,acct_item.m_ai_total_id);
+        stmt->setString(14,acct_item.m_acc_nbr);
+        stmt->setNumber(15,acct_item.m_should_pay);
+        stmt->setNumber(16,acct_item.m_favour_fee);
+        stmt->setNumber(17,acct_item.m_times);
+        stmt->setNumber(18,acct_item.m_duration);
+        stmt->setNumber(19,acct_item.m_month_wrtoff_fee);
+        stmt->setNumber(20,acct_item.m_pay_wrtoff_fee);
+        stmt->setString(21,acct_item.m_attr_code);
+    }
+    else if (type == SELECT_BY_ACCT_ID)
+    {
+        stmt->setNumber(1,m_acct_id);
+    }
+    else if (type == UPDATE_STATE_AMOUNT)
+    {
+        stmt->setString(1,m_state);
+        stmt->setNumber(2,m_amount);
+        stmt->setNumber(3,m_acct_item_id);
+    }
 }
 
