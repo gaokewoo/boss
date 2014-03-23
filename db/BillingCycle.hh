@@ -9,6 +9,7 @@ public:
     void insertData();
     void emptyData();
     vector<ST_BILLING_CYCLE> loadAllData();
+    vector<ST_BILLING_CYCLE> getEffectiveBillingCycle();
     virtual void prepareSQL();
     virtual void doParse();
 

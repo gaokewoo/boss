@@ -19,6 +19,36 @@ vector<ST_ACCT_BALANCE> AcctBalance::getAcctBalanceByAcctId(long acct_id)
     return v_data;
 }
 
+void AcctBalance::deleteAcctBalanceByAcctBalanceId(long acct_balance_id)
+{
+    type=DELETE;
+    m_acct_balance_id = acct_balance_id;
+
+    setSQL("INSERT INTO ACCT_BALANCE_HIS"
+                "(ACCT_BALANCE_ID,ACCT_ID,BALANCE_TYPE_ID,BALANCE,RESERVE_BALANCE,"
+                "CYCLE_UPPER,CYCLE_LOWER,CYCLE_UPPER_TYPE,CYCLE_LOWER_TYPE,PAYMENT_DATE,"
+                "BILL_MONTH_FLAG,EFF_DATE,EXP_DATE,STATE,STATE_DATE,HIS_DATE)"
+                "SELECT ACCT_BALANCE_ID,ACCT_ID,BALANCE_TYPE_ID,BALANCE,RESERVE_BALANCE,"
+                "CYCLE_UPPER,CYCLE_LOWER,CYCLE_UPPER_TYPE,CYCLE_LOWER_TYPE,PAYMENT_DATE,"
+                "BILL_MONTH_FLAG,EFF_DATE,EXP_DATE,STATE,STATE_DATE,SYSDATE "
+                "FROM ACCT_BALANCE WHERE ACCT_BALANCE_ID=:ACCT_BALANCE_ID");
+    executeUpdate();
+
+    setSQL("DELETE FROM ACCT_BALANCE WHERE ACCT_BALANCE_ID=:ACCT_BALANCE_ID");
+    executeUpdate();
+}
+
+void AcctBalance::updateAcctBalanceByAcctBalanceId(long acct_balance_id,long balance)
+{
+    type=UPDATE;
+    m_acct_balance_id = acct_balance_id;
+    m_balance = balance;
+
+    setSQL("UPDATE ACCT_BALANCE SET BALANCE=:BALANCE WHERE ACCT_BALANCE_ID=:ACCT_BALANCE_ID");
+
+    executeUpdate();
+}
+
 void AcctBalance::doParse()
 {
     acct_balance.m_acct_balance_id = (long)rset->getNumber(1);
@@ -59,6 +89,15 @@ void AcctBalance::prepareSQL()
     else if (type == SELECT_BY_ACCT_ID)
     {
         stmt->setNumber(1,m_acct_id);
+    }
+    else if (type == DELETE)
+    {
+        stmt->setNumber(1,m_acct_balance_id);
+    }
+    else if (type == UPDATE)
+    {
+        stmt->setNumber(1,m_balance);
+        stmt->setNumber(2,m_acct_balance_id);
     }
 }
 

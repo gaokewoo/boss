@@ -21,6 +21,10 @@ void ServIdentification::prepareSQL()
     {
         stmt->setString(1,my_nbr);
     }
+    else if(op_type == SEL_BY_SERV_ID)
+    {
+        stmt->setNumber(1,m_serv_id);
+    }
 }
 
 ST_SERV_IDENTIFICATION ServIdentification::getRandomServIdentInfo()
@@ -46,6 +50,18 @@ ST_SERV_IDENTIFICATION ServIdentification::getServIdentInfoByNBR(string nbr)
     setSQL("SELECT SERV_ID,AGREEMENT_ID,ACC_NBR,TO_CHAR(EFF_DATE,'YYYYMMDD'),TO_CHAR(EXP_DATE,'YYYYMMDD') "
                 " FROM SERV_IDENTIFICATION "
                 " WHERE ACC_NBR=:ACC_NBR ");
+    executeQuery();
+
+    return serv_identification;
+}
+
+ST_SERV_IDENTIFICATION ServIdentification::getServIdentInfoByServId(long serv_id)
+{
+    op_type=SEL_BY_SERV_ID;
+    m_serv_id=serv_id;
+    setSQL("SELECT SERV_ID,AGREEMENT_ID,ACC_NBR,TO_CHAR(EFF_DATE,'YYYYMMDD'),TO_CHAR(EXP_DATE,'YYYYMMDD') "
+                " FROM SERV_IDENTIFICATION "
+                " WHERE SERV_ID=:SERV_ID");
     executeQuery();
 
     return serv_identification;

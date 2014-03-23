@@ -29,6 +29,18 @@ vector<ST_BILLING_CYCLE> BillingCycle::loadAllData()
     return v_data;
 }
 
+vector<ST_BILLING_CYCLE> BillingCycle::getEffectiveBillingCycle()
+{
+    type=3;
+    string selSQL="SELECT BILLING_CYCLE_ID,BILLING_CYCLE_TYPE_ID,TO_CHAR(CYCLE_BEGIN_DATE,'YYYYMMDDHH24MISS'),TO_CHAR(CYCLE_END_DATE,'YYYYMMDDHH24MISS'),TO_CHAR(DUE_DATE,'YYYYMMDDHH24MISS'),TO_CHAR(BLOCK_DATE,'YYYYMMDDHH24MISS'),LAST_BILLING_CYCLE_ID,STATE,TO_CHAR(STATE_DATE,'YYYYMMDDHH24MISS'),BILL_MONTH_FLAG FROM BILLING_CYCLE WHERE STATE='00A'";
+
+    setSQL(selSQL);
+
+    executeQuery();
+
+    return v_data;
+}
+
 void BillingCycle::doParse()
 {
     billing_cycle.m_billing_cycle_id = (long)rset->getNumber(1);
