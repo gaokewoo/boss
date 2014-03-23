@@ -20,7 +20,9 @@ BOSS_LIBS=$(BOSS_LIB_PATH)/ -lbossbiz -lbossdb -lbosspub -lbossthrift -lbossalg 
 THRIFT_INCLUDE=$(BOSS_HOME)/thrift/include/
 THRIFT_LIBS=$(BOSS_HOME)/thrift/lib -lthrift
 
-#tinyxml2 dir
+#libzmq dir
+ZMQ_INCLUDE=$(BOSS_HOME)/libzmq/include/
+ZMQ_LIBS=$(BOSS_HOME)/libzmq/lib -lzmq
 
 #gmock dir
 GMOCK_INCLUDE=$(BOSS_DEV_HOME)/gmock/include/
@@ -30,6 +32,7 @@ GTEST_INCLUDE=$(BOSS_DEV_HOME)/gmock/gtest/include/
 CC_INCLDIR=-I. \
 		   -I$(ORACLE_HOME)/rdbms/public/ \
 		   -I$(THRIFT_INCLUDE)/ \
+		   -I$(ZMQ_INCLUDE)/ \
 		   -I$(GMOCK_INCLUDE)/ \
 		   -I$(GTEST_INCLUDE)/ \
            -I$(BOSS_THRIFT_INCLUDE)/ \
@@ -43,4 +46,4 @@ CC_INCLDIR=-I. \
 
 ORA_LIBS=$(ORACLE_HOME)/lib -locci -lclntsh
 
-LIBS= -L$(BOSS_LIBS) -L$(ORA_LIBS) -L$(THRIFT_LIBS) -lpthread
+LIBS= -L$(BOSS_LIBS) -L$(ORA_LIBS) -L$(THRIFT_LIBS) -L$(ZMQ_LIBS) -lpthread

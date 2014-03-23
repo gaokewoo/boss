@@ -20,8 +20,11 @@
 #include "AcctBalance.hh"
 #include "BillInterface.hh"
 #include "log4z/log4z.h"
+#include "cppzmq/zmq.hpp"
 
 using namespace zsummer::log4z;
+
+using namespace zmq;
 
 class PayFeeData{
     public:
@@ -50,6 +53,11 @@ private:
     vector<ST_BILLING_CYCLE> v_billing_cycle; 
     vector<ST_STAFF> v_staff; 
     vector<ST_REGION> v_region; 
+
+    // Prepare our context and socket
+    context_t *context;
+    socket_t *socket;
+
 };
 
 #endif

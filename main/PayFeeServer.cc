@@ -44,6 +44,7 @@ class PayFeeHandler : virtual public PayFeeIf {
             my_data.nbr = data.nbr;
             my_data.fee= data.fee;
             m_payment->doBiz(my_data);
+
             LOG_INFO(m_logId, "Server handle successfully.");
 
             return true;
@@ -52,7 +53,6 @@ class PayFeeHandler : virtual public PayFeeIf {
     private:
         PayFee *m_payment;
         LoggerId m_logId;
-
 };
 
 void mkDaemon(void)
@@ -86,6 +86,7 @@ int main(int argc, char **argv) {
     LOG_INFO(logId, "Parse boss.cfg");
     CONF_PARSER_SIMPLE_INIT("../conf/boss.cfg");
     int port = CONF_PARSER_GET_NUM_VAL("PayFee", "port");
+
     LOG_INFO(logId, "Server listening port:"<<port);
 
     shared_ptr<PayFeeHandler> handler(new PayFeeHandler(logId));

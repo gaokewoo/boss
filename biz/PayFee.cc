@@ -19,6 +19,16 @@ PayFee::PayFee(LoggerId logId)
     m_db = new OracleDB(db_user,db_passwd,db_instance);
     m_db->connectToDB();
 
+    int zmq_pub_port = CONF_PARSER_GET_NUM_VAL("PayFee", "zmq_pub_port");
+    LOG_INFO(logId, "Server zmq_pub_port:"<<zmq_pub_port);
+
+    context = new context_t(1);
+    socket = new socket_t(*context,ZMQ_PUB);
+
+    char bind_str[20];
+    sprintf(bind_str,"tcp://*:%d",zmq_pub_port);
+    socket->bind(bind_str);
+
     loadConfigData();
 
     m_seq.setConnection(m_db->getConnection());
@@ -197,6 +207,15 @@ void PayFee::doBiz(PayFeeData & data)
         m_staff_opr.staff_opr.m_staff_id = staff_id;
         m_staff_opr.insertData();
 
+        //begin publish
+        char* filter = (char*)"JF ";
+        char buf[64];
+        snprintf(buf, sizeof(buf), "%s%s", filter,serv_ident_info.m_acc_nbr.c_str());
+
+        message_t request(strlen(buf)+1);
+        memcpy ((void *) request.data (), buf, strlen(buf)+1);
+        socket->send(request);
+            
         m_db->commit();
         LOG_DEBUG(m_logId, "PayFee::doBiz end");
     }

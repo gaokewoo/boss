@@ -21,8 +21,11 @@
 #include "ChargeAdjustLog.hh"
 #include "Acct.hh"
 #include "Dual.hh"
+#include "cppzmq/zmq.hpp"
 
 using namespace zsummer::log4z;
+
+using namespace zmq;
 
 class AdjustAcctItemData{
     public:
@@ -50,6 +53,10 @@ private:
     vector<ST_STAFF> v_staff; 
     vector<ST_REGION> v_region; 
     vector<ST_ACCT_ITEM_TYPE> v_acct_item_type; 
+
+    // Prepare our context and socket
+    context_t *context;
+    socket_t *socket;
 };
 
 #endif
