@@ -26,6 +26,10 @@ echo "Start FetchNbrServer begin"
 ./FetchNbrServer 
 echo "Start FetchNbrServer end"
 
+echo "Start FetchBalanceServer begin"
+./FetchBalanceServer
+echo "Start FetchBalanceServer end"
+
 echo "Start AdjustAcctItemServer begin"
 ./AdjustAcctItemServer
 echo "Start AdjustAcctItemServer end"

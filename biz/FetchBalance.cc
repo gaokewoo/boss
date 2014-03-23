@@ -3,6 +3,9 @@
 #include "ServIdentification.hh"
 #include "ServAcct.hh"
 #include "Acct.hh"
+#include "AcctBalance.hh"
+#include "AcctItem.hh"
+#include "Dual.hh"
 
 FetchBalance::FetchBalance(LoggerId logId)
 {
@@ -64,9 +67,56 @@ double FetchBalance::doBiz(string nbr)
         ST_ACCT acct_data = m_acct.getAcctByAcctId(acct_id);
         LOG_INFO(m_logId, "FetchBalance::doBiz acct_id:"<<acct_id<<" old owe_min_ym:"<<acct_data.m_owe_min_ym<<" old owe_fee:"<<acct_data.m_owe_fee);
 
+        LOG_INFO(m_logId, "FetchBalance::doBiz get acct balance info by acct_id:"<<acct_id);
+        AcctBalance m_acct_balance;
+        m_acct_balance.setConnection(m_db->getConnection());
+        vector<ST_ACCT_BALANCE> v_acct_balance(m_acct_balance.getAcctBalanceByAcctId(acct_id));
+
+        long total_balance=0;
+        for(vector<ST_ACCT_BALANCE>::iterator it=v_acct_balance.begin();
+                    it != v_acct_balance.end(); it++)
+        {
+            total_balance = (*it).m_balance;
+        }
+
+        long owe_min_ym = acct_data.m_owe_min_ym;
+
+        Dual dual;
+        dual.setConnection(m_db->getConnection());
+        string ym = dual.getSysDateYYYYMM();
+        LOG_INFO(m_logId, "FetchBalance::doBiz current ym:"<<ym);
+
+        long total_amount=0;
+        AcctItem m_acct_item;
+        m_acct_item.setConnection(m_db->getConnection());
+        while(owe_min_ym <= atol(ym.c_str()))
+        {
+            LOG_INFO(m_logId, "FetchBalance::doBiz get acct_item info by acct_id:"<<acct_id<<" and owe_min_ym:"<<owe_min_ym);
+
+            char tmp[30];
+            sprintf(tmp,"%ld",owe_min_ym);
+            m_acct_item.setYM(tmp);
+            vector<ST_ACCT_ITEM> v_acct_item(m_acct_item.getAcctItemByAcctId(acct_id));
+
+            for(vector<ST_ACCT_ITEM>::iterator it=v_acct_item.begin();
+                        it != v_acct_item.end(); it++)
+            {
+                total_amount += (*it).m_amount;
+            }
+
+            owe_min_ym=getNextYm(owe_min_ym);
+        }
+
+        if (total_amount != acct_data.m_owe_fee)
+        {
+            LOG_WARN(m_logId, "FetchBalance::doBiz update acct by acct_id:"<<acct_id<<" actual owe fee;"<<total_amount<<" but store value is:"<<acct_data.m_owe_fee);
+            m_acct.setAcctOweMinYMAndOweFee(acct_id,acct_data.m_owe_min_ym,total_amount);
+        }
         LOG_DEBUG(m_logId, "FetchBalance::doBiz end");
 
-        return acct_data.m_owe_fee;
+        m_db->commit();
+
+        return (total_balance-total_amount)/100;
     }
     catch(...)
     {
@@ -75,5 +125,20 @@ double FetchBalance::doBiz(string nbr)
     }
 
 }
+
+long FetchBalance::getNextYm(long owe_min_ym)
+{
+    long year = owe_min_ym/100;
+    long month = owe_min_ym%100;
+
+    if(++month >= 13)
+    {
+        year++;
+        month-=12;
+    }
+
+    return year*100+month;
+}
+
 
 

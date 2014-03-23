@@ -16,6 +16,7 @@ public:
     FetchBalance(LoggerId logId);
     ~FetchBalance();
     double doBiz(string nbr);
+    long getNextYm(long owe_min_ym);
 
 private:
     LoggerId m_logId;
