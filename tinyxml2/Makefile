@@ -18,7 +18,7 @@ $(LIB_NAME):$(OBJS)
 	$(CC) $(CC_FLAGS) $(CC_INCLDIR)  -c $<
 
 install:
-	@if [ ! -d $(BOSS_HOME)/boss/tinyxml2/ ]; then mkdir $(BOSS_HOME)/boss/tinyxml2/;fi
+	@if [ ! -d $(BOSS_HOME)/boss/tinyxml2/ ]; then mkdir -p $(BOSS_HOME)/boss/tinyxml2/;fi
 	cp -f *.h $(BOSS_HOME)/boss/tinyxml2/
 
 clean:

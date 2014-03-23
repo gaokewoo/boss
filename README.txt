@@ -1,23 +1,7 @@
-1.用sys登录到oracle中
-sqlplus / as sysdba;
-
-2.开始修改编码
-shutdown immediate;
-
-startup mount;
-
-alter system enable restricted session;
-
-alter system set job_queue_processes=0;
-
-alter database open;
-
-alter database character set internal_use utf8;
-
-shutdown immediate;
-
-startup;
-
+###create installation env begin##
+mkdir /opt-boss/
+chown oracle:oinstall /opt-boss/
+###create installation env end##
 
 #####install thrift begin#########
 cd m4-1.4.16
@@ -41,22 +25,13 @@ make install
 #####install thrift end#########
 
 
-#####install rabbitmq begin#######
-#install erlang
-cd otp_src_R13B03
-LANG=C; export LANG #Bourne shell
-./configure --prefix=/opt-boss/erlang/
+#####install zmq begin#######
+cd libzmq
+./autogen.sh
+./configure --prefix=/opt-boss/libzmq/
 make
 make install
-
-#install simplejson, Note:make sure python has been installed
-cd simplejson-3.3.3
-sudo python setup.py install
-
-#install rabbitmq, Note:make sure xmlto has been installed
-cd rabbitmq-server-3.2.4
-make TARGET_DIR=/opt-boss/rabbitmq SBIN_DIR=/opt-boss/rabbitmq/sbin MAN_DIR=/opt-boss/rabbitmq/man DOC_INSTALL_DIR=/opt-boss/rabbitmq/doc install
-#####install rabbitmq end#######
+#####install zmq end#######
 
 #####install glog begin#######
 cd glog-0.3.3
@@ -65,9 +40,12 @@ make
 make install
 #####install glog end#######
 
-#####install xerces begin#######
-cd xerces-c-3.1.1
-./configure --prefix=/opt-boss/xerces/
+#####install boss begin#####
+cd boss
+source bossenv.sh
+source env.sh
 make
 make install
-#####install xerces end#######
+#####install boss end#####
+
+

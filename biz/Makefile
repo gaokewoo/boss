@@ -18,7 +18,7 @@ $(LIB_NAME):$(OBJS)
 	$(CC) $(CC_FLAGS) $(CC_INCLDIR)  -c $<
 
 install:
-	@if [ ! -d $(BOSS_HOME)/boss/biz/ ]; then mkdir $(BOSS_HOME)/boss/biz/;fi
+	@if [ ! -d $(BOSS_HOME)/boss/biz/ ]; then mkdir -p $(BOSS_HOME)/boss/biz/;fi
 	cp -f *.hh $(BOSS_HOME)/boss/biz/
 
 clean:
