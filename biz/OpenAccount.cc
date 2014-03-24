@@ -115,7 +115,7 @@ void OpenAccount::doBiz(AccountData & data)
         LOG_INFO(m_logId, "Address_id:"<<address_id);
         LOG_INFO(m_logId, "Certificate_type:"<<certificate_type);
         LOG_INFO(m_logId, "Staff_id :"<<staff_id);
-        LOG_INFO(m_logId, "Serv_state:"<<serv_state);
+        LOG_INFO(m_logId, "Serv_state: A");
 
         RandomInfo rand_info=generator.getRandomInfo();
 
@@ -198,7 +198,7 @@ void OpenAccount::doBiz(AccountData & data)
         m_serv.serv.m_product_id=product_id;
         m_serv.serv.m_billing_cycle_type_id=billing_cycle_type_id;
         m_serv.serv.m_product_family_id=0;
-        m_serv.serv.m_state=serv_state;
+        m_serv.serv.m_state="A";
         m_serv.serv.m_region_id=region_id;
         m_serv.serv.m_band_id=0;
         m_serv.insertData();
@@ -236,7 +236,7 @@ void OpenAccount::doBiz(AccountData & data)
         m_serv_state_attr.serv_state_attr.m_billing_cycle_type_id=billing_cycle_type_id;
         m_serv_state_attr.serv_state_attr.m_agreement_id=agreement_id;
         m_serv_state_attr.serv_state_attr.m_owe_business_type_id=0;
-        m_serv_state_attr.serv_state_attr.m_state=serv_state;
+        m_serv_state_attr.serv_state_attr.m_state="A";
         m_serv_state_attr.insertData();
 
         m_serv_billing_mode.serv_billing_mode.m_serv_id = serv_id;
