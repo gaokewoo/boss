@@ -14,7 +14,7 @@ $(LIB_NAME):$(OBJS)
 	mv -f $@ ../lib/
 	@echo "### $@ loaded ###\n"
 
-.cc.o:
+.cpp.o:
 	$(CC) $(CC_FLAGS) $(CC_INCLDIR)  -c $<
 
 install:
