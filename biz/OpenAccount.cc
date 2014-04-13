@@ -219,6 +219,14 @@ void OpenAccount::doBiz(AccountData & data)
 
         string acc_nbr = (data.nbr != "" ? data.nbr : generator.getNbr());
         LOG_INFO(m_logId, "Acc_nbr:"<<acc_nbr);
+        ST_SERV_IDENTIFICATION m_serv_ident_info=m_serv_ident.getServIdentInfoByNBR(acc_nbr);
+        if(m_serv_ident_info.m_acc_nbr == "")
+        {
+            LOG_INFO(m_logId, "Acc_nbr:"<<acc_nbr<<" already exist in serv_identification");
+            m_db->rollback();
+
+            return;
+        }
         m_serv_ident.serv_identification.m_serv_id = serv_id;
         m_serv_ident.serv_identification.m_agreement_id = agreement_id;
         m_serv_ident.serv_identification.m_acc_nbr = acc_nbr; 

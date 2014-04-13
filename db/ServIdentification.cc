@@ -30,12 +30,9 @@ void ServIdentification::prepareSQL()
 ST_SERV_IDENTIFICATION ServIdentification::getRandomServIdentInfo()
 {
     op_type=SEL_RANDOM;
-    string sql="SELECT * FROM "
-        "(SELECT SERV_ID,AGREEMENT_ID,ACC_NBR,TO_CHAR(EFF_DATE,'YYYYMMDD'),TO_CHAR(EXP_DATE,'YYYYMMDD') "
-        "FROM SERV_IDENTIFICATION "
-        "ORDER BY DBMS_RANDOM.VALUE "
-        ") "
-        "WHERE ROWNUM=1 ";
+    string sql="SELECT SERV_ID,AGREEMENT_ID,ACC_NBR,TO_CHAR(EFF_DATE,'YYYYMMDD'),TO_CHAR(EXP_DATE,'YYYYMMDD') "
+        "FROM SERV_IDENTIFICATION SAMPLE(10) "
+        "WHERE ROWNUM<2 ";
     setSQL(sql);
 
     executeQuery();
@@ -47,6 +44,7 @@ ST_SERV_IDENTIFICATION ServIdentification::getServIdentInfoByNBR(string nbr)
 {
     op_type=SEL_BY_NBR;
     my_nbr=nbr;
+    serv_identification.m_acc_nbr="";
     setSQL("SELECT SERV_ID,AGREEMENT_ID,ACC_NBR,TO_CHAR(EFF_DATE,'YYYYMMDD'),TO_CHAR(EXP_DATE,'YYYYMMDD') "
                 " FROM SERV_IDENTIFICATION "
                 " WHERE ACC_NBR=:ACC_NBR ");
@@ -59,6 +57,7 @@ ST_SERV_IDENTIFICATION ServIdentification::getServIdentInfoByServId(long serv_id
 {
     op_type=SEL_BY_SERV_ID;
     m_serv_id=serv_id;
+
     setSQL("SELECT SERV_ID,AGREEMENT_ID,ACC_NBR,TO_CHAR(EFF_DATE,'YYYYMMDD'),TO_CHAR(EXP_DATE,'YYYYMMDD') "
                 " FROM SERV_IDENTIFICATION "
                 " WHERE SERV_ID=:SERV_ID");
