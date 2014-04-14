@@ -17,6 +17,9 @@ OpenAccount::OpenAccount(LoggerId logId)
     LOG_DEBUG(logId, "DB Instance:"<<db_instance);
 
     m_db = new OracleDB(db_user,db_passwd,db_instance);
+
+    num=0;
+
     m_db->connectToDB();
 
     loadConfigData();
@@ -55,6 +58,43 @@ OpenAccount::~OpenAccount()
     LOG_DEBUG(m_logId, "OpenAccount::~OpenAccount start");
     m_db->disConnectFromDB();
     LOG_DEBUG(m_logId, "OpenAccount::~OpenAccount end");
+}
+
+void OpenAccount::resetDB()
+{
+    LOG_DEBUG(m_logId, "OpenAccount::resetDB start");
+    m_db->disConnectFromDB();
+    m_db->connectToDB();
+
+    loadConfigData();
+
+    m_seq.setConnection(m_db->getConnection());
+
+    m_serv.setConnection(m_db->getConnection());
+
+    m_cust.setConnection(m_db->getConnection());
+
+    m_acct.setConnection(m_db->getConnection());
+
+    m_cust_contact_info.setConnection(m_db->getConnection());
+
+    m_cust_ident.setConnection(m_db->getConnection());
+
+    m_agreement.setConnection(m_db->getConnection());
+
+    m_serv_ident.setConnection(m_db->getConnection());
+
+    m_serv_location.setConnection(m_db->getConnection());
+
+    m_serv_state_attr.setConnection(m_db->getConnection());
+
+    m_serv_billing_mode.setConnection(m_db->getConnection());
+
+    m_staff_opr.setConnection(m_db->getConnection());
+
+    m_serv_acct.setConnection(m_db->getConnection());
+    LOG_DEBUG(m_logId, "OpenAccount::resetDB end");
+
 }
 
 void OpenAccount::loadConfigData()
@@ -220,7 +260,7 @@ void OpenAccount::doBiz(AccountData & data)
         string acc_nbr = (data.nbr != "" ? data.nbr : generator.getNbr());
         LOG_INFO(m_logId, "Acc_nbr:"<<acc_nbr);
         ST_SERV_IDENTIFICATION m_serv_ident_info=m_serv_ident.getServIdentInfoByNBR(acc_nbr);
-        if(m_serv_ident_info.m_acc_nbr == "")
+        if(m_serv_ident_info.m_acc_nbr != "")
         {
             LOG_INFO(m_logId, "Acc_nbr:"<<acc_nbr<<" already exist in serv_identification");
             m_db->rollback();
@@ -267,6 +307,13 @@ void OpenAccount::doBiz(AccountData & data)
         m_staff_opr.insertData();
 
         m_db->commit();
+
+        num++;
+        if(num>=20000)
+        {
+            resetDB();
+            num=0;
+        }
         LOG_DEBUG(m_logId, "OpenAccount::doBiz end");
     }
     catch(...)

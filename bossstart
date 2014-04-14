@@ -35,6 +35,10 @@ echo "Start AdjustAcctItemServer begin"
 echo "Start AdjustAcctItemServer end"
 
 echo "Start WriteOffServer begin"
-./WriteOffServer
+#./WriteOffServer
 echo "Start WriteOffServer end"
+
+echo "Start CreditControlServer begin"
+#./CreditControlServer
+echo "Start CreditControlServer end"
 

@@ -51,6 +51,7 @@ public:
     ~OpenAccount();
     void doBiz(AccountData & data);
     void loadConfigData();
+    void resetDB();
 
 private:
     LoggerId m_logId;
@@ -79,6 +80,8 @@ private:
     vector<ST_ADDRESS> v_address; 
     vector<ST_BILLING_CYCLE> v_billing_cycle; 
     vector<ST_SERV_STATE_DESC> v_serv_state_desc; 
+
+    int num;
 };
 
 #endif
