@@ -12,7 +12,7 @@ void OracleDB::initializeEnv()
 {
     try
     {
-        env=Environment::createEnvironment(Environment::DEFAULT);
+        env=Environment::createEnvironment((Environment::Mode((Environment::OBJECT|Environment::THREADED_MUTEXED))));
     }
     catch(SQLException& sqlExcp)
     {

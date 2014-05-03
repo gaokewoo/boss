@@ -15,14 +15,12 @@ void handler(int signo)
 
 void *thread_func(void *)
 {
-//    DetailItem *m_detail_item = new DetailItem(logId);
-
-    int i=0;
+    DetailItem *m_detail_item = new DetailItem(logId);
 
     while(1)
     {
         //cout<<"----------thread_id:"<<pthread_self()<<"["<<++i<<"]----------"<<endl;
- //       m_detail_item->doBiz();
+        m_detail_item->doBiz();
 
         usleep(frequence*1000);
     }

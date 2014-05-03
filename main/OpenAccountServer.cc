@@ -6,6 +6,10 @@
 #include <thrift/server/TSimpleServer.h>
 #include <thrift/transport/TServerSocket.h>
 #include <thrift/transport/TBufferTransports.h>
+#include <thrift/concurrency/ThreadManager.h>
+#include <thrift/concurrency/PosixThreadFactory.h>
+#include <thrift/server/TThreadPoolServer.h>
+#include <thrift/server/TThreadedServer.h>
 #include "OpenAccount.hh"
 #include "libconfparser/confparser.hpp"
 #include "BossMonitorClient.hh"
@@ -15,6 +19,7 @@ using namespace ::apache::thrift;
 using namespace ::apache::thrift::protocol;
 using namespace ::apache::thrift::transport;
 using namespace ::apache::thrift::server;
+using namespace ::apache::thrift::concurrency;
 
 using boost::shared_ptr;
 
@@ -102,7 +107,13 @@ int main(int argc, char **argv) {
     data.port=port;
     client.subscribe(data);
 
-    TSimpleServer server(processor, serverTransport, transportFactory, protocolFactory);
+    shared_ptr<ThreadManager> threadManager = ThreadManager::newSimpleThreadManager(10);
+    shared_ptr<PosixThreadFactory> threadFactory = shared_ptr<PosixThreadFactory>(new PosixThreadFactory());
+
+    threadManager->threadFactory(threadFactory);
+    threadManager->start();
+
+    TThreadPoolServer server(processor, serverTransport, transportFactory, protocolFactory, threadManager);
     server.serve();
     return 0;
 }
