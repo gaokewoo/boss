@@ -15,7 +15,7 @@ class DetailItem
 public:
     DetailItem(LoggerId logId);
     ~DetailItem();
-    string doBiz();
+    void doBiz();
 
 private:
     LoggerId m_logId;

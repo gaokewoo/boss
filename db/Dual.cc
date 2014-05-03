@@ -10,7 +10,15 @@ string Dual::getSysDateYYYYMM()
 
 string Dual::getSysDateYYYYMMDD()
 {
-    setSQL("SELECT TO_CHAR(SYSDATE,'YYYYMM') FROM DUAL");
+    setSQL("SELECT TO_CHAR(SYSDATE,'YYYYMMDD') FROM DUAL");
+    executeQuery();
+
+    return data;
+}
+
+string Dual::getSysDateYYYYMMDDHH24MISS()
+{
+    setSQL("SELECT TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS') FROM DUAL");
     executeQuery();
 
     return data;
