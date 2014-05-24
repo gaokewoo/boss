@@ -13,6 +13,7 @@
 #include "BossMonitorClient.hh"
 #include "AdjustAcctItem.hh"
 #include "log4z/log4z.h"
+#include <queue>
 
 using namespace ::apache::thrift;
 using namespace ::apache::thrift::protocol;
@@ -26,18 +27,74 @@ using namespace  ::BossInterface;
 
 using namespace zsummer::log4z;
 
+class AdjustAcctItemPool
+{
+    public:
+        AdjustAcctItemPool(LoggerId logId, int poolNum=10)
+        {
+            qready = PTHREAD_COND_INITIALIZER;
+            qlock = PTHREAD_MUTEX_INITIALIZER;
+
+            for(int i=0; i<poolNum; i++)
+            {
+                m_queue.push(new AdjustAcctItem(logId));
+            }
+        }
+
+        ~AdjustAcctItemPool()
+        {
+            while(!m_queue.empty())
+            {
+                AdjustAcctItem *p = m_queue.front();
+                m_queue.pop();
+
+                delete p;
+            }
+        }
+
+        AdjustAcctItem* get()
+        {
+            pthread_mutex_lock(&qlock);
+
+            while(m_queue.empty())
+            {
+                pthread_cond_wait(&qready, &qlock);
+            }
+
+            AdjustAcctItem *p = m_queue.front();
+            m_queue.pop();
+
+            pthread_mutex_unlock(&qlock);
+
+            return p;
+        }
+
+        void put(AdjustAcctItem *p)
+        {
+            pthread_mutex_lock(&qlock);
+            m_queue.push(p);
+            pthread_mutex_unlock(&qlock);
+            pthread_cond_signal(&qready);
+        }
+
+    private:
+        queue<AdjustAcctItem*> m_queue;
+        pthread_cond_t qready;
+        pthread_mutex_t qlock;
+};
+
 class AdjustAcctItemHandler : virtual public AdjustAcctItemIf {
     public:
         AdjustAcctItemHandler(LoggerId logId) {
             // Your initialization goes here
             m_logId = logId;
-            m_adjust_acct_item=new AdjustAcctItem(m_logId);
+            m_adjust_acct_item_pool=new AdjustAcctItemPool(m_logId);
         }
 
         ~AdjustAcctItemHandler() {
             // Your initialization goes here
-            delete m_adjust_acct_item;
-            m_adjust_acct_item=NULL;
+            delete m_adjust_acct_item_pool;
+            m_adjust_acct_item_pool=NULL;
         }
 
         bool send(const  ::BossData::AdjustAcctItem& data) {
@@ -48,14 +105,17 @@ class AdjustAcctItemHandler : virtual public AdjustAcctItemIf {
             my_data.nbr = data.nbr;
             my_data.fee= data.fee;
             my_data.ym = data.ym;
-            m_adjust_acct_item->doBiz(my_data);
+
+            AdjustAcctItem *p = m_adjust_acct_item_pool->get();
+            p->doBiz(my_data);
+            m_adjust_acct_item_pool->put(p);
             LOG_INFO(m_logId, "Server handle successfully.");
 
             return true;
         }
 
     private:
-        AdjustAcctItem *m_adjust_acct_item;
+        AdjustAcctItemPool *m_adjust_acct_item_pool;
         LoggerId m_logId;
 
 };

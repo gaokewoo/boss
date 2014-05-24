@@ -14,6 +14,7 @@
 #include "libconfparser/confparser.hpp"
 #include "BossMonitorClient.hh"
 #include <libgen.h>
+#include <queue>
 
 using namespace ::apache::thrift;
 using namespace ::apache::thrift::protocol;
@@ -25,18 +26,74 @@ using boost::shared_ptr;
 
 using namespace  ::BossInterface;
 
+class OpenAccountPool
+{
+    public:
+        OpenAccountPool(LoggerId logId, int poolNum=10)
+        {
+            qready = PTHREAD_COND_INITIALIZER;
+            qlock = PTHREAD_MUTEX_INITIALIZER;
+
+            for(int i=0; i<poolNum; i++)
+            {
+                m_queue.push(new OpenAccount(logId));
+            }
+        }
+
+        ~OpenAccountPool()
+        {
+            while(!m_queue.empty())
+            {
+                OpenAccount *p = m_queue.front();
+                m_queue.pop();
+
+                delete p;
+            }
+        }
+
+        OpenAccount* get()
+        {
+            pthread_mutex_lock(&qlock);
+
+            while(m_queue.empty())
+            {
+                pthread_cond_wait(&qready, &qlock);
+            }
+
+            OpenAccount *p = m_queue.front();
+            m_queue.pop();
+
+            pthread_mutex_unlock(&qlock);
+
+            return p;
+        }
+
+        void put(OpenAccount *p)
+        {
+            pthread_mutex_lock(&qlock);
+            m_queue.push(p);
+            pthread_mutex_unlock(&qlock);
+            pthread_cond_signal(&qready);
+        }
+
+    private:
+        queue<OpenAccount*> m_queue;
+        pthread_cond_t qready;
+        pthread_mutex_t qlock;
+};
+
 class OpenAccountServletHandler : virtual public OpenAccountServletIf {
     public:
         OpenAccountServletHandler(LoggerId logId) {
             // Your initialization goes here
             m_logId = logId;
-            m_open_account=new OpenAccount(m_logId);
+            m_open_account_pool=new OpenAccountPool(m_logId);
         }
 
         ~OpenAccountServletHandler() {
             // Your initialization goes here
-            delete m_open_account;
-            m_open_account=NULL;
+            delete m_open_account_pool;
+            m_open_account_pool=NULL;
         }
 
         bool send(const  ::BossData::OpenAccount& data) {
@@ -48,14 +105,16 @@ class OpenAccountServletHandler : virtual public OpenAccountServletIf {
             account_data.gender = data.gender;
             account_data.idNo = data.idNo;
             account_data.address = data.address;
-            m_open_account->doBiz(account_data);
+            OpenAccount *p = m_open_account_pool->get();
+            p->doBiz(account_data);
+            m_open_account_pool->put(p);
             LOG_INFO(m_logId, "Server handle successfully.");
 
             return true;
         }
 
     private:
-        OpenAccount *m_open_account;
+        OpenAccountPool *m_open_account_pool;
         LoggerId m_logId;
 };
 

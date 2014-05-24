@@ -14,6 +14,7 @@
 #include "BossMonitorClient.hh"
 #include "PayFee.hh"
 #include "log4z/log4z.h"
+#include <queue>
 
 using namespace ::apache::thrift;
 using namespace ::apache::thrift::protocol;
@@ -27,18 +28,74 @@ using namespace  ::BossInterface;
 
 using namespace zsummer::log4z;
 
+class PayFeePool
+{
+    public:
+        PayFeePool(LoggerId logId, int poolNum=10)
+        {
+            qready = PTHREAD_COND_INITIALIZER;
+            qlock = PTHREAD_MUTEX_INITIALIZER;
+
+            for(int i=0; i<poolNum; i++)
+            {
+                m_queue.push(new PayFee(logId));
+            }
+        }
+
+        ~PayFeePool()
+        {
+            while(!m_queue.empty())
+            {
+                PayFee *p = m_queue.front();
+                m_queue.pop();
+
+                delete p;
+            }
+        }
+
+        PayFee* get()
+        {
+            pthread_mutex_lock(&qlock);
+
+            while(m_queue.empty())
+            {
+                pthread_cond_wait(&qready, &qlock);
+            }
+
+            PayFee *p = m_queue.front();
+            m_queue.pop();
+
+            pthread_mutex_unlock(&qlock);
+
+            return p;
+        }
+
+        void put(PayFee *p)
+        {
+            pthread_mutex_lock(&qlock);
+            m_queue.push(p);
+            pthread_mutex_unlock(&qlock);
+            pthread_cond_signal(&qready);
+        }
+
+    private:
+        queue<PayFee*> m_queue;
+        pthread_cond_t qready;
+        pthread_mutex_t qlock;
+};
+
 class PayFeeHandler : virtual public PayFeeIf {
     public:
         PayFeeHandler(LoggerId logId) {
             // Your initialization goes here
             m_logId = logId;
-            m_payment=new PayFee(m_logId);
+            m_payment_pool=new PayFeePool(m_logId);
         }
 
         ~PayFeeHandler() {
             // Your initialization goes here
-            delete m_payment;
-            m_payment=NULL;
+            delete m_payment_pool;
+            m_payment_pool=NULL;
         }
 
         bool subscribe(const  ::BossData::PayFee& data) {
@@ -48,7 +105,10 @@ class PayFeeHandler : virtual public PayFeeIf {
             PayFeeData my_data;
             my_data.nbr = data.nbr;
             my_data.fee= data.fee;
-            m_payment->doBiz(my_data);
+
+            PayFee *p = m_payment_pool->get();
+            p->doBiz(my_data);
+            m_payment_pool->put(p);
 
             LOG_INFO(m_logId, "Server handle successfully.");
 
@@ -56,7 +116,7 @@ class PayFeeHandler : virtual public PayFeeIf {
         }
 
     private:
-        PayFee *m_payment;
+        PayFeePool *m_payment_pool;
         LoggerId m_logId;
 };
 
