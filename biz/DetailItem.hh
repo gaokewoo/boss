@@ -6,6 +6,7 @@
 #include <time.h>
 #include "OracleDB.hh"
 #include "DBStruct.hh"
+#include "FetchNbr.hh"
 #include "log4z/log4z.h"
 
 using namespace zsummer::log4z;
@@ -21,6 +22,7 @@ private:
     LoggerId m_logId;
     OracleDB *m_db;
 
+    static FetchNbr *fetch_nbr;
 };
 
 #endif

@@ -4,6 +4,7 @@
 #include "Dual.hh"
 #include "DetailItemVoice.hh"
 
+FetchNbr * DetailItem::fetch_nbr = NULL;
 DetailItem::DetailItem(LoggerId logId)
 {
     m_logId = logId;
@@ -21,12 +22,20 @@ DetailItem::DetailItem(LoggerId logId)
     m_db = new OracleDB(db_user,db_passwd,db_instance);
     m_db->connectToDB();
 
+    if(fetch_nbr==NULL)
+      fetch_nbr = new FetchNbr(logId);
+
     LOG_DEBUG(m_logId, "DetailItem::DetailItem end");
 }
 
 DetailItem::~DetailItem()
 {
     LOG_DEBUG(m_logId, "DetailItem::~DetailItem start");
+    if(fetch_nbr != NULL)
+    {
+        delete fetch_nbr;
+        fetch_nbr = NULL;
+    }
     m_db->disConnectFromDB();
     LOG_DEBUG(m_logId, "DetailItem::~DetailItem end");
 }
@@ -41,9 +50,9 @@ void DetailItem::doBiz()
         ServIdentification m_serv_ident;
         m_serv_ident.setConnection(m_db->getConnection());
         ST_SERV_IDENTIFICATION serv_ident_info;
-        serv_ident_info = m_serv_ident.getRandomServIdentInfo();
+        serv_ident_info = m_serv_ident.getServIdentInfoByNBR(fetch_nbr->doBiz());
         string msisdn=serv_ident_info.m_acc_nbr;
-        serv_ident_info = m_serv_ident.getRandomServIdentInfo();
+        serv_ident_info = m_serv_ident.getServIdentInfoByNBR(fetch_nbr->doBiz());
         string other_party=serv_ident_info.m_acc_nbr;
         LOG_INFO(m_logId, "DetailItem::doBiz the random nbr:"<<serv_ident_info.m_acc_nbr);
 

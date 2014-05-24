@@ -2,6 +2,8 @@
 #include "libconfparser/confparser.hpp"
 #include "ServIdentification.hh"
 
+FetchNbr * PayFee::fetch_nbr = NULL;
+
 PayFee::PayFee(LoggerId logId)
 {
     m_logId = logId;
@@ -35,12 +37,20 @@ PayFee::PayFee(LoggerId logId)
 
     m_seq.setConnection(m_db->getConnection());
 
+    if(fetch_nbr==NULL)
+      fetch_nbr = new FetchNbr(logId);
+
     LOG_DEBUG(m_logId, "PayFee::PayFee end");
 }
 
 PayFee::~PayFee()
 {
     LOG_DEBUG(m_logId, "PayFee::~PayFee start");
+    if(fetch_nbr != NULL)
+    {
+        delete fetch_nbr;
+        fetch_nbr = NULL;
+    }
     m_db->disConnectFromDB();
     LOG_DEBUG(m_logId, "PayFee::~PayFee end");
 }
@@ -104,7 +114,8 @@ void PayFee::doBiz(PayFeeData & data)
         else
         {
             LOG_INFO(m_logId, "PayFee::doBiz no input nbr, system will select a random nbr to do payment.");
-            serv_ident_info = m_serv_ident.getRandomServIdentInfo();
+            string nbr = fetch_nbr->doBiz();
+            serv_ident_info = m_serv_ident.getServIdentInfoByNBR(nbr);
             LOG_INFO(m_logId, "PayFee::doBiz the random nbr:"<<serv_ident_info.m_acc_nbr);
         }
 

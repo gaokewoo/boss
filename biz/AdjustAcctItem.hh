@@ -21,6 +21,7 @@
 #include "ChargeAdjustLog.hh"
 #include "Acct.hh"
 #include "Dual.hh"
+#include "FetchNbr.hh"
 #include "cppzmq/zmq.hpp"
 
 using namespace zsummer::log4z;
@@ -57,6 +58,8 @@ private:
     // Prepare our context and socket
     context_t *context;
     socket_t *socket;
+
+    static FetchNbr *fetch_nbr;
 };
 
 #endif

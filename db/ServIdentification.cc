@@ -40,6 +40,20 @@ ST_SERV_IDENTIFICATION ServIdentification::getRandomServIdentInfo()
     return serv_identification;
 }
 
+vector<ST_SERV_IDENTIFICATION> ServIdentification::getMultiRandomServIdentInfo()
+{
+    op_type=SEL_MULTI_RANDOM;
+    string sql="SELECT * FROM "
+        "(SELECT SERV_ID,AGREEMENT_ID,ACC_NBR,TO_CHAR(EFF_DATE,'YYYYMMDD'),TO_CHAR(EXP_DATE,'YYYYMMDD') "
+        "FROM SERV_IDENTIFICATION ORDER BY DBMS_RANDOM.RANDOM) "
+        "WHERE ROWNUM<500000 ";
+    setSQL(sql);
+
+    executeQuery();
+
+    return v_data;
+}
+
 ST_SERV_IDENTIFICATION ServIdentification::getServIdentInfoByNBR(string nbr)
 {
     op_type=SEL_BY_NBR;
@@ -73,4 +87,9 @@ void ServIdentification::doParse()
     serv_identification.m_acc_nbr = rset->getString(3);
     serv_identification.m_eff_date = rset->getString(4);
     serv_identification.m_exp_date = rset->getString(5);
+
+    if(op_type==SEL_MULTI_RANDOM)
+    {
+        v_data.push_back(serv_identification);
+    }
 }

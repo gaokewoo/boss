@@ -19,6 +19,7 @@
 #include "BalanceSource.hh"
 #include "AcctBalance.hh"
 #include "BillInterface.hh"
+#include "FetchNbr.hh"
 #include "log4z/log4z.h"
 #include "cppzmq/zmq.hpp"
 
@@ -58,6 +59,7 @@ private:
     context_t *context;
     socket_t *socket;
 
+    static FetchNbr *fetch_nbr;
 };
 
 #endif
