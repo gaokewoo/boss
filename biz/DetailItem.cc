@@ -3,6 +3,9 @@
 #include "ServIdentification.hh"
 #include "Dual.hh"
 #include "DetailItemVoice.hh"
+#include "DetailItemMsg.hh"
+#include "DetailItemCmsg.hh"
+#include "DetailItemCring.hh"
 
 FetchNbr * DetailItem::fetch_nbr = NULL;
 DetailItem::DetailItem(LoggerId logId)
@@ -40,9 +43,34 @@ DetailItem::~DetailItem()
     LOG_DEBUG(m_logId, "DetailItem::~DetailItem end");
 }
 
-void DetailItem::doBiz()
+void DetailItem::doBiz(int type)
 {
-    LOG_DEBUG(m_logId, "DetailItem::doBiz start");
+    if(0==type)
+    {
+        doVoiceBiz();
+    }
+    else if(1==type)
+    {
+        doMsgBiz();
+    }
+    else if(2==type)
+    {
+        doCmsgBiz();
+    }
+    else if(1==type)
+    {
+        doCringBiz();
+    }
+    else
+    {
+        LOG_ERROR(m_logId, "DetailItem::doBiz error--not support type:"<<type);
+    }
+}
+
+
+void DetailItem::doVoiceBiz()
+{
+    LOG_DEBUG(m_logId, "DetailItem::doVoiceBiz start");
 
     try
     {
@@ -54,9 +82,9 @@ void DetailItem::doBiz()
         string msisdn=serv_ident_info.m_acc_nbr;
         serv_ident_info = m_serv_ident.getServIdentInfoByNBR(fetch_nbr->doBiz());
         string other_party=serv_ident_info.m_acc_nbr;
-        LOG_INFO(m_logId, "DetailItem::doBiz the random nbr:"<<serv_ident_info.m_acc_nbr);
+        LOG_INFO(m_logId, "DetailItem::doVoiceBiz the random nbr:"<<serv_ident_info.m_acc_nbr);
 
-        LOG_DEBUG(m_logId, "DetailItem::doBiz insert to detail_item_voice table.");
+        LOG_DEBUG(m_logId, "DetailItem::doVoiceBiz insert to detail_item_voice table.");
         DetailItemVoice m_detail_item_voice;
         m_detail_item_voice.setConnection(m_db->getConnection());
         m_detail_item_voice.detail_item_voice.m_system_type="vc";
@@ -123,14 +151,112 @@ void DetailItem::doBiz()
         m_detail_item_voice.insertData();
 
         m_db->commit();
-        LOG_DEBUG(m_logId, "DetailItem::doBiz end");
+        LOG_DEBUG(m_logId, "DetailItem::doVoiceBiz end");
     }
     catch(...)
     {
-        LOG_ERROR(m_logId, "DetailItem::doBiz error");
+        LOG_ERROR(m_logId, "DetailItem::doVoiceBiz error");
         m_db->rollback();
     }
 
 }
 
+void DetailItem::doMsgBiz()
+{
+    LOG_DEBUG(m_logId, "DetailItem::doMsgBiz start");
+
+    try
+    {
+        //get serv_identification info
+        ServIdentification m_serv_ident;
+        m_serv_ident.setConnection(m_db->getConnection());
+        ST_SERV_IDENTIFICATION serv_ident_info;
+        serv_ident_info = m_serv_ident.getServIdentInfoByNBR(fetch_nbr->doBiz());
+        string msisdn=serv_ident_info.m_acc_nbr;
+        serv_ident_info = m_serv_ident.getServIdentInfoByNBR(fetch_nbr->doBiz());
+        string other_party=serv_ident_info.m_acc_nbr;
+        LOG_INFO(m_logId, "DetailItem::doMsgBiz the random nbr:"<<serv_ident_info.m_acc_nbr);
+
+        LOG_DEBUG(m_logId, "DetailItem::doMsgBiz insert to detail_item_voice table.");
+        DetailItemVoice m_detail_item_voice;
+        m_detail_item_voice.setConnection(m_db->getConnection());
+
+        m_detail_item_voice.insertData();
+
+        m_db->commit();
+        LOG_DEBUG(m_logId, "DetailItem::doMsgBiz end");
+    }
+    catch(...)
+    {
+        LOG_ERROR(m_logId, "DetailItem::doMsgBiz error");
+        m_db->rollback();
+    }
+
+}
+
+void DetailItem::doCmsgBiz()
+{
+    LOG_DEBUG(m_logId, "DetailItem::doCmsgBiz start");
+
+    try
+    {
+        //get serv_identification info
+        ServIdentification m_serv_ident;
+        m_serv_ident.setConnection(m_db->getConnection());
+        ST_SERV_IDENTIFICATION serv_ident_info;
+        serv_ident_info = m_serv_ident.getServIdentInfoByNBR(fetch_nbr->doBiz());
+        string msisdn=serv_ident_info.m_acc_nbr;
+        serv_ident_info = m_serv_ident.getServIdentInfoByNBR(fetch_nbr->doBiz());
+        string other_party=serv_ident_info.m_acc_nbr;
+        LOG_INFO(m_logId, "DetailItem::doCmsgBiz the random nbr:"<<serv_ident_info.m_acc_nbr);
+
+        LOG_DEBUG(m_logId, "DetailItem::doCmsgBiz insert to detail_item_voice table.");
+        DetailItemVoice m_detail_item_voice;
+        m_detail_item_voice.setConnection(m_db->getConnection());
+
+        m_detail_item_voice.insertData();
+
+        m_db->commit();
+        LOG_DEBUG(m_logId, "DetailItem::doCmsgBiz end");
+    }
+    catch(...)
+    {
+        LOG_ERROR(m_logId, "DetailItem::doCmsgBiz error");
+        m_db->rollback();
+    }
+
+}
+
+void DetailItem::doCringBiz()
+{
+    LOG_DEBUG(m_logId, "DetailItem::doCringBiz start");
+
+    try
+    {
+        //get serv_identification info
+        ServIdentification m_serv_ident;
+        m_serv_ident.setConnection(m_db->getConnection());
+        ST_SERV_IDENTIFICATION serv_ident_info;
+        serv_ident_info = m_serv_ident.getServIdentInfoByNBR(fetch_nbr->doBiz());
+        string msisdn=serv_ident_info.m_acc_nbr;
+        serv_ident_info = m_serv_ident.getServIdentInfoByNBR(fetch_nbr->doBiz());
+        string other_party=serv_ident_info.m_acc_nbr;
+        LOG_INFO(m_logId, "DetailItem::doCringBiz the random nbr:"<<serv_ident_info.m_acc_nbr);
+
+        LOG_DEBUG(m_logId, "DetailItem::doCringBiz insert to detail_item_voice table.");
+        DetailItemVoice m_detail_item_voice;
+        m_detail_item_voice.setConnection(m_db->getConnection());
+
+        m_detail_item_voice.insertData();
+
+        m_db->commit();
+        LOG_DEBUG(m_logId, "DetailItem::doCringBiz end");
+    }
+    catch(...)
+    {
+        LOG_ERROR(m_logId, "DetailItem::doCringBiz error");
+        m_db->rollback();
+    }
+
+}
 

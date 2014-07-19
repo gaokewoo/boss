@@ -80,7 +80,7 @@ void *thread_func(void *)
     {
         //cout<<"----------thread_id:"<<pthread_self()<<"["<<++i<<"]----------"<<endl;
         DetailItem *p = m_detail_item_pool->get();
-        p->doBiz();
+        p->doBiz((int)pthread_self() % 4);
         m_detail_item_pool->put(p);
 
         usleep(frequence*1000);

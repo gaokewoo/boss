@@ -1,0 +1,36 @@
+create table detail_item_msg
+(
+ system_type VARCHAR(2) not null,
+ ism_type VARCHAR(2) not null,
+ sm_type VARCHAR(2) not null,
+ msg_id VARCHAR(20) not null,
+ imsi VARCHAR(15) not null,
+ imei VARCHAR(20) not null,
+ msisdn VARCHAR(15) not null,
+ other_party VARCHAR(24) not null,
+ start_datetime date not null,
+ end_datetime date not null,
+ msg_length	NUMBER(3) not null,
+ status VARCHAR(7) not null,
+ priority VARCHAR(2) not null,
+ gateway_code VARCHAR(6) not null,
+ f_gateway_code VARCHAR(6) not null,
+ serv_code   VARCHAR(4) not null,
+ sm_center_code  VARCHAR(13) not null,
+ billing_flag    VARCHAR(2) not null,
+ service_attr    VARCHAR(20) not null,
+ home_area_code  VARCHAR(4) not null,
+ user_type   VARCHAR(1) not null,
+ fee1    NUMBER(10) not null,
+ old_fee1    NUMBER(10) not null,
+ info_fee1   VARCHAR(60) not null,
+ file_name   VARCHAR(40) not null,
+ deal_time   VARCHAR(12) not null,
+ group_id    VARCHAR(15) not null,
+ product_code    VARCHAR(8) not null,
+ chat_type   VARCHAR(3) not null,
+ brand_code  VARCHAR(2) not null,
+ dealfile    VARCHAR(40) not null
+);
+
+

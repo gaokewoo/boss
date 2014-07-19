@@ -16,7 +16,11 @@ class DetailItem
 public:
     DetailItem(LoggerId logId);
     ~DetailItem();
-    void doBiz();
+    void doBiz(int type);
+    void doVoiceBiz();
+    void doMsgBiz();
+    void doCmsgBiz();
+    void doCringBiz();
 
 private:
     LoggerId m_logId;
