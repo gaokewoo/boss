@@ -31,7 +31,7 @@ create table detail_item_cring
  info_fee2  VARCHAR(60) not null,
  info_fee3  VARCHAR(60) not null,
  file_name  VARCHAR(30) not null,
- deal_time  VARCHAR(12) not null,
+ deal_time  date not null,
  group_id   VARCHAR(15) not null,
  product_code   VARCHAR(8) not null,
  dealfile   VARCHAR(40) not null

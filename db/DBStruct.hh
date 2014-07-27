@@ -3565,7 +3565,6 @@ typedef struct {
     string  m_imei;
     string  m_msisdn;
     string  m_other_party;
-    string  m_start_datetime;
     long    m_call_duration;
     string  m_msc;
     string  m_msrn;
@@ -3607,7 +3606,6 @@ typedef struct {
     string  m_info_fee2;
     string  m_info_fee3;
     string  m_file_name;
-    string  m_deal_time;
     string  m_group_id;
     string  m_product_code;
     string  m_a_number;
@@ -3649,7 +3647,6 @@ typedef struct {
 	long	m_old_fee1;
 	string	m_info_fee1;
 	string	m_file_name;
-	string	m_deal_time;
 	string	m_group_id;
 	string	m_product_code;
 	string	m_chat_type;
@@ -3665,8 +3662,6 @@ typedef struct {
 	string	m_call_type;
 	string	m_msisdn;
 	string	m_other_party;
-	string	m_start_datetime;
-	string	m_end_datetime;
 	string	m_call_duration;
 	string	m_record_gen_type;
 	string	m_service_key;
@@ -3691,7 +3686,6 @@ typedef struct {
 	string	m_info_fee2;
 	string	m_info_fee3;
 	string	m_file_name;
-	string	m_deal_time;
 	string	m_group_id;
 	string	m_product_code;
 	string	m_dealfile;
@@ -3708,8 +3702,6 @@ typedef struct {
 	string	m_imei;
 	string	m_msisdn;
 	string	m_other_party;
-	string	m_start_datetime;
-	string	m_end_datetime;
 	long	m_call_duration;
 	long	m_times;
 	long	m_down_flow;
@@ -3736,7 +3728,6 @@ typedef struct {
 	string	m_info_fee1;
 	string	m_info_fee2;
 	string	m_file_name;
-	string	m_deal_time;
 	string	m_group_id;
 	string	m_product_code;
 	string	m_brand_code;

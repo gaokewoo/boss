@@ -45,6 +45,7 @@ DetailItem::~DetailItem()
 
 void DetailItem::doBiz(int type)
 {
+    
     if(0==type)
     {
         doVoiceBiz();
@@ -57,7 +58,7 @@ void DetailItem::doBiz(int type)
     {
         doCmsgBiz();
     }
-    else if(1==type)
+    else if(3==type)
     {
         doCringBiz();
     }
@@ -65,6 +66,7 @@ void DetailItem::doBiz(int type)
     {
         LOG_ERROR(m_logId, "DetailItem::doBiz error--not support type:"<<type);
     }
+   
 }
 
 
@@ -74,15 +76,9 @@ void DetailItem::doVoiceBiz()
 
     try
     {
-        //get serv_identification info
-        ServIdentification m_serv_ident;
-        m_serv_ident.setConnection(m_db->getConnection());
-        ST_SERV_IDENTIFICATION serv_ident_info;
-        serv_ident_info = m_serv_ident.getServIdentInfoByNBR(fetch_nbr->doBiz());
-        string msisdn=serv_ident_info.m_acc_nbr;
-        serv_ident_info = m_serv_ident.getServIdentInfoByNBR(fetch_nbr->doBiz());
-        string other_party=serv_ident_info.m_acc_nbr;
-        LOG_INFO(m_logId, "DetailItem::doVoiceBiz the random nbr:"<<serv_ident_info.m_acc_nbr);
+        string msisdn=fetch_nbr->doBiz();
+        string other_party=fetch_nbr->doBiz();
+        LOG_INFO(m_logId, "DetailItem::doVoiceBiz the random nbr:"<<msisdn);
 
         LOG_DEBUG(m_logId, "DetailItem::doVoiceBiz insert to detail_item_voice table.");
         DetailItemVoice m_detail_item_voice;
@@ -135,7 +131,6 @@ void DetailItem::doVoiceBiz()
         m_detail_item_voice.detail_item_voice.m_info_fee2="0";
         m_detail_item_voice.detail_item_voice.m_info_fee3="0";
         m_detail_item_voice.detail_item_voice.m_file_name="fee.txt";
-        m_detail_item_voice.detail_item_voice.m_deal_time="1";
         m_detail_item_voice.detail_item_voice.m_group_id="12345";
         m_detail_item_voice.detail_item_voice.m_product_code="0";
         m_detail_item_voice.detail_item_voice.m_a_number="0";
@@ -167,21 +162,44 @@ void DetailItem::doMsgBiz()
 
     try
     {
-        //get serv_identification info
-        ServIdentification m_serv_ident;
-        m_serv_ident.setConnection(m_db->getConnection());
-        ST_SERV_IDENTIFICATION serv_ident_info;
-        serv_ident_info = m_serv_ident.getServIdentInfoByNBR(fetch_nbr->doBiz());
-        string msisdn=serv_ident_info.m_acc_nbr;
-        serv_ident_info = m_serv_ident.getServIdentInfoByNBR(fetch_nbr->doBiz());
-        string other_party=serv_ident_info.m_acc_nbr;
-        LOG_INFO(m_logId, "DetailItem::doMsgBiz the random nbr:"<<serv_ident_info.m_acc_nbr);
+        string msisdn=fetch_nbr->doBiz();
+        string other_party=fetch_nbr->doBiz();
+        LOG_INFO(m_logId, "DetailItem::doMsgBiz the random nbr:"<<msisdn);
 
         LOG_DEBUG(m_logId, "DetailItem::doMsgBiz insert to detail_item_voice table.");
-        DetailItemVoice m_detail_item_voice;
-        m_detail_item_voice.setConnection(m_db->getConnection());
+        DetailItemMsg m_detail_item_msg;
+        m_detail_item_msg.setConnection(m_db->getConnection());
 
-        m_detail_item_voice.insertData();
+        m_detail_item_msg.detail_item_msg.m_system_type="sg";
+        m_detail_item_msg.detail_item_msg.m_ism_type="01";
+        m_detail_item_msg.detail_item_msg.m_sm_type="11";
+        m_detail_item_msg.detail_item_msg.m_msg_id="1208439483207035";
+        m_detail_item_msg.detail_item_msg.m_imsi="222222222";
+        m_detail_item_msg.detail_item_msg.m_imei="33333333";
+        m_detail_item_msg.detail_item_msg.m_msisdn=msisdn;
+        m_detail_item_msg.detail_item_msg.m_other_party=other_party;
+        m_detail_item_msg.detail_item_msg.m_msg_length=74;
+        m_detail_item_msg.detail_item_msg.m_status="0";
+        m_detail_item_msg.detail_item_msg.m_priority="0";
+        m_detail_item_msg.detail_item_msg.m_gateway_code="A01";
+        m_detail_item_msg.detail_item_msg.m_f_gateway_code="B01";
+        m_detail_item_msg.detail_item_msg.m_serv_code="000";
+        m_detail_item_msg.detail_item_msg.m_sm_center_code="8601234";
+        m_detail_item_msg.detail_item_msg.m_billing_flag="01";
+        m_detail_item_msg.detail_item_msg.m_service_attr="V03";
+        m_detail_item_msg.detail_item_msg.m_home_area_code="+86";
+        m_detail_item_msg.detail_item_msg.m_user_type="1";
+        m_detail_item_msg.detail_item_msg.m_fee1=10;
+        m_detail_item_msg.detail_item_msg.m_old_fee1=0;
+        m_detail_item_msg.detail_item_msg.m_info_fee1="0";
+        m_detail_item_msg.detail_item_msg.m_file_name="dealmsgfile.txt";
+        m_detail_item_msg.detail_item_msg.m_group_id="C01";
+        m_detail_item_msg.detail_item_msg.m_product_code="P01";
+        m_detail_item_msg.detail_item_msg.m_chat_type="0";
+        m_detail_item_msg.detail_item_msg.m_brand_code="A";
+        m_detail_item_msg.detail_item_msg.m_dealfile="0";
+
+        m_detail_item_msg.insertData();
 
         m_db->commit();
         LOG_DEBUG(m_logId, "DetailItem::doMsgBiz end");
@@ -200,21 +218,55 @@ void DetailItem::doCmsgBiz()
 
     try
     {
-        //get serv_identification info
-        ServIdentification m_serv_ident;
-        m_serv_ident.setConnection(m_db->getConnection());
-        ST_SERV_IDENTIFICATION serv_ident_info;
-        serv_ident_info = m_serv_ident.getServIdentInfoByNBR(fetch_nbr->doBiz());
-        string msisdn=serv_ident_info.m_acc_nbr;
-        serv_ident_info = m_serv_ident.getServIdentInfoByNBR(fetch_nbr->doBiz());
-        string other_party=serv_ident_info.m_acc_nbr;
-        LOG_INFO(m_logId, "DetailItem::doCmsgBiz the random nbr:"<<serv_ident_info.m_acc_nbr);
+        string msisdn=fetch_nbr->doBiz();
+        string other_party=fetch_nbr->doBiz();
+        LOG_INFO(m_logId, "DetailItem::doCmsgBiz the random nbr:"<<msisdn);
 
         LOG_DEBUG(m_logId, "DetailItem::doCmsgBiz insert to detail_item_voice table.");
-        DetailItemVoice m_detail_item_voice;
-        m_detail_item_voice.setConnection(m_db->getConnection());
+        DetailItemCmsg m_detail_item_cmsg;
+        m_detail_item_cmsg.setConnection(m_db->getConnection());
 
-        m_detail_item_voice.insertData();
+        m_detail_item_cmsg.detail_item_cmsg.m_system_type="mm";
+        m_detail_item_cmsg.detail_item_cmsg.m_sm_type="01";
+        m_detail_item_cmsg.detail_item_cmsg.m_record_type="0";
+        m_detail_item_cmsg.detail_item_cmsg.m_service_type="01";
+        m_detail_item_cmsg.detail_item_cmsg.m_seg_num="123";
+        m_detail_item_cmsg.detail_item_cmsg.m_imsi="34343924830";
+        m_detail_item_cmsg.detail_item_cmsg.m_imei="48302850432";
+        m_detail_item_cmsg.detail_item_cmsg.m_msisdn=msisdn;
+        m_detail_item_cmsg.detail_item_cmsg.m_other_party=other_party;
+        m_detail_item_cmsg.detail_item_cmsg.m_call_duration=200;
+        m_detail_item_cmsg.detail_item_cmsg.m_times=2;
+        m_detail_item_cmsg.detail_item_cmsg.m_down_flow=10;
+        m_detail_item_cmsg.detail_item_cmsg.m_up_flow=20;
+        m_detail_item_cmsg.detail_item_cmsg.m_total_flow=30;
+        m_detail_item_cmsg.detail_item_cmsg.m_nai="CARD";
+        m_detail_item_cmsg.detail_item_cmsg.m_ip_address="127.0.0.1";
+        m_detail_item_cmsg.detail_item_cmsg.m_sp_code="china";
+        m_detail_item_cmsg.detail_item_cmsg.m_serv_code="0001999999";
+        m_detail_item_cmsg.detail_item_cmsg.m_oper_code="12";
+        m_detail_item_cmsg.detail_item_cmsg.m_billing_type="00";
+        m_detail_item_cmsg.detail_item_cmsg.m_rate_unit="00";
+        m_detail_item_cmsg.detail_item_cmsg.m_status="0";
+        m_detail_item_cmsg.detail_item_cmsg.m_sys_id="24353";
+        m_detail_item_cmsg.detail_item_cmsg.m_sys_intra_key="23320140727213200";
+        m_detail_item_cmsg.detail_item_cmsg.m_service_attr="5";
+        m_detail_item_cmsg.detail_item_cmsg.m_home_area_code="86";
+        m_detail_item_cmsg.detail_item_cmsg.m_chat_type="11";
+        m_detail_item_cmsg.detail_item_cmsg.m_user_type="3";
+        m_detail_item_cmsg.detail_item_cmsg.m_fee1=50;
+        m_detail_item_cmsg.detail_item_cmsg.m_fee2=0;
+        m_detail_item_cmsg.detail_item_cmsg.m_old_fee1=50;
+        m_detail_item_cmsg.detail_item_cmsg.m_old_fee2=0;
+        m_detail_item_cmsg.detail_item_cmsg.m_info_fee1="0";
+        m_detail_item_cmsg.detail_item_cmsg.m_info_fee2="0";
+        m_detail_item_cmsg.detail_item_cmsg.m_file_name="dealcmsgfile.txt";
+        m_detail_item_cmsg.detail_item_cmsg.m_group_id="G";
+        m_detail_item_cmsg.detail_item_cmsg.m_product_code="P";
+        m_detail_item_cmsg.detail_item_cmsg.m_brand_code="A";
+        m_detail_item_cmsg.detail_item_cmsg.m_dealfile="0";
+
+        m_detail_item_cmsg.insertData();
 
         m_db->commit();
         LOG_DEBUG(m_logId, "DetailItem::doCmsgBiz end");
@@ -233,21 +285,48 @@ void DetailItem::doCringBiz()
 
     try
     {
-        //get serv_identification info
-        ServIdentification m_serv_ident;
-        m_serv_ident.setConnection(m_db->getConnection());
-        ST_SERV_IDENTIFICATION serv_ident_info;
-        serv_ident_info = m_serv_ident.getServIdentInfoByNBR(fetch_nbr->doBiz());
-        string msisdn=serv_ident_info.m_acc_nbr;
-        serv_ident_info = m_serv_ident.getServIdentInfoByNBR(fetch_nbr->doBiz());
-        string other_party=serv_ident_info.m_acc_nbr;
-        LOG_INFO(m_logId, "DetailItem::doCringBiz the random nbr:"<<serv_ident_info.m_acc_nbr);
+        string msisdn=fetch_nbr->doBiz();
+        string other_party=fetch_nbr->doBiz();
+        LOG_INFO(m_logId, "DetailItem::doCringBiz the random nbr:"<<msisdn);
 
         LOG_DEBUG(m_logId, "DetailItem::doCringBiz insert to detail_item_voice table.");
-        DetailItemVoice m_detail_item_voice;
-        m_detail_item_voice.setConnection(m_db->getConnection());
+        DetailItemCring m_detail_item_cring;
+        m_detail_item_cring.setConnection(m_db->getConnection());
 
-        m_detail_item_voice.insertData();
+        m_detail_item_cring.detail_item_cring.m_system_type="bj";
+        m_detail_item_cring.detail_item_cring.m_record_type="03";
+        m_detail_item_cring.detail_item_cring.m_call_type="01";
+        m_detail_item_cring.detail_item_cring.m_msisdn=msisdn;
+        m_detail_item_cring.detail_item_cring.m_other_party=other_party;
+        m_detail_item_cring.detail_item_cring.m_call_duration="10";
+        m_detail_item_cring.detail_item_cring.m_record_gen_type="1";
+        m_detail_item_cring.detail_item_cring.m_service_key="c";
+        m_detail_item_cring.detail_item_cring.m_service_id="d3489304";
+        m_detail_item_cring.detail_item_cring.m_sp_code="china";
+        m_detail_item_cring.detail_item_cring.m_serv_code="A3";
+        m_detail_item_cring.detail_item_cring.m_oper_code="B3";
+        m_detail_item_cring.detail_item_cring.m_home_area_code="86";
+        m_detail_item_cring.detail_item_cring.m_billing_type="A";
+        m_detail_item_cring.detail_item_cring.m_user_level="A";
+        m_detail_item_cring.detail_item_cring.m_user_type="C";
+        m_detail_item_cring.detail_item_cring.m_brand_code="A";
+        m_detail_item_cring.detail_item_cring.m_roam_type="0";
+        m_detail_item_cring.detail_item_cring.m_fee_type="0";
+        m_detail_item_cring.detail_item_cring.m_fee1="300";
+        m_detail_item_cring.detail_item_cring.m_fee2="0";
+        m_detail_item_cring.detail_item_cring.m_fee3="0";
+        m_detail_item_cring.detail_item_cring.m_old_fee1="0";
+        m_detail_item_cring.detail_item_cring.m_old_fee2="0";
+        m_detail_item_cring.detail_item_cring.m_old_fee3="0";
+        m_detail_item_cring.detail_item_cring.m_info_fee1="0";
+        m_detail_item_cring.detail_item_cring.m_info_fee2="0";
+        m_detail_item_cring.detail_item_cring.m_info_fee3="0";
+        m_detail_item_cring.detail_item_cring.m_file_name="dealcringfile.txt";
+        m_detail_item_cring.detail_item_cring.m_group_id="G2";
+        m_detail_item_cring.detail_item_cring.m_product_code="P2";
+        m_detail_item_cring.detail_item_cring.m_dealfile="0";
+
+        m_detail_item_cring.insertData();
 
         m_db->commit();
         LOG_DEBUG(m_logId, "DetailItem::doCringBiz end");

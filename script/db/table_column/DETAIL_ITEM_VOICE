@@ -1,5 +1,3 @@
-create table detail_item_voice
-(
 system_type VARCHAR(2) not null,
 record_type VARCHAR(2) not null,
 call_type VARCHAR(2) not null,
@@ -49,7 +47,7 @@ info_fee1 VARCHAR(60) not null,
 info_fee2 VARCHAR(60) not null,
 info_fee3 VARCHAR(60) not null,
 file_name VARCHAR(40) not null,
-deal_time VARCHAR(12) not null,
+deal_time date not null,
 group_id VARCHAR(15) not null,
 product_code VARCHAR(8) not null,
 a_number VARCHAR(24) not null,
@@ -62,6 +60,4 @@ favour_fee1 VARCHAR(10) not null,
 favour_fee2 VARCHAR(10) not null,
 favour_fee3 VARCHAR(10) not null,
 favour_flag VARCHAR(1) not null
-);
-
 

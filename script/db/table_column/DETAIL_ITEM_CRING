@@ -1,12 +1,10 @@
-create table detail_item_cring
-(
  system_type    VARCHAR(2) not null,
  record_type    VARCHAR(2) not null,
  call_type  VARCHAR(2) not null,
  msisdn VARCHAR(15) not null,
  other_party    VARCHAR(15) not null,
- start_datetime VARCHAR(14) not null,
- end_datetime   VARCHAR(14) not null,
+ start_datetime date not null,
+ end_datetime   date not null,
  call_duration  VARCHAR(6) not null,
  record_gen_type    VARCHAR(2) not null,
  service_key    VARCHAR(2) not null,
@@ -31,10 +29,8 @@ create table detail_item_cring
  info_fee2  VARCHAR(60) not null,
  info_fee3  VARCHAR(60) not null,
  file_name  VARCHAR(30) not null,
- deal_time  VARCHAR(12) not null,
+ deal_time  date not null,
  group_id   VARCHAR(15) not null,
  product_code   VARCHAR(8) not null,
  dealfile   VARCHAR(40) not null
-);
-
 

@@ -37,7 +37,7 @@ create table detail_item_cmsg
  info_fee1  VARCHAR(60) not null,
  info_fee2  VARCHAR(60) not null,
  file_name  VARCHAR(40) not null,
- deal_time  VARCHAR(12) not null,
+ deal_time  date not null,
  group_id   VARCHAR(15) not null,
  product_code   VARCHAR(8) not null,
  brand_code VARCHAR(2) not null,

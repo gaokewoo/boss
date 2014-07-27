@@ -8,6 +8,7 @@
 using namespace std;
 
 int frequence;
+int g_type=0;
 LoggerId logId;
 
 void handler(int signo)
@@ -76,11 +77,14 @@ DetailItemPool *m_detail_item_pool=NULL;
 
 void *thread_func(void *)
 {
+    int type = g_type % 4;
+    g_type++;
     while(1)
     {
         //cout<<"----------thread_id:"<<pthread_self()<<"["<<++i<<"]----------"<<endl;
+
         DetailItem *p = m_detail_item_pool->get();
-        p->doBiz((int)pthread_self() % 4);
+        p->doBiz(type);
         m_detail_item_pool->put(p);
 
         usleep(frequence*1000);
