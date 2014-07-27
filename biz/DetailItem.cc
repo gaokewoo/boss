@@ -6,6 +6,10 @@
 #include "DetailItemMsg.hh"
 #include "DetailItemCmsg.hh"
 #include "DetailItemCring.hh"
+#include "ServAcct.hh"
+#include "Acct.hh"
+#include "AcctItemSource.hh"
+#include "AcctItem.hh"
 
 FetchNbr * DetailItem::fetch_nbr = NULL;
 DetailItem::DetailItem(LoggerId logId)
@@ -24,6 +28,8 @@ DetailItem::DetailItem(LoggerId logId)
 
     m_db = new OracleDB(db_user,db_passwd,db_instance);
     m_db->connectToDB();
+
+    m_seq.setConnection(m_db->getConnection());
 
     if(fetch_nbr==NULL)
       fetch_nbr = new FetchNbr(logId);
@@ -121,7 +127,7 @@ void DetailItem::doVoiceBiz()
         m_detail_item_voice.detail_item_voice.m_fee_type="0";
         m_detail_item_voice.detail_item_voice.m_dial_type="000";
         m_detail_item_voice.detail_item_voice.m_chat_type="000";
-        m_detail_item_voice.detail_item_voice.m_fee1=100;
+        m_detail_item_voice.detail_item_voice.m_fee1=1000;
         m_detail_item_voice.detail_item_voice.m_fee2=0;
         m_detail_item_voice.detail_item_voice.m_fee3=0;
         m_detail_item_voice.detail_item_voice.m_old_fee1=0;
@@ -144,6 +150,8 @@ void DetailItem::doVoiceBiz()
         m_detail_item_voice.detail_item_voice.m_favour_fee3="0";
         m_detail_item_voice.detail_item_voice.m_favour_flag="0";
         m_detail_item_voice.insertData();
+
+        doInsAcct(msisdn,1001,1000);
 
         m_db->commit();
         LOG_DEBUG(m_logId, "DetailItem::doVoiceBiz end");
@@ -200,6 +208,8 @@ void DetailItem::doMsgBiz()
         m_detail_item_msg.detail_item_msg.m_dealfile="0";
 
         m_detail_item_msg.insertData();
+
+        doInsAcct(msisdn,1002,10);
 
         m_db->commit();
         LOG_DEBUG(m_logId, "DetailItem::doMsgBiz end");
@@ -268,6 +278,8 @@ void DetailItem::doCmsgBiz()
 
         m_detail_item_cmsg.insertData();
 
+        doInsAcct(msisdn,1003,50);
+
         m_db->commit();
         LOG_DEBUG(m_logId, "DetailItem::doCmsgBiz end");
     }
@@ -328,6 +340,8 @@ void DetailItem::doCringBiz()
 
         m_detail_item_cring.insertData();
 
+        doInsAcct(msisdn,1004,300);
+
         m_db->commit();
         LOG_DEBUG(m_logId, "DetailItem::doCringBiz end");
     }
@@ -339,3 +353,77 @@ void DetailItem::doCringBiz()
 
 }
 
+void DetailItem::doInsAcct(string nbr,int item,int fee)
+{
+    try
+    {
+        ServIdentification m_serv_ident;
+        m_serv_ident.setConnection(m_db->getConnection());
+        ST_SERV_IDENTIFICATION serv_ident_info;
+        serv_ident_info = m_serv_ident.getServIdentInfoByNBR(nbr);
+
+        long serv_id = m_serv_ident.serv_identification.m_serv_id;
+
+        Dual dual;
+        dual.setConnection(m_db->getConnection());
+        string cym = dual.getSysDateYYYYMM();
+
+        ServAcct m_serv_acct;
+        m_serv_acct.setConnection(m_db->getConnection());
+        ST_SERV_ACCT serv_acct_data = m_serv_acct.getServAcctByServId(serv_id);
+        long acct_id = serv_acct_data.m_acct_id;
+
+        Acct m_acct;
+        m_acct.setConnection(m_db->getConnection());
+        ST_ACCT acct_data = m_acct.getAcctByAcctId(acct_id);
+
+        long ym = atol(cym.c_str());
+        if(ym>acct_data.m_owe_min_ym) ym = acct_data.m_owe_min_ym;
+        long owe_fee = acct_data.m_owe_fee+(int)(fee);
+        m_acct.setAcctOweMinYMAndOweFee(acct_id,ym,owe_fee);
+
+        AcctItemSource m_acct_item_source;
+        m_acct_item_source.setConnection(m_db->getConnection());
+        long item_source_id=m_seq.getItemSourceId();
+        m_acct_item_source.acct_item_source.m_item_source_id=item_source_id;
+        m_acct_item_source.acct_item_source.m_acct_item_type_id=item;
+        m_acct_item_source.acct_item_source.m_item_source_type="52A";
+        m_acct_item_source.acct_item_source.m_name="帐目应收费用";
+        m_acct_item_source.acct_item_source.m_comments="新增";
+        m_acct_item_source.insertData();
+
+        AcctItem m_acct_item;
+        m_acct_item.setConnection(m_db->getConnection());
+
+        long acct_item_id=m_seq.getAcctItemId();
+        m_acct_item.acct_item.m_acct_item_id=acct_item_id;
+        m_acct_item.acct_item.m_item_source_id=item_source_id;
+        m_acct_item.acct_item.m_bill_id=0;
+        m_acct_item.acct_item.m_acct_item_type_id=item;
+        m_acct_item.acct_item.m_billing_cycle_id=ym;
+        m_acct_item.acct_item.m_acct_id=acct_id;
+        m_acct_item.acct_item.m_serv_id=serv_id;
+        m_acct_item.acct_item.m_amount=fee;
+        m_acct_item.acct_item.m_fee_cycle_id=0;
+        m_acct_item.acct_item.m_payment_method=0;
+        m_acct_item.acct_item.m_state="00A";
+        m_acct_item.acct_item.m_latn_id=10017;
+        m_acct_item.acct_item.m_ai_total_id=0;
+        m_acct_item.acct_item.m_acc_nbr=serv_ident_info.m_acc_nbr;
+        m_acct_item.acct_item.m_should_pay=fee*0.8;
+        m_acct_item.acct_item.m_favour_fee=m_acct_item.acct_item.m_amount-m_acct_item.acct_item.m_should_pay;
+        m_acct_item.acct_item.m_times=0;
+        m_acct_item.acct_item.m_duration=0;
+        m_acct_item.acct_item.m_month_wrtoff_fee=0;
+        m_acct_item.acct_item.m_pay_wrtoff_fee=0;
+        m_acct_item.acct_item.m_attr_code="";
+        m_acct_item.insertData();
+
+        m_db->commit();
+    }
+    catch(...)
+    {
+        LOG_ERROR(m_logId, "AdjustAcctItem::doBiz error");
+        m_db->rollback();
+    }
+}

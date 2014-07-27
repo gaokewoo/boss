@@ -7,6 +7,7 @@
 #include "OracleDB.hh"
 #include "DBStruct.hh"
 #include "FetchNbr.hh"
+#include "Sequence.hh"
 #include "log4z/log4z.h"
 
 using namespace zsummer::log4z;
@@ -21,10 +22,12 @@ public:
     void doMsgBiz();
     void doCmsgBiz();
     void doCringBiz();
+    void doInsAcct(string nbr,int item,int fee);
 
 private:
     LoggerId m_logId;
     OracleDB *m_db;
+    Sequence m_seq;
 
     static FetchNbr *fetch_nbr;
 };
