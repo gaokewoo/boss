@@ -357,6 +357,10 @@ void DetailItem::doInsAcct(string nbr,int item,int fee)
 {
     try
     {
+        long l_amount = fee*0.8;
+        long l_should_pay = fee;
+        long l_favour_fee = l_should_pay-l_amount;
+
         ServIdentification m_serv_ident;
         m_serv_ident.setConnection(m_db->getConnection());
         ST_SERV_IDENTIFICATION serv_ident_info;
@@ -379,7 +383,7 @@ void DetailItem::doInsAcct(string nbr,int item,int fee)
 
         long ym = atol(cym.c_str());
         if(ym>acct_data.m_owe_min_ym) ym = acct_data.m_owe_min_ym;
-        long owe_fee = acct_data.m_owe_fee+(int)(fee);
+        long owe_fee = acct_data.m_owe_fee+(int)(l_amount);
         m_acct.setAcctOweMinYMAndOweFee(acct_id,ym,owe_fee);
 
         AcctItemSource m_acct_item_source;
@@ -395,29 +399,41 @@ void DetailItem::doInsAcct(string nbr,int item,int fee)
         AcctItem m_acct_item;
         m_acct_item.setConnection(m_db->getConnection());
 
-        long acct_item_id=m_seq.getAcctItemId();
-        m_acct_item.acct_item.m_acct_item_id=acct_item_id;
-        m_acct_item.acct_item.m_item_source_id=item_source_id;
-        m_acct_item.acct_item.m_bill_id=0;
-        m_acct_item.acct_item.m_acct_item_type_id=item;
-        m_acct_item.acct_item.m_billing_cycle_id=ym;
-        m_acct_item.acct_item.m_acct_id=acct_id;
-        m_acct_item.acct_item.m_serv_id=serv_id;
-        m_acct_item.acct_item.m_amount=fee;
-        m_acct_item.acct_item.m_fee_cycle_id=0;
-        m_acct_item.acct_item.m_payment_method=0;
-        m_acct_item.acct_item.m_state="00A";
-        m_acct_item.acct_item.m_latn_id=10017;
-        m_acct_item.acct_item.m_ai_total_id=0;
-        m_acct_item.acct_item.m_acc_nbr=serv_ident_info.m_acc_nbr;
-        m_acct_item.acct_item.m_should_pay=fee*0.8;
-        m_acct_item.acct_item.m_favour_fee=m_acct_item.acct_item.m_amount-m_acct_item.acct_item.m_should_pay;
-        m_acct_item.acct_item.m_times=0;
-        m_acct_item.acct_item.m_duration=0;
-        m_acct_item.acct_item.m_month_wrtoff_fee=0;
-        m_acct_item.acct_item.m_pay_wrtoff_fee=0;
-        m_acct_item.acct_item.m_attr_code="";
-        m_acct_item.insertData();
+        ST_ACCT_ITEM acct_item = m_acct_item.getAcctItemByAcctIdServId(acct_id,serv_id,item,"00A");
+        if(acct_item.m_acct_item_id != 0)
+        {
+            long acct_item_id=acct_item.m_acct_item_id;
+            long amount=acct_item.m_amount+l_amount;
+            long should_pay=acct_item.m_should_pay+l_should_pay;
+            long favour_fee=acct_item.m_favour_fee+l_favour_fee;
+            m_acct_item.updateOtherFeeInAcctItemByAcctItemId(acct_item_id,amount,should_pay,favour_fee);
+        }
+        else
+        {
+            long acct_item_id=m_seq.getAcctItemId();
+            m_acct_item.acct_item.m_acct_item_id=acct_item_id;
+            m_acct_item.acct_item.m_item_source_id=item_source_id;
+            m_acct_item.acct_item.m_bill_id=0;
+            m_acct_item.acct_item.m_acct_item_type_id=item;
+            m_acct_item.acct_item.m_billing_cycle_id=ym;
+            m_acct_item.acct_item.m_acct_id=acct_id;
+            m_acct_item.acct_item.m_serv_id=serv_id;
+            m_acct_item.acct_item.m_amount=l_amount;
+            m_acct_item.acct_item.m_fee_cycle_id=0;
+            m_acct_item.acct_item.m_payment_method=0;
+            m_acct_item.acct_item.m_state="00A";
+            m_acct_item.acct_item.m_latn_id=10017;
+            m_acct_item.acct_item.m_ai_total_id=0;
+            m_acct_item.acct_item.m_acc_nbr=serv_ident_info.m_acc_nbr;
+            m_acct_item.acct_item.m_should_pay=l_should_pay;
+            m_acct_item.acct_item.m_favour_fee=l_favour_fee;
+            m_acct_item.acct_item.m_times=0;
+            m_acct_item.acct_item.m_duration=0;
+            m_acct_item.acct_item.m_month_wrtoff_fee=0;
+            m_acct_item.acct_item.m_pay_wrtoff_fee=0;
+            m_acct_item.acct_item.m_attr_code="";
+            m_acct_item.insertData();
+        }
 
         m_db->commit();
     }
