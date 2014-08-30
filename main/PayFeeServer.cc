@@ -33,8 +33,10 @@ class PayFeePool
     public:
         PayFeePool(LoggerId logId, int poolNum=10)
         {
-            qready = PTHREAD_COND_INITIALIZER;
-            qlock = PTHREAD_MUTEX_INITIALIZER;
+            //qready = PTHREAD_COND_INITIALIZER;
+            //qlock = PTHREAD_MUTEX_INITIALIZER;
+            pthread_cond_init(&qready, NULL);
+            pthread_mutex_init(&qlock, NULL);
 
             for(int i=0; i<poolNum; i++)
             {

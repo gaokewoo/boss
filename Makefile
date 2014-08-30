@@ -32,7 +32,7 @@ install:
 	@if [ ! -d $(BOSS_BIN) ]; then mkdir -p $(BOSS_BIN);fi
 	cp -rf bin/* $(BOSS_BIN)
 
-	cp bossstart bossstop bossstatus bossenv.sh $(BOSS_HOME)/boss/
+	cp bossstart bossstop bossstatus bossenv.sh processlist $(BOSS_HOME)/boss/
 
 debug:
 	$(call make_subdir , debug)

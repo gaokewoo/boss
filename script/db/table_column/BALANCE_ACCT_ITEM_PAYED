@@ -6,5 +6,4 @@
    ACCT_ITEM_TYPE_ID	NUMBER(9),
    ITEM_SOURCE_ID		NUMBER(9),
    STATE                VARCHAR(3)                      not null,
-   STATE_DATE           DATE                            not null,
-   constraint PK_BALANCE_ACCT_ITEM_PAYED primary key (OPER_PAYOUT_ID, ACCT_ITEM_ID)
+   STATE_DATE           DATE                            not null

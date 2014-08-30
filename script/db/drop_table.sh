@@ -17,6 +17,7 @@ then
 fi
 create_flag=$1
 
+BOSS_HOME=../../
 ORACLEID=`$BOSS_HOME/script/db/get_globalpara.sh|grep ORACLEID|awk -F= '{print $2}'`
 year=`$BOSS_HOME/script/db/get_globalpara.sh|grep YEAR|awk -F= '{print $2}'`
 
@@ -141,7 +142,7 @@ fun_type5()
 }
 
 #读配置文件，循环处理每一条记录
-while [ $year -lt 2015 ]
+while [ $year -lt 2016 ]
 do
 	for record in `cat $BOSS_HOME/script/db/create_table.cfg`
 	do

@@ -7,38 +7,13 @@ if [ "$p_num" != "0" ];then
     exit 1
 fi
 
-cd $BOSS_HOME/boss/bin
-echo "Start BossMonitorServer begin"
-./BossMonitorServer
-echo "Start BossMonitorServer end"
-
-sleep 1
-
-echo "Start OpenAccountServer begin"
-./OpenAccountServer
-echo "Start OpenAccountServer end"
-
-echo "Start PayFeeServer begin"
-./PayFeeServer
-echo "Start PayFeeServer end"
-
-echo "Start FetchNbrServer begin"
-./FetchNbrServer 
-echo "Start FetchNbrServer end"
-
-echo "Start FetchBalanceServer begin"
-./FetchBalanceServer
-echo "Start FetchBalanceServer end"
-
-echo "Start AdjustAcctItemServer begin"
-./AdjustAcctItemServer
-echo "Start AdjustAcctItemServer end"
-
-echo "Start WriteOffServer begin"
-#./WriteOffServer
-echo "Start WriteOffServer end"
-
-echo "Start CreditControlServer begin"
-#./CreditControlServer
-echo "Start CreditControlServer end"
+PROCESS_LIST=`cat $BOSS_HOME/boss/processlist|grep -v ^#`
+for p in $PROCESS_LIST
+do
+    echo "Start $p begin"
+    cd $BOSS_HOME/boss/bin/
+    ./$p
+    echo "Start $p end"
+    sleep 1
+done
 

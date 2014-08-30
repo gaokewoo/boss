@@ -22,8 +22,10 @@ class DetailItemPool
     public:
         DetailItemPool(LoggerId logId, int poolNum=10)
         {
-            qready = PTHREAD_COND_INITIALIZER;
-            qlock = PTHREAD_MUTEX_INITIALIZER;
+            //qready = PTHREAD_COND_INITIALIZER;
+            //qlock = PTHREAD_MUTEX_INITIALIZER;
+            pthread_cond_init(&qready, NULL);
+            pthread_mutex_init(&qlock, NULL);
 
             for(int i=0; i<poolNum; i++)
             {
@@ -122,10 +124,10 @@ int main(int argc, char** argv) {
 
     CONF_PARSER_SIMPLE_INIT("../conf/boss.cfg");
     int thread_num = CONF_PARSER_GET_NUM_VAL("DetailItem", "thread_num");
-    cout<<"Thread num:"<<thread_num<<endl;
+    //cout<<"Thread num:"<<thread_num<<endl;
 
     int frequence = CONF_PARSER_GET_NUM_VAL("DetailItem", "frequence");
-    cout<<"The client send request each "<<frequence<<" milliseconds."<<endl;
+    //cout<<"The client send request each "<<frequence<<" milliseconds."<<endl;
 
     signal(SIGINT,handler);
 
@@ -136,7 +138,6 @@ int main(int argc, char** argv) {
         pthread_t *threadArr=new pthread_t[thread_num];
         for(int i=0; i<thread_num; i++)
         {
-            cout<<"Create thread:"<<i<<endl;
             pthread_create(&threadArr[i],NULL,thread_func,0);
         }
 

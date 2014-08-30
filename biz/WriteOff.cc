@@ -191,7 +191,7 @@ void WriteOff::doBiz()
                             m_acct_item.acct_item.m_acct_id=(*it).m_acct_id;
                             m_acct_item.acct_item.m_serv_id=(*it).m_serv_id;
                             m_acct_item.acct_item.m_amount=amount;
-                            m_acct_item.acct_item.m_fee_cycle_id=(*it).m_billing_cycle_id;
+                            m_acct_item.acct_item.m_fee_cycle_id=(*it).m_fee_cycle_id;
                             m_acct_item.acct_item.m_payment_method=payment_method;
                             m_acct_item.acct_item.m_state="5JA";
                             m_acct_item.acct_item.m_latn_id=(*it).m_latn_id;
@@ -204,6 +204,7 @@ void WriteOff::doBiz()
                             m_acct_item.acct_item.m_month_wrtoff_fee=0;
                             m_acct_item.acct_item.m_pay_wrtoff_fee=0;
                             m_acct_item.acct_item.m_attr_code="";
+
                             m_acct_item.insertData();
                         }
 

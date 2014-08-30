@@ -20,7 +20,8 @@ FetchNbr::FetchNbr(LoggerId logId)
     m_db = new OracleDB(db_user,db_passwd,db_instance);
     m_db->connectToDB();
 
-    lock = PTHREAD_MUTEX_INITIALIZER;
+    //lock = PTHREAD_MUTEX_INITIALIZER;
+    pthread_rwlock_init(&lock,NULL);
     pthread_create(&threadId,NULL,loadingData,this);
 
     LOG_DEBUG(m_logId, "FetchNbr::FetchNbr end");

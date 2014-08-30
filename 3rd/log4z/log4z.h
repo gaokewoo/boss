@@ -136,7 +136,7 @@
 typedef int LoggerId;
 
 //! the max logger count.
-#define LOG4Z_LOGGER_MAX 10
+#define LOG4Z_LOGGER_MAX 100
 
 //! the max log content length.
 #define LOG4Z_LOG_BUF_SIZE 2048

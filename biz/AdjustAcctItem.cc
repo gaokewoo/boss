@@ -160,7 +160,7 @@ void AdjustAcctItem::doBiz(AdjustAcctItemData & data)
         m_acct_item.acct_item.m_acct_id=acct_id;
         m_acct_item.acct_item.m_serv_id=serv_id;
         m_acct_item.acct_item.m_amount=(int)(data.fee*100);
-        m_acct_item.acct_item.m_fee_cycle_id=billing_cycle_id;
+        m_acct_item.acct_item.m_fee_cycle_id=billing_cycle_id/100;
         m_acct_item.acct_item.m_payment_method=0;
         m_acct_item.acct_item.m_state="00A";
         m_acct_item.acct_item.m_latn_id=region_id;

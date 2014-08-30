@@ -18,6 +18,7 @@ then
 fi
 create_flag=$1
 
+BOSS_HOME=../../
 ORACLEID=`$BOSS_HOME/script/db/get_globalpara.sh|grep ORACLEID|awk -F= '{print $2}'`
 year=`$BOSS_HOME/script/db/get_globalpara.sh|grep YEAR|awk -F= '{print $2}'`
 year_2=`$BOSS_HOME/script/db/get_globalpara.sh|grep YEAR|awk -F= '{print $2}'|cut -b 3-`
@@ -87,7 +88,7 @@ fun_type2()
 }
 
 #读配置文件,循环处理每一条记录
-while [ $year -lt 2015 ]
+while [ $year -lt 2016 ]
 do
 	echo "CUR YEAR = $year"
 	for record in `cat $BOSS_HOME/script/db/create_index.cfg`

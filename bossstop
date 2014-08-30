@@ -1,12 +1,17 @@
 #/bin/bash
 
-p_num=`$BOSS_HOME/boss/bossstatus 2>&1|grep PROCESS_ID|wc -l`
+PROCESS_LIST=`cat $BOSS_HOME/boss/processlist|grep -v ^#`
+for p in $PROCESS_LIST
+do
+    base=`basename $p`
+    echo "Stop $p begin"
+    counter=`ps -ef|grep $base|grep -v grep|grep -v cat|grep -v vi|awk '{print $2}' | wc -l`
 
-if [ "$p_num" = "0" ];then
-    echo "Servers not starting!"
-    exit 1
-fi
+    if  [ $counter -gt 0 ]
+    then
+        ps -ef|grep $base|grep -v grep|grep -v cat|grep -v vi|awk '{print $2}'|xargs kill
+    fi
 
-cd $BOSS_HOME/boss/bin
-./BossMonitorClient |grep ^[1-9]|awk '{print $1}'|xargs kill
+    echo "Stop $p end"
+done
 
