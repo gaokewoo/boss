@@ -236,6 +236,7 @@ void PayFee::doBiz(PayFeeData & data)
     {
         LOG_ERROR(m_logId, "PayFee::doBiz error");
         m_db->rollback();
+        exit(-1);
     }
 }
 

@@ -126,7 +126,7 @@ int main(int argc, char** argv) {
     int thread_num = CONF_PARSER_GET_NUM_VAL("DetailItem", "thread_num");
     //cout<<"Thread num:"<<thread_num<<endl;
 
-    int frequence = CONF_PARSER_GET_NUM_VAL("DetailItem", "frequence");
+    frequence = CONF_PARSER_GET_NUM_VAL("DetailItem", "frequence");
     //cout<<"The client send request each "<<frequence<<" milliseconds."<<endl;
 
     signal(SIGINT,handler);

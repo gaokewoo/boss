@@ -320,6 +320,7 @@ void OpenAccount::doBiz(AccountData & data)
     {
         LOG_ERROR(m_logId, "OpenAccount::doBiz error");
         m_db->rollback();
+        exit(-1);
     }
 }
 

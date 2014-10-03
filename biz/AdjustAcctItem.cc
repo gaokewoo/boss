@@ -228,6 +228,7 @@ void AdjustAcctItem::doBiz(AdjustAcctItemData & data)
     {
         LOG_ERROR(m_logId, "AdjustAcctItem::doBiz error");
         m_db->rollback();
+        exit(-1);
     }
 }
 

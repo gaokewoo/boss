@@ -128,6 +128,7 @@ void CreditControl::doBiz(string acc_nbr)
     {
         LOG_ERROR(m_logId, acc_nbr<<" ERROR");
         m_db->rollback();
+        exit(-1);
     }
 
     LOG_DEBUG(m_logId, "CreditControl::doBiz end");

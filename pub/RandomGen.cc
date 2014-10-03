@@ -274,3 +274,10 @@ RandomInfo RandomGen::getRandomInfo()
 }
 
 
+int RandomGen::getRandomInt(int refer) //According to refer to generate a int value
+{
+    return rand()%refer;
+}
+
+
+

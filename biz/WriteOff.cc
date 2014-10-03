@@ -311,6 +311,7 @@ void WriteOff::doBiz()
     {
         LOG_ERROR(m_logId, "WriteOff::doBiz error");
         m_db->rollback();
+        exit(-1);
     }
 }
 

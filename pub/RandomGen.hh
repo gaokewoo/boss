@@ -32,6 +32,7 @@ public:
     string getNbr();
     string getName();
     RandomInfo getRandomInfo();
+    int getRandomInt(int refer);
 
 private:
    map<int,string> id; 

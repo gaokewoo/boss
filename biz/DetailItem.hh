@@ -9,6 +9,7 @@
 #include "FetchNbr.hh"
 #include "Sequence.hh"
 #include "log4z/log4z.h"
+#include "RandomGen.hh"
 
 using namespace zsummer::log4z;
 
@@ -28,6 +29,7 @@ private:
     LoggerId m_logId;
     OracleDB *m_db;
     Sequence m_seq;
+    RandomGen generator;
 
     static FetchNbr *fetch_nbr;
 };
