@@ -92,9 +92,13 @@ void WriteOff::doBiz()
         m_bill_interface.setConnection(m_db->getConnection());
         vector<ST_BILL_INTERFACE> v_bill_interface(m_bill_interface.loadAllData());
 
+        int dealNum=0;
+        const int COMMIT_NUM=100; //do commit each COMMIT_NUM
         for(vector<ST_BILL_INTERFACE>::iterator it=v_bill_interface.begin();
                     it != v_bill_interface.end(); it++)
         {
+            dealNum++;
+
             long payment_id = (*it).m_payment_id;
             long acct_id = (*it).m_acct_id;
             long payment_method = (*it).m_payment_method;
@@ -303,6 +307,11 @@ void WriteOff::doBiz()
 
             LOG_INFO(m_logId, "WriteOff::doBiz mv from bill_interface to bill_interface_his for payment_id:"<<payment_id);
             m_bill_interface.deleteBillInterfaceByPaymentId(payment_id);
+
+            if(dealNum%COMMIT_NUM == 0)
+            {
+                m_db->commit();
+            }
         }
         m_db->commit();
         LOG_DEBUG(m_logId, "WriteOff::doBiz end");
